@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Week 1 Coding Problems</title>
+	<style type="text/css">
+		#form1 label{ display: block; }
+	</style>
+	<script type="text/javascript">
+
+		// Make sure you wait until the page has loaded before you execute your javascript code
+	window.addEventListener("load", () => {
+		// Problem 1
+		// Use let to declare a variable named 'book'.
+		// Initialize the variable to an object that has a 'title' property and an 'author' property
+		// (you can choose the values for each property)
+		// Then console.log the book variable
+			let book = {
+				title: "The Hitchhiker's Guide to the Galaxy",
+				author: "Douglas Adams"
+			};
+			console.log(book);
+
+		// Problem 2
+		// Use const to create an array of objects.
+		// Each object represents a book that has a 'title' and 'author' property.
+		// You can assign the values to each property
+		// The array should have 3 objects in it
+
+		const libraryBooks = [
+			{title: "The Bad Beginning", author: "Lemony Snicket"},
+			{title: "The Reptile Room", author: "Lemony Snicket"},
+			{title: "The Wide Window", author: "Lemony Snicket"},
+			{title: "The Miserable Mill", author: "Lemony Snicket"},
+			{title: "The Austere Academy", author: "Lemony Snicket"},
+			{title: "The Ersatz Elevator", author: "Lemony Snicket"},
+			{title: "The Vile Village", author: "Lemony Snicket"},
+			{title: "The Hostile Hospital", author: "Lemony Snicket"},
+			{title: "The Carniverous Carnival", author: "Lemony Snicket"},
+			{title: "The Slippery Slope", author: "Lemony Snicket"},
+			{title: "The Grim Grotto", author: "Lemony Snicket"},
+			{title: "The Penultimate Peril", author: "Lemony Snicket"},
+			{title: "The End", author: "Lemony Snicket"}
+		];
+
+
+		// Problem 3 
+		// Use the forEach() method to loop through the array of books
+		// and console log the title of each book
+		libraryBooks.forEach((ce) => {
+			console.log(ce);
+		});
+
+
+		// Problem 4
+		// Write an arrow function named addTwoNumbers.
+		// The function should have two parameters (which should be numbers).
+		// The function should add the two parameters and return the sum.
+		// After you write the function, invoke it and console log the return value 
+		// (you can pick the values for the parameters when you invoke the function)
+
+			const addTwoNumbers = (num1,num2) => {
+				let sum = num1+num2;
+				return sum;
+			};
+
+			console.log(addTwoNumbers(2,4));
+
+
+
+		// Problem 5
+		const dailyAvgTemperatures = [55, 62, 70, 60, 58];
+		// Use a loop to determine how many values in the dailyAvgTemperatures array are equal to
+		// or greater than 60.
+		// console log the result.
+		let count = 0;
+		dailyAvgTemperatures.forEach((i) => {
+			if(i>=60){
+				count++;
+			}
+		});
+		console.log(count);
+
+
+		// Problem 6
+		// Get a handle on the form (below in the HTML) and add an event handler for the submit event.
+		// Prevent the default behavior of the event (which is to send the data entered into the form)
+		// Than validate the user input (you'll need to get handles on the two text boxes in the form). 
+		// If the input is valid show alert that says 'VALID'
+		// If the input is not valid, show an alert that says 'NOT VALID'.
+		// In order for the input to be valid:
+		// 		a value must be entered for the name
+		//		a number greater than 0 must be entered for the age
+
+		document.querySelector("#form1").addEventListener("submit", (evt) => {
+			if(validateContactForm() == false){
+				evt.preventDefault();
+				alert("NOT VALID");
+			}
+
+			
+
+			function validateContactForm(){
+				const formIsValid = true;
+				const txtName = document.getElementById("#txtName");
+				const txtAge = document.getElementById("#txtAge");
+			
+				if(txtName == ""){
+					formIsValid = false;
+				}
+				if(txtAge == "" || txtAge >! 0){
+					formIsValid = false;
+				}
+
+				return formIsValid;
+
+			};
+			
+		});
+		console.log(txtName);
+	});
+		
+	</script>
+</head>
+<body>
+
+
+	<form id="form1" method="POST" action="http://www.wtc-web.com/form-handler.php">
+		<label>Your Name:</label>
+		<input type="text" id="txtName" name="name">
+		<label>Your Age:</label>
+		<input type="text" id="txtAge" name="age">
+		<br>
+		<input type="submit" value="SAVE">
+	</form>
+
+</body>
+</html>

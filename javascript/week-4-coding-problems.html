@@ -1,0 +1,185 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Week 4 Coding Problems</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+  	div.answer{ background-color: lightgray; margin-bottom: 25px; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+  window.addEventListener("load", ()=>{
+
+	// Problem 1
+	// Comment out the IF statement below and replace it with a ternary operator.
+  	let whatToDo;
+	let temperature = 58;
+	let raining = false;
+	
+	/*if(temperature > 60 && !raining){
+		whatDoDo = "Go outside";
+	}else{
+		whatToDo = "Stay inside";
+	}*/
+	whatToDo = !raining && temperature > 60 ? "Go Outside" : "Stay Inside";
+
+	console.log(whatToDo);
+
+
+  	// Problem 2
+  	// Use your imagination to write your own constructor function.
+	// The function should create an object that has at least two properties and two methods.
+	// Then use it to instantiate two objects.
+	// Log both objects
+	function Dragon(breed, element, habitat, align){
+		this.breed = breed;
+		this.element = element;
+		this.habitat = habitat;
+		this.isEvil = align;
+	}
+  	const dr1 = new Dragon("Black", "Acid", "Swamp", true);
+	const dr2 = new Dragon("Silver", "Cold", "Mountains", false);
+	console.log(dr1);
+	console.log(dr2);
+
+	// Problem 3
+  	// Write a function named convertToYears that converts milliseconds to years (assume there is 365 days in a year)
+	// The function should have one parameter (a number) that represents milliseconds
+	// The function should convert the parameter to years as a whole number (round down) and return the result
+	// Hint: to round a number down, use Math.floor()
+	// When you are done writing the function, uncomment the console logs below to test it
+	const convertToYears = (millisecs) => {
+			let years;
+			years = ((((millisecs/1000)/60)/60)/24/365)
+			return years.toFixed(2);
+		};
+		
+
+		console.log(convertToYears(31556952000)); // should be 1
+		console.log(convertToYears(63113904000)); // should be 2
+	
+
+
+
+	// Problem 4
+  	// Loop through the array of people and log the name and age (in years) of each person object.
+  	// Hint: Calculate the difference between now (the current time) and the person's birtdate
+	// Hint: After you calculate the difference, use the function you wrote for the previous problem to help you.
+	const people = [
+  		{name: "Bob", birthdate: new Date(1989, 0, 31) },
+  		{name: "Kathy", birthdate: new Date(1989, 6, 22) },
+  		{name: "Sue", birthdate: new Date(2001, 7, 15) }
+  	]
+	  people.forEach((psn) => {
+		console.log("Name: "+psn.name+" "+"Age: "+convertToYears(psn.birthdate))
+	  });
+
+  	
+  });	
+  </script>
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h1 class="text-white">Int Web Dev - Week 4 Questions and Coding Problems</h1>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+    	
+    	<h3>Question 1</h3>
+		<p>
+			What would you enter in the terminal to create a new branch named <b>dev-branch</b>?
+		</p>
+		<div class="p-2 text-dark answer">
+			git checkout -b &lt;dev-branch&gt;
+		</div>
+
+		<h3>Question 2</h3>
+		<p>
+			What would you enter in the terminal to switch to a branch named <b>dev-branch</b>?
+		</p>
+		<div class="p-2 text-dark answer">
+			git checkout &lt;dev-branch&gt;
+		</div>
+
+		<h3>Question 3</h3>
+		<p>
+			What would you enter in the terminal to merge a branch named <b>dev-branch</b> into a branch named <b>main</b>
+			(assume that you are currenlty working in the main branch)?
+		</p>
+		<div class="p-2 text-dark answer">
+			git merge &lt;dev-branch&gt;
+		</div>
+
+		<h3>Question 4</h3>
+		<p>
+			In class last week we worked the the <b>classList</b> property of a DOM object.
+			What is the specific data type of a classList object?
+			Explain at least 3 methods of this object (make sure to explain what the method does, and the parameters and return values)
+		</p>
+		<div class="p-2 text-dark answer">
+			DOM token list
+		</div>
+
+		<h3>Question 5</h3>
+		<p>
+			What is the purpose of a <b>constructor function</b>?
+		</p>
+		<div class="p-2 text-dark answer">
+			to provide a template for creating objects
+		</div>
+
+		<h3>Question 6</h3>
+		<p>
+			What does it mean to <b>instantiate</b> an object?
+		</p>
+		<div class="p-2 text-dark answer">
+			to create it, thus making an instance of it
+		</div>
+
+		<h3>Question 7</h3>
+		<p>
+			Explain what the <b>getDay()</b> method of the Date API returns (make sure you mention the data type of the return value).
+		</p>
+		<div class="p-2 text-dark answer">
+			it returns a number 0-6 that represents a day of the week
+		</div>
+
+		<h3>Question 8</h3>
+		<p>
+			Explain what the <b>getTime()</b> method of the Date API returns (make sure you mention the data type of the return value).
+		</p>
+		<div class="p-2 text-dark answer">
+			it returns a number of milliseconds since the epoch
+		</div>
+
+				
+		<h2>Coding Problems</h2>
+		<p>
+			There are coding problems for you to do in the script element on the page.
+		</p>
+
+	</main>
+  </div>
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+   <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+</body>
+</html>

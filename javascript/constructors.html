@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Constructor Functions</title>
+	<script type="text/javascript">
+	
+	window.addEventListener("load", () => {
+
+        // See if you can figure out the problem with this code:
+        let dog1 = {name: "Bruno", breed: "Boxer", age:7};
+        let dog2 = {name: "Lassie", breed: "Border Collie", ages:11}
+
+        // It's possible that we may need to build an app that works with
+        // thousands of dog objects, so we need to make sure they are consistent
+
+        // Constructor functions are used to create specific types of objects
+        // They can help ensure that the object that you create are consistent
+        // (They have the exact same properties and methods)
+
+        // Note that you cannot use an arrow function when defining a constructor
+        
+        function Dog(dogName, dogBreed, dogAge){
+            this.name = dogName;
+            this.breed = dogBreed;
+            this.age = dogAge;
+        }
+
+        // You should use a capital for the first letter
+        // when naming a constructor function
+
+        // Although this function does not have a return statement,
+        // it returns an object that has the following properties: name, breed, age
+
+        // You can add parameters, which allow you set the properties of the object
+        // In order to declare the properties of the object, you must use 'this.' before the property name
+	
+        // When calling/invoking a constructor you must use the 'new' keyword
+        // If you don't, then the function will return undefined instead of the intended object.
+        let dog3 = new Dog("Bruno", "Boxer", 7);
+        let dog4 = Dog("Lassie", "Boder Collie", 11); // FORGOT 'new'
+        console.log(dog3);
+        console.log(dog4); // undefined
+
+        // Note that every time you call a constructor function it returns a new 'instance'
+        // of a dog object.
+        // Calling a constructor function is also known as 'instantiating' an object.
+
+        // Adding methods to the objects that a constructor returns
+        // You could define methods directly inside the body of a constructor, like so:
+
+        function Computer(ram, cpu){
+            this.ram = ram;
+            this.cpu = cpu;
+            this.turnOn = function(){
+                console.log("The computer is turning on")
+            }
+        }
+
+        // Let's create 2 instances of computer objects
+        const computer1 = new Computer(10, "multi-core");
+        console.log(computer1);
+
+        const computer2 = new Computer(12, "single-core");
+        console.log(computer2);
+
+        // Note that when you log each computer object, they each have their own copy of the turnOn method
+        // This is not efficient, because the turnOn method is the same for both objects
+        // A better way is to add the method to the objects 'prototype'
+
+        function BetterComputer(ram, cpu){
+            this.ram = ram;
+            this.cpu = cpu;
+        }
+
+        BetterComputer.prototype.turnOn = function(){
+            console.log("The computer is turning on")
+        }
+
+        const computer3 = new BetterComputer(10, "multi-core");
+        console.log(computer3);
+
+        const computer4 = new BetterComputer(12, "single-core");
+        console.log(computer4);
+
+        // Note that when you log computer3 and computer4
+        // you wont see the method (unless you dig down into the prototype)
+        // The 'prototype' is a single object that is shared by all instances
+        function BankAccount(firstName, lastName){
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.balance = 0;
+
+        };
+        BankAccount.prototype.deposit = function(amount){
+            this.balance += amount;
+        };
+
+        const b1 = new BankAccount("Joe", "Schmoe");
+
+        b1.deposit(10);
+        b1.deposit(10);
+        console.log(b1.balance);
+    
+    });	
+
+	</script>
+</head>
+<body>
+    <h1>Constructor Functions</h1>
+	
+		
+</body>
+</html>

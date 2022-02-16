@@ -1,0 +1,108 @@
+Basic Linux Commands (For GitBash on Windows)
+
+cd 			Changes your current directory.
+			Note that you can use absolute paths (they start with /),
+			or you can use relative paths (relative to the dir you are currently in)
+			Note that unlike Windows, Linux uses forward slashes 
+			instead of back slashes in paths
+			Note use the 'tab' key for autocompleting tasks
+			Examples:
+				# change to the root of the c drive:
+				cd /c
+
+				# change to the Users folder
+				cd /c/Users
+
+				# use a relative path (assuming you are in the Users folder)
+				cd youruserid
+				# then
+				cd Desktop
+
+				# move up to the parent folder of the current dir
+				cd ../
+
+				# move up to the grand parent folder of the current dir
+				cd ../../
+
+				# this is a shortcut to take you to your own home directory
+				cd ~
+
+
+pwd				Shows you the path to the directory that you are currently in				
+
+ls 				Shows listing of files and folder in your current directory
+
+ls -l          	The -l flag lists additional information about contents of a folder, including the permisions
+				Many commands have 'flags' that you can add. They are also known as switches, options, parameters
+                
+
+ls -a         	The -a flag will show all files in a folder, including hidden ones
+				A Note about hidden Files:
+				In linux, file names that start with a period are hidden files. These files usually hold configuration 
+				settings for a program or project. We'll run into a few hidden files in this course, such as .htaccess, .git, and .gitignore
+
+ls -al        	You can combine flags
+
+mkdir			Creates a new folder
+				Examples:
+					# first cd to your desktop
+					cd ~/Desktop
+
+					# create a newfolder in the current dir
+					mkdir newfolder
+
+					# now cd into newfolder
+					cd newfolder
+
+touch       	Creates new file or folder in the current directory, the person who creates the file/folder is the 'owner' of it
+				Examples:
+					# create a new file called newfile.txt in the current directory
+					touch newfile.txt
+
+cp            	Copies a file to a new location
+				Examples:
+					#copy a file in the current folder to your home folder
+					cp newfile.txt /c/Users/youruserid
+
+					#copy a folder (and it's) contents to your home folder
+					cp -a somefolder ~
+
+rm				Removes a file or folder
+				Examples:
+					#delete somefile.txt from the current directory
+					rm somefile.txt
+
+					#delete a folder (and it's contents)
+					rm -rf somefolder
+
+mv 				Moves a file (you can also use this to rename a file)
+				Examples:
+					#move a file from the current dir to your desktop
+					mv somefile.txt /c/Users/youruserid/Desktop
+
+					#rename a file in the current dir
+					mv somefile.txt newfilename.txt
+
+nano			Nano is a command line text editor
+				Examples:
+					# open a file in the nano editor
+					nano somefile.txt
+
+					# sometimes you'll need to run this command as sudo
+					# depending on the file permissions
+					sudo nano somefile.txt
+
+					# when you are done editing a file
+					# press ctrl + x to exit,
+					# then you'll be asked if you want to save your changes
+					# to save changes press 'y' then enter
+
+					# if you are working in a large file (like a big configuration file in Linux)
+					# you can use ctl + w to search for text within that file.
+					# you can also press alt + w to move to the next line that has a match for your search
+
+
+A handy tip: You can use the up and down arrow keys to scroll through your history of commands!
+
+
+

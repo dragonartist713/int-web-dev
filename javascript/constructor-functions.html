@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JavaScript Constructor Functions</title>
+    <meta name="description" content="An  overview of constructor functions in JavaScript">
+    <meta name="viewport" content="width=device-width">
+    <link REL=StyleSheet HREF="/css/style.css" TYPE="text/css">
+    
+    <script
+        src="//code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+    <!-- build:js -->
+    <script src="/js/main.min.js"></script>
+    <!-- endbuild -->
+    
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5182821-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-5182821-3');
+</script>
+
+    <!--adsense-->
+    <script data-ad-client="ca-pub-3063627567531897" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+  </head>
+  <body>
+    
+
+    <div id="header-bg">
+      <header class="page-width">
+        <div id="header-frame">
+          <h1><a href="/">R.E.M. Web Development</a></h1>
+        </div>
+      </header>
+    </div>
+    
+    <div id="nav-button">&#9776;</div>
+    
+    <div id="nav-bg">
+      <nav class="page-width">
+        <div id="nav-frame">
+
+    <ul>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/courses/">Courses</a>
+<!--
+        <ul class="sub-menu">
+        <li>
+          <a href="/courses/web-programming/">Web Programming</a>
+        </li>
+        <li>
+          <a href="/courses/databases-and-sql/">Databases and SQL</a>
+        </li>
+        <li>
+          <a href="/courses/advanced-web-programming/">Advanced Web Programming</a>
+        </li>
+        <li>
+          <a href="/courses/intro-to-java/">Intro to Java</a>
+        </li>
+        <li>
+          <a href="/courses/spreadsheets/">Spread Sheets (with Microsoft Excel)</a>
+        </li>
+      </ul>
+-->
+      </li>
+      <li><!--<li aria-haspopup="true"> Not sure why this attr was here, maybe remnant from wp-->
+        <a href="/blog/">Blog</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/search/">Search</a>
+      </li>
+    </ul>
+
+
+
+
+
+        </div>
+      </nav>
+    </div>
+    <!--end of nav-->
+
+
+    <div id="content-bg">
+        <div id="content" class="clearfix page-width">
+    
+ <!-- 1 COLUMN LAYOUT -->
+    <!--
+        <div id="content-frame">
+
+        </div>
+
+    --> 
+
+<div id="main-bg">
+	<div id="main">
+	  <div id="main-frame">
+	    <article>
+	      <h1>JavaScript Constructor Functions</h1>
+	      <p><b>This tutorial is part of a <a href="/courses/introduction-to-web-programming/">web programming course</a> for people who have no programming experience.</b></p>
+<br>
+
+<p>
+    In the previous lessons you learned about two slightly different ways of creating objects in JavaScript.
+    In this example, the entire object is defined in a single statement:
+</p>
+<pre class="language-js"><code>var employee = {firstName: "Bob", lastName: "Smith"};</code></pre>
+<p>
+	The following example creates an empty object in the first statement, and then goes on to add properties (and their values) in subsequent statements:
+</p>
+<pre class="language-js"><code>var employee = {};
+employee.firstName = "Bob";
+employee.lastName = "Smith";</code></pre>
+<p>
+    In other programming languages, such as Java and C#, you must define all of the properties and methods of an object before you can create it (the definition is known as a 'class').
+    So you must create the class definition first, and then you can use it to create objects.
+    Once you have defined the class, it's very easy create objects with it. 
+    All the hard work is done up front when the class is defined.
+    A class serves as a blueprint, and by using it you are insured that every object created from it it will have the exact same properties and methods.
+</p>
+<p>
+	The approach to creating objects in the previous lessons was both tedious and error prone.
+	For example, if we are tasked to create a program for the Human Society so that it can keep track of 100 dogs, our code might look like this:
+</p>
+
+<pre class="language-js"><code>var dog1 = {
+    name: "Bruno",
+    breed: "Poodle",
+    vaccinated: true,
+    print: function(){
+        console.log(this.name);
+        console.log(this.breed);
+        console.log(this.vaccinated);
+    }
+};
+
+// we would have a bunch of code here to create all the other dogs, before finally creating the last dog...
+
+var dog100 = {
+    namez: "Lassie",
+    breed: "Border Collie",
+    vaccinated: false,
+    print: function(){
+        console.log(this.name);
+        console.log(this.breed);
+        console.log(this.vaccinated);
+    }
+};</code></pre>
+
+<p>
+	The example above shows the code for the first dog (dog1) and the last dog (dog100), but just imagine that all the code for all the other dogs was in between.
+</p>
+<p>
+    First notice that we are repeating ourselves quite a bit, every time we need to create another dog object
+    we have to re-write all the property names and values, and we are duplicating the definition of the <b>print</b> method over and over. 
+    This is not ideal, and programmers should work to reduce code duplication whenever they can.
+    Second, note that with all the repition, there is a greater chance of an error.
+    Can you spot the error in dog100?
+</p>
+<p>
+    We need a consistent way to create dog objects. 
+    The approach that we've been using so far is called <b>object literal notation</b>.
+    JavaScript has an alternative approach to creating objects known as <b>contructor notation</b>.
+    Constructor notation involves creating a special function, known as a <b>constructor</b>, whose sole purpose is to create a specific type of objects.
+    Let's now create a constructor function that will allow us to create dog objects in a more concise and consitent manner:
+</p>
+<pre class="language-js"><code>
+function Dog(name, breed, vaccinated){
+    
+    this.name = name;
+    this.breed = breed;
+    this.vaccinated = vaccinated;
+
+    this.print = function(){
+        console.log(this.name);
+        console.log(this.breed);
+        console.log(this.vaccinated);
+    }
+
+}</code></pre>
+<p>
+	This is very much like a class in Java and C#.
+	And I must tell you now, that the most recent version of JavaScript gives you the ability to define classes much like in Java or C#.
+	But for many years, JavaScript developers would simulate classes by using constructor functions like the one above.
+	This constructor function now serves as our template, or blueprint, for creating dog objects.
+	It will gaurantee that each dog we create with it will have the same property names and the same methods.
+</p>
+<p>
+    After we have defined the constructor function for creating dog objects, we can use it like this: 
+</p>
+<pre class="language-js"><code>// use the constructor function to create two dog objects:
+var dog1 = new Dog("Bruno", "Poodle", true);
+var dog2 = new Dog("Lassie", "Border Collie", false);
+
+// invoke the print method so the we can see the details of each dog in the console log:
+dog1.print();
+dog2.print();</code></pre>
+
+<p>
+	Here we have created two dog objects, and the properties of each one are set by passing parameters into the function call.
+	We could then go on to create the rest of the dogs in the system by invoking the constructor function in this manner.
+</p>
+
+<h2 id="constructor-function-guidelines">Guidelines for Creating Constructor Functions</h2>
+<p>
+    Here are some things to keep in mind when creating and using constructor functions:
+</p>
+<ul>
+    <li>Constructor function names should start with an uppercase letter (rather than using camelCase). This helps to distinguish them from regular functions.</li>
+    <li>The name of the constructor function should describe the object that it creates (Dog).</li>
+    <li>
+    	To set the properties of the object being created, pass in parameters when invoking the constructor function.
+    	Note that the parameter names are the same as the property names, which can cause confusion.
+    	So when referring to a property inside a constructor function, prefix it with the <b>this</b> keyword (we'll talk more about this in just a moment).
+    </li>
+    <li>
+    	The constructor function does not have a return statement even though it does actually return an object (it is implied that constructor functions return the object that they are design to create).
+    </li>
+    <li>When you invoke the constructor function, you must use the <b>new</b> keyword.</li>
+    <li>
+    	When defining methods inside a constructor function, prefix the method name with <b>this</b>.
+    	Note that some JavaScript afficionados would argue that there are better ways to add methods to objects than to put them in the constructor function.
+    	And this may be true, but for now it makes good sense to take this approach when you are learning about object-oriented programming.
+    </li>
+</ul>
+<p>
+    Also note that you could change the parameter names if you wanted to avoid some ambiguity, but it's common for programmers to use parameter names that match the properties of the object. 
+    For example, we could have written the Dog constructor like so:
+</p>
+<pre class="language-js"><code>function Dog(param1, param2, param3){
+    
+    this.name = param1;
+    this.breed = param2;
+    this.vaccinated = param3;
+
+    this.print = function(){
+        console.log(this.name);
+        console.log(this.breed);
+        console.log(this.vaccinated);
+    }
+}</code></pre>
+<p>
+	As usualy, I have to go on a little rant about formatting your code. Please notice that all the lines of code within the body of the constructor are indented,
+	and that all the lines inside the body of the print method are also indented.
+	Proper indentation will help reduce bugs, and find bugs, and keep your code easy to read, and keep your fellow programmers happy.
+</p>
+<h2 id="built-in-constructor-functions">Built-in Constructor Functions</h2>
+<p>
+    The JavaScript languages has some built-in constructor functions that you can use to create objects.
+    For example, you use the <b>Array</b> constructor to assign an array to a variable like this:
+</p>
+<pre class="language-js"><code>var numberArray = new Array(1,3,5,7);
+// this is the same as... 
+var numberArray = [1,3,5,7];</code></pre>
+<p>
+    In the next lesson we'll explore another built-in constructor function that you can use to create 'date' objects.
+</p>
+
+
+<a class="next-lesson" href="/blog/javascript/date-objects.html">NEXT LESSON: Working with Date and Times in JavaScript</a> 
+
+	    </article>
+	  </div>
+	</div>
+</div>
+
+<div id="side-bar-bg">
+	<div id="side-bar">
+	  <div id="side-bar-frame">
+	    <aside>
+			
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- MyAddUnit1 -->
+		<ins class="adsbygoogle"
+			style="display:block"
+			data-ad-client="ca-pub-3063627567531897"
+			data-ad-slot="7192169122"
+			data-ad-format="auto"
+			data-full-width-responsive="true"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+
+	    </aside>
+	  </div>
+	</div>
+</div>
+      
+      </div><!--end of 'content'-->    
+    </div><!--end of 'content-bg'-->
+
+    <!--START OF FOOTER-->
+    <div id="footer-bg">
+      <footer class="page-width">
+        <div id="footer-frame">
+            &copy;2021&nbsp;Niall Kader
+             | <a href="/privacy-policy.html">Privacy Policy</a>
+            <div id="footer-menu-frame"></div>
+        </div>
+      </footer>
+    </div>
+            
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Events</title>
+	<style type="text/css">
+		#circleDiv{
+			position: absolute;
+			height: 50px;
+			width:  50px;
+			top: 0px;
+			right: 0px;
+			border-radius: 25px;
+			background-color: rgba(127, 127, 127, 0.4);
+		}
+	</style>
+	<script type="text/javascript">
+	window.addEventListener("load", () => {
+		//click events
+		const btn1 = document.querySelector("#btn1");
+		const btn2 = document.querySelector("#btn2");
+		const btn3 = document.querySelector("#btn3");
+
+		btn1.addEventListener("click", (evt) => {
+			console.log(evt);
+		});
+
+		const eventHandler = (evt) => {
+			if(evt.target == btn2){
+				console.log("You clicked 2.");
+			}else if(evt.target == btn3){
+				console.log("You clicked 3.")
+			}
+		};
+
+		btn2.addEventListener("click", eventHandler);
+		btn3.addEventListener("click", eventHandler);
+
+		//mouse events
+		const txtPageX = document.querySelector("#txtPageX");
+		const txtPageY = document.querySelector("#txtPageY");
+
+		window.addEventListener("mousemove", (evt) => {
+			txtPageX.value = evt.pageX;
+			txtPageY.value = evt.pageY;
+		});
+
+		//keyboard events
+		const txt1 = document.querySelector("#txt1");
+		txt1.addEventListener("keypress", (evt) => {
+			console.log(evt.key);
+		});
+
+
+		//form events
+		const form = document.querySelector("#surveyForm");
+		form.addEventListener("submit", (evt) => {
+			
+			const txtFirstName = form.querySelector("#txtFirstName")
+			const txtAge = form.querySelector("#txtAge")
+			let isValid = true;
+			if(txtFirstName.value == ""){
+				alert("You must enter a first name.");
+				isValid = false;
+				txtFirstName.focus();
+			}
+			if(txtAge.value > 0 == false){
+				alert("You must enter a valid age.");
+				isValid = false;
+				txtAge.focus();
+			}
+			if(isValid == false){
+				evt.preventDefault();
+			}
+
+		});
+
+		//change events
+		const changeHandler = (evt) => {
+			console.log(evt.target.checked);
+		};
+
+		//const selBox = document.getElementById
+		/*radios.forEach((ce) => {
+			ce.addEventListener("change", changeHandler);
+		});*/
+
+		const fileInput = document.getElementById("file-input");
+		fileInput.addEventListener("change", (evt) => {
+			console.dir(evt.target);
+		})
+
+		const circleDiv = document.querySelector("#circleDiv");
+		/*
+		window.addEventListener("mousemove", (evt)=>{
+			// circleDiv.style.left = evt.pageX + "px";
+			// circleDiv.style.top = evt.pageY + "px";
+
+			const style = window.getComputedStyle(circleDiv);
+			//console.log(parseInt(style.width));
+			const width = parseInt(style.width);
+			const height = parseInt(style.height);
+			circleDiv.style.left = (evt.pageX - width/2) + "px";
+			circleDiv.style.top = (evt.pageY - height/2) + "px";
+		
+		});*/
+		let following = false;
+		circleDiv.addEventListener("click", () =>{
+			following = !following;
+			if(following){
+				window.addEventListener("mousemove", followMouse);
+			}else{
+				window.removeEventListener("mousemove", followMouse);
+			}
+			
+		});
+		const followMouse = (evt) =>{
+			const style = window.getComputedStyle(circleDiv);
+			//console.log(parseInt(style.width));
+			const width = parseInt(style.width);
+			const height = parseInt(style.height);
+			circleDiv.style.left = (evt.pageX - width/2) + "px";
+			circleDiv.style.top = (evt.pageY - height/2) + "px";
+		}
+
+	});
+	</script>
+</head>
+<body>
+	<div id="circleDiv"></div>
+	<h1>Events</h1>
+	<h1>JavaScript Event Object Sample Code</h1>
+	<h2>Click Events</h2>
+	<input type="button" id="btn1" value="Button 1">
+	<br><br>
+
+	<input type="button" id="btn2" value="Button 2">
+	<input type="button" id="btn3" value="Button 3">
+	<br><br>
+
+	<h2>Mouse Move Events</h2>
+	<p>You can 'listen' for when the mouse moves within the window, or within a certain element.</p>
+	Mouse Position X:<input type="text" size="3" id="txtPageX" />
+	<br/>
+	Mouse Position Y:<input type="text" size="3" id="txtPageY" />
+	<br><br>
+
+	<h2>Keyboard Events</h2>
+	<label>Enter some text:</label>
+	<input type="text" id="txt1">
+	<br><br>
+
+	<h2>Form Events</h2>
+	<form id="surveyForm" method="POST" action="http://wtc-web.com/form-handler.php">
+		<label>Enter your first name:</label>
+		<br>
+		<input type="text" id="txtFirstName" name="firstName" />
+		<br>
+		<label>Enter your age:</label>
+		<br>
+		<input type="text" id="txtAge" name="age" />
+		<br>
+		<label></label>
+		<input type="submit" id="btnSubmit" value="submit" />
+	</form>
+	<br><br>
+
+	<h2>Change Events</h2>
+	Select a color:
+	<br>
+	<select id="selColor">
+	    <option value="">Choose One...</option>
+	    <option value="red">RED</option>
+	    <option value="blue">BLUE</option>
+	    <option value="green">GREEN</option>
+	</select>
+	<br><br>
+	<!-- 
+		Note that you when put the input inside the label (as a child)
+		then when you click on the label is acts as a click on the input too.
+	-->
+	<label>
+		<input type="checkbox" class="some-checkbox">
+		This is some checkbox
+	</label>
+	<br><br>
+	<label>
+		<input type="radio" name="some-radio" value="first radio">
+		This is the first radio
+	</label>
+	<br>
+	<label>
+		<input type="radio" name="some-radio" value="second radio">
+		This is the second radio
+	</label>
+	<br>
+	<br>
+	<label>
+		This is a file input
+		<input type="file" id="file-input">
+	</label>
+</body>
+</html>

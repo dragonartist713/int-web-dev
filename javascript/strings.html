@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Strings</title>
+	<script>
+	window.addEventListener("load", ()=>{
+
+
+		// The indexOf() method
+		// Come up with an example that demonstrates the indexOf() method of a string
+		const someString = "https://www.acme.com/products/some-product-page.html";
+		console.log(someString.indexOf("www"));
+		console.log(someString.indexOf("foo"));
+		
+		
+
+		// Strings are also arrays
+		console.log(someString.length);
+		
+
+		// You can loop through each character in a string:
+		for(let x=0; x <someString.length; x++){
+			console.log(someString[x]);
+			console.log(someString.charAt(x));
+		}
+		
+
+		//someString.forEach(c => console.log ); // unlike real arrays, strings don't have forEach()
+
+
+
+		// trim()
+		const str = " xxx    ";
+		const trimStr = str.trim();
+		console.log(trimStr);
+		
+
+		// replace();
+		const str2 = "It's raining cats and dogs";
+		console.log(str2.replace("cats", "hamsters"));
+		
+
+		// how about a global replace 
+		const str3 = "I like to eat, eat, eat!";
+		console.log(str3.replace(/eat/g, "sleep"));
+		
+
+
+		// split()
+		
+
+		
+		// Write a function to extract the domain name out of a url
+		// Strategy - first split on the double wacks (//)
+		// Then split on the single wacks to remove the path portion
+		const someUrl = "http://www.acme.com/some-folder/some-file.html";
+
+		const extractDomainName = (url) => {
+			let parts = url.split("//");
+			const path = parts[1];
+			parts = path.split("/");
+			return parts[0];
+		};
+
+		console.log(extractDomainName(someUrl));
+
+
+
+
+		// slice(), substr(), substring()
+		const str4 = "Happy New Year!";
+		
+
+
+
+	});
+	</script>
+</head>
+<body>
+	<h1>String Methods (The String API)</h1>
+</body>
+</html>

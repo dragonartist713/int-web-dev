@@ -1,0 +1,10 @@
+ID,FIRST NAME, LAST NAME, EMAIL, SALARY, HIRE DATE, PASSWORD
+1,Bob,Smith,bob@acme.com,45000,3/12/2009,test123
+2,Betty,Jones",betty@acme.com,55000,5/11/2017,opensesame
+3,Sally,Johsnson",sally@acme.com,65000,5/21/2016,abc
+4,Ted,Thomas",ted@acme.com,45000,9/14/2019,pencil
+5,Jean,Parker",jean@acme.com,55000,1/17/2017,letmein
+6,Larry,Corker",larry@acme.com,65000,8/19/2012,foo
+7,Morris,Smith",morris@acme.com,45000,5/16/2002,howdy
+8,Buster,Jenkins",buster@acme.com,55000,2/23/2019,yep
+9,Grace,Anderson",grace@acme.com,85000,05/03/2017,dontask

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern JavaScript</title>
+    <script>
+    window.addEventListener("load", () => {
+
+        // const and let
+        // var x = 7; // this is the old way to declare a variable
+
+        const milesPerGallon = 35;
+        //milesPerGallon = 70; //you can't change a constant
+
+        // In Java you declare a constant like this:
+        //final MILES_PER_GALLON = 35;
+
+        // In C# you declare a constant like this:
+        //const MilesPerGallon = 35;
+
+        // let
+        let mpg = 35;
+        mpg = 40;
+
+        /*
+        // this example shows that let uses block-leve scoping
+        function passOrFail(score){
+            if(score >= 70){
+                //var result = "PASS";
+                let result = "PASS";
+            }
+            console.log(result);
+        }
+
+        passOrFail(75);
+        */
+
+        // If you aren't sure whether to use const or let, 
+        // use const and change it later if you need to
+
+
+
+
+        // ARROW FUNCTIONS
+
+        /*
+        // the 'classic' way to declare  function:
+        function someOldFunction(){
+
+        }
+        */
+
+        // an arrow function
+        const someOldFunction = () => {
+
+        }
+
+        // we use lots of arrow functions in event handlers
+        window.addEventListener("click", () => {
+            console.log("You clicked on the window");
+        });
+
+        //abbreviating arrow functions
+        const anArray = ["This", "Array", "Contains", "Strings"];
+        anArray.forEach((ce) => { console.log(ce); });
+        //if theres only one parameter, can omit the parentheses
+        anArray.forEach(ce => { console.log(ce); });
+        //if theres only one statement in the funtion, can omit the curly braces
+        anArray.forEach(ce => console.log(ce));
+
+
+        // Looping through arrays with forEach()
+        const scores = [88,92,94];
+
+        // classic javascript
+        for(let x = 0; x < scores.length; x++){
+            console.log(scores[x]);
+        }
+        
+        // modern javascript
+        scores.forEach((ce) => {
+            console.log(ce);
+        });
+
+        // figure out the average of all the scores in the array
+        let total = 0;
+        scores.forEach((e) => {
+            total += e;
+        });
+        const avg = total/scores.length;
+        console.log(avg);
+        
+        //const h1 = document.getElementById("my-h1");
+        
+        //querySelector() and querySelectorAll()
+        //the param for these is a css selector
+
+        const btn1 = document.querySelector("#btn1");
+        const ul = document.querySelector("ul.fruits");
+        console.log(btn1);
+        console.log(ul);
+
+
+        //template syntax
+        const firstName = "Bob";
+        const lastName = "Smith";
+
+        let fullNameStr = `First Name: ${firstName} Last Name: ${lastName}`;
+        console.log(fullNameStr);
+
+        const jibberish = `fdsjklf;dsajklfdsaklf;sdjkldsajfdlkajfl;kdsjfl
+        ;dsajkfalkfdsl;jfdsal;kjl;
+        fdhsjakhjdksahfjkdshaklakjsaklfjdfhieuhfiebnunvuibsajv
+        kcbxzvduisnaklvbjcobaubewab voa;o`;
+
+        //the ternary operator
+        let score = 62;
+        let result;
+            //old method
+        if (score >= 60){
+            result = "PASS";
+        }else{
+            result = "FAIL";
+        }
+            //new method
+        result = score >= 60 ? "PASS" : "FAIL"
+
+
+
+
+
+    });
+    </script>
+</head>
+<body>
+    <h1 id="my-h1">Modern Javascript</h1>
+    <button id="btn1">Button 1</button>
+    <ul class="fruits">
+        <li>Apples</li>
+        <li>Oranges</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Week 3 Coding Issues</title>
+	<script type="text/javascript">
+	
+	// This one is interesting (Java would not compile this)
+	// First eyeball it and see if you spot anyting that looks fishy
+	// Then set a break point and step through the code	
+	const cats = [
+  		{name: "Felix", age: 7},
+  		{name: "Buster", age: 11},
+  		{name: "Garfield", age: 7}
+  	];
+
+	let oldestCat = cats[0].age;
+	
+	cats.forEach((cat) => {
+		
+		if(oldestCat > cat){
+			oldestCat = cat;
+		}
+	});
+
+	console.log(oldestCat);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

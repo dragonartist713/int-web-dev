@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Data Attributes</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		/////////////////////////////////
+		// Data Attributes (data-)
+		/////////////////////////////////
+		// You can stuff data into an element by adding a 'data-' attribute to it
+		// Look at the dog list in the body and notice that the LI elements have a few attributes that start with "data-"
+
+		
+		// You can access this data in JavaScript by accessing the 'dataset' property of a DOM element object
+		// Notice in the log that it's a DOMStringMap object (so many types of objects to get to know!)
+		const dogListItems = document.querySelectorAll(".dogs li");
+		//const dogListItems = document.querySelectorAll("[data-dog-id = '1']");
+		console.log(dogListItems);
+		
+		
+		// Note that in the HTML code the data attributes are kabob-case
+		// But the properties of li.dataset is camelCase (data-dog-breed in the HTML code becomes li.dataset.dogBreed 		
+		dogListItems.forEach(li => console.log(li.dataset.dogBreed));
+
+		// Write an event handler function that alerts the dogId 
+		// and dogBreed values from the dataset of the target
+		const showDogDetails = (evt) => {
+			const id = evt.target.dataset.dogID;
+			const breed = evt.target.dataset.dogBreed;
+			alert(id + " " + breed);
+		};
+		
+
+		// Attach the event handler function to the click event 
+		// of each LI in the dog list
+		dogListItems.forEach(li => li.addEventListener("click", showDogDetails));
+
+
+
+		// Problem
+		// Loop through the book list and 
+		// extract the values from the data-attributes for each list item
+		// Then use the values to construct an array of Book objects
+		function Book(id, title, author){
+			this.id = id;
+			this.title = title;
+			this.author = author;
+		} 
+		const books = [];
+		const bookListItems = document.querySelectorAll(".books li");
+		bookListItems.forEach(li => {
+			const id = li.dataset.id;
+			const title = li.dataset.title;
+			const author = li.dataset.author;
+			const newBook = new Book(id, title, author);
+			books.push(newBook);
+		});
+		console.log(books);
+
+		
+
+
+
+		// PROBLEM
+		// You'll use this array:
+		const friends = [
+			{id:1, name:"Bob"},
+			{id:5, name:"Betty"},
+			{id:9, name:"Sally"}
+		];
+		// Create a UL element
+		// Loop through the friends array
+		//		Create an LI for each friend, display the friend name in the LI
+		//		Add a 'friendId' property to the dataset of the LI and set 
+		// 		it to the id of the current friend (in the loop)
+		//		Append the LI to the UL you created in the first step of this problem
+		// Append the UL element into the DIV (below) that has the 
+		// id of 'friend-list-container' 
+
+		// Make sure to inspect the list in the developer tools
+		// and note that the camelCase used for the dataSet properties become kabob-case in the HTML
+		const ul = document.createElement("ul");
+		friends.forEach(f => {
+			const li = document.createElement("li");
+			li.dataset.friendId = f.id;
+			li.innerHTML = f.name;
+			ul.appendChild(li);
+		});
+		const div = document.getElementById("friend-list-container");
+		div.appendChild(ul);
+		//console.log());
+		
+	});
+	</script>
+</head>
+<body>
+	<h1>Data Attributes (and the dataset property of a DOM element object)</h1>
+	<h2>Dog List</h2>
+	<div id="dog-list-container">
+		<ul class="dogs">
+			<li data-dog-id="1" data-dog-breed="Boxer">Brutus</li>
+			<li data-dog-id="2" data-dog-breed="Collie">Lassie</li>
+		</ul>
+	</div>
+
+	<h2>Book List</h2>
+	<div id="book-list-container">
+		<ul class="books">
+			<li data-id="27" data-title="Harry Potter" data-author="JK Rowlings">Harry Potter</li>
+			<li data-id="34" data-title="The Sun Also Rises" data-author="Hemmingway">The Sun Also Rises</li>
+		</ul>
+	</div>
+
+	<h2>Friend List</h2>
+	<div id="friend-list-container"></div>
+
+</body>
+</html>

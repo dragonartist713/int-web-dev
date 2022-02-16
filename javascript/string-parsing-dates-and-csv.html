@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Parsing CSV Strings</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		// Some of these examples depend on the data folder and the csv files in it
+
+	
+		// Pre-reqs
+		// Understanding of string methods
+		// Constructor functions
+		// The Date API
+		// 'parsing'
+		// method chaining
+
+
+		// PARSE A STRING INTO A DATE OBJECT
+		// Write a function that parses a string such as 2/4/2022 into a Date object
+		const parseDateString = (str) => {
+			const parts = str.trim().split("/");
+			const month = parts[0];
+			const day = parts[1];
+			const year = parts[2];
+			//destructuring
+			//const [month, day, year] = str.trim().split("/");
+			const date = new Date(year,month-1,day);
+			return date;
+		}
+
+		const date1 = parseDateString("2/4/2022");
+		console.log(date1);
+		const date2 = parseDateString("02/04/2022");
+		console.log(date2);
+
+
+
+
+		// PARSE CSV DATA INTO OBJECTS
+		// Take a look at the dog.csv file in the data folder
+		// Look at it in VSCode, and then open it in Excel
+
+		function Dog(id, name, breed){
+			this.id = id;
+			this.name = name;
+			this.breed = breed;
+		}
+
+		// Parse the following csv string into a Dog object
+		const csvRow = '1, Buster, Boxer'; // might need to trim these!
+
+		// write a function to parse a csv row into a Dog object
+		// the param should be a (string) that represents a line from a .csv file that looks lik this 
+		// 			113,Snoopy,Beagle
+		const convertCSVLineToDog = (csvLine) => {
+			const cells = csvLine.trim().split(",");
+			const id = cells[0].trim();
+			const name = cells[1].trim();
+			const breed = cells[2].trim();
+			//const []
+
+			const dog = new Dog(id,name,breed);
+			return dog;
+		}
+
+		console.log("DOG:", convertCSVLineToDog(csvRow));
+
+
+		
+		// Take a look at the dogs.csv file in the data folder
+		// Here is the same data that is in dogs.csv (notice the \n for line breaks):		
+		const csvRows = `1,Brutus,Boxer\n2,Lassie,Collie\n3,Snoopy,Beagle`;
+
+
+		// Write a function that converts dog csv data (like csvRows) into an array of dog objects
+		const parseDogCSV = (csvData) => {
+			const dogArray =[];
+			const rows = csvData.trim().split("\n");
+			const firstRow = rows[0]
+			if(firstRow.indexOf("ID") == 0){
+				rows.shift();
+			};
+			rows.forEach((r) => {
+				const dog = convertCSVLineToDog(r);
+				dogArray.push(dog);
+			});
+			return dogArray;
+		}
+
+		let dogs = parseDogCSV(csvRows);
+		console.log(dogs);
+
+
+		// Sometimes csv files have column headers
+		// How can we deal with that?
+		const csvRowsWithHeaders = `ID,NAME,BREED
+									1,Brutus,Boxer
+									2,Lassie,Collie
+									3,Snoopy,Beagle`;
+
+		dogs = parseDogCSV(csvRowsWithHeaders);
+		console.log(dogs);
+
+
+
+		// CODING PROBLEM
+		// This problem will incorporate 'file i/o', which means that we'll be loading 
+		// data from a a file on the file system and reading it into this program.
+		// Your job is to write the code for convertCSVLineToEmployee() and parseEmployeeCSV() 
+		// (they are declared below, you need to fill in the code for them)
+
+
+		// THIS CODE ALLOWS YOU TO LOAD FILES FROM THE FILE SYSTEM (aka 'file input')
+		const fileInput = document.getElementById("fileInput");
+		
+		// Add an event handler for when a file is selected with the fileInput
+		// (this is a 'change' event)
+		fileInput.addEventListener("change", (evt) => {
+			
+			// get the data from the selected file and pass it to the callback function
+		    const file = evt.target.files[0];
+		    console.log(`About to open ${file.name}`);
+
+		    const reader = new FileReader();
+
+		    // The 'load' method occurs when the fileInput has finished loading the text from the file
+		    reader.addEventListener("load", function(e) {
+			  var data = e.target.result;
+
+			  switch(file.name){
+			  	case "dogs.csv":
+			  		const dogArray = parseDogCSV(data);
+			  		console.log(dogArray);
+			  		break;
+			  	case "employees.csv":
+			  		const employeeArray = parseEmployeeCSV(data);
+			  		console.log(employeeArray);
+			  		break;
+			  	default:
+			  		console.log(data);
+			  }
+			  
+			});
+
+		    reader.readAsText(file); 
+			
+		});
+
+
+		// EMPLOYEE CONSTRUCTOR
+		// You'll use this constructor function to create Employee objects
+		// Note that the data type of the hireDate parameter should be a Date object (not a string)
+		function Employee(id, firstName, lastName, email, salary, hireDate, password){
+			if(hireDate instanceof Date){
+				this.id = id;
+				this.firstName = firstName;
+				this.lastName = lastName;
+				this.email = email;
+				this.salary = salary;
+				this.hireDate = hireDate; // NOTE THAT hireDate SHOULD BE A DATE OBJECT, NOT A STRING!
+				this.password = password;
+			}else{
+				throw new Error("hireDate must be a Date object");
+			}
+		}
+
+		// This should work:
+		//console.log(new Employee(1,"bob","smith","b@s.com",50000, new Date(), "blah"));
+		
+		// This should throw an error:
+		//console.log(new Employee(1,"bob","smith","b@s.com",50000, "xxx", "blah"));
+
+
+
+
+		// This function should have a string parameter that looks like this:
+		//
+		// 		1,Bob,Smith,bob@acme.com,45000,3/12/2009,test123
+		//
+		// And it should return an Employee object
+		const convertCSVLineToEmployee = (csvLine) => {
+
+		}
+
+		// Uncomment these two lines to test the converCSVLineToEmployee() method
+		// const employeeObj = convertCSVLineToEmployee("1,Bob,Smith,bob@acme.com,45000,3/12/2009,test123");
+		// console.log(employeeObj);
+
+
+		// This function should take string of CSV data as a parameter
+		// It should create an empty array. Then it should
+		// split the parameter on the line breaks ( \n ),
+		// and pass each line into convertCSVLineToEmployee() and add the 
+		// return value to the employee array.
+		// Finally, it should return the array of employees
+		const parseEmployeeCSV = (csvData) => {
+
+		}
+
+		// To test the parseEmployeeCSV() method, load the employees.csv with the file input on the page.
+		
+
+
+	});
+	</script>
+</head>
+<body>
+	<input type="file" id="fileInput">
+</body>
+</html>

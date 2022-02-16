@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Truthy Falsy Values</title>
+	<script type="text/javascript">
+		
+		// FALSY VALUES
+
+		// 0 is condisered to be false
+		if(0 == false){
+			console.log("True - zero is equal to false");
+		}
+
+		// an un-initialized variable is considered to be false
+		var name;
+		if(name == false){
+			console.log("True");
+		}
+
+		// you can check to see if a variable has been initialized
+		if(name){
+			console.log("name has been initialized");
+		}else{
+			console.log("name has NOT been initialized");
+		}
+
+
+		// TRUTHY VALUES
+		var a = 1;
+		var b = "Hello";
+		var c = true;
+		var d = -7;
+		var e = 0; // FALSE! 0 is false
+		var f = {};
+		var g = [];
+		var h = prompt("Enter a number between 0-10");
+
+		if(e){
+			console.log("Truthy!!!!");
+		}else{
+			console.log("Falsy!!!");
+		}
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

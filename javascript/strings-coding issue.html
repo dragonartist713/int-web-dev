@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Problem with the Password Checker</title>
+	<script type="text/javascript">
+		
+
+			// From the strings assignment
+
+			// This one is interesting, all of the tests pass (what should we do make sure we test it better?)
+			// Step through this one with the debugger
+
+			// Write a function called isStrongPassword that checks to make sure a password is secure
+			// The function takes one parameter, a string that represents a password.
+			// If the password is at least 8 characters AND contains at least one number,
+			// then the function should return true. Otherwise the function should return false.
+			// When you are done defining the function, then test it out by checking the following passwords:
+			// 		good11Password
+			// 		badPassword
+			// Make sure to console log the result of each test. 
+			const isStrongPassword = (password) => {
+				
+				let isValid = false;
+
+				if (password.length >= 8 && password.indexOf("\d+")){
+					isValid = true;
+				}
+
+				return isValid;
+				
+			};
+
+			const good = "Strong1Password";
+			const bad = "fooie";
+		    const my = "yomamaaa12"
+
+			console.log(isStrongPassword(good));
+			console.log(isStrongPassword(bad));
+		    console.log(isStrongPassword(my));
+
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

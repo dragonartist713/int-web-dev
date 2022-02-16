@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Selectors Worksheet</title>
+	<style type="text/css">
+		
+		/* Write HTML code in the BODY element to match each ruleset in the CSS code. */
+
+		/* Example problem */
+		.promo{
+			background-color: MIDNIGHTBLUE;
+			color:white;
+		} 
+
+		/* Problem 1*/
+		#myElement a{
+			background-color: KHAKI;
+			color: black;
+		}
+
+		/* Problem 2*/
+		ul li.selected{
+			background-color: REBECCAPURPLE;
+			color: white;
+		}
+
+		/* Problem 3*/
+		ul li .selected{
+			background-color: DARKGREEN;
+			color: white;
+		}
+
+
+		/* Problem 4*/
+		input[type=text]{
+			background-color: STEELBLUE;
+			color: white;
+		}
+
+		/* Problem 5*/
+		nav ul li a{
+			background-color: SIENNA;
+			color: white;
+		}
+
+		/* Problem 6*/
+		ul li.promo.selected{
+			background-color: MAROON;
+			color: white;
+		}
+
+		/* Problem 7*/
+		div > p{
+			background-color: orange;
+			color: white;
+		}
+
+		/* Problem 8 */
+		h3 ~ p{
+			background-color: SKYBLUE;
+			color:black;
+		}
+
+		/* Problem 9 */
+		p a:hover{
+			background-color: YELLOW;
+			color:black;
+		}
+
+		/* Problem 10 */
+		ul.user-list li[userId='5']{
+			background-color: GOLD;
+			color:black;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<!-- Example problem -->
+	<h3 class="promo">Example Problem</h3>
+
+	<!-- Problem 1 Code Goes Here -->
+	<h3 id="myElement">
+        <a>Problem 1</a>
+    </h3>
+
+	<!-- Problem 2 Code Goes Here -->
+    <ul>
+        <li class="selected">Problem 2</li>
+    </ul>
+	
+
+	<!-- Problem 3 Code Goes Here -->
+    <ul>
+        <li>
+            <h3 class="selected">Problem 3</h3>
+        </li>
+    </ul>
+	
+
+	<!-- Problem 4 Code Goes Here -->
+    <input type="text">
+	
+
+	<!-- Problem 5 Code Goes Here -->
+    <nav>
+        <ul>
+            <li>
+                <a>Problem 5</a>
+            </li>
+        </ul>
+    </nav>
+	
+
+	<!-- Problem 6 Code Goes Here -->
+    <ul>
+        <li class="promo selected">Problem 6</li>
+    </ul>
+	
+
+	<!-- Problem 7 Code Goes Here -->
+    <div>
+        <p>Problem 7</p>
+    </div>
+	
+
+	<!-- Problem 8 Code Goes Here -->
+    <h3></h3>
+    <p>Problem 8</p>
+    
+	
+
+	<!-- Problem 9 Code Goes Here -->
+    <p>
+        <a hover:>Problem 9</a>
+    </p>
+	
+
+	<!-- Problem 10 Code Goes Here -->
+    <ul class="user-list">
+        <li userId="5">Problem 10</li>
+    </ul>
+	
+	
+</body>
+</html>

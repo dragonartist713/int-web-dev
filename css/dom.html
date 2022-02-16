@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The DOM API</title>
+<style type="text/css">
+	
+	.special{
+		color: orange;
+	}
+
+	.promo{
+		text-decoration: underline;
+	}
+
+	.warning{
+		color:  red;
+	}
+</style>
+<script type="text/javascript">
+window.addEventListener("load", ()=>{
+
+	///////////////////////////////////////////////////////
+	// The Window Object
+	///////////////////////////////////////////////////////
+
+	// The window object contains all the other objects in the DOM
+	// And it's complicated!
+	console.dir(window); 
+
+	// The location property of the window object
+	console.log(window.location);
+	console.log(location); // Note in the log that the specific data type Location object 
+
+	// Redirect to a new page by changing the href prop of the location object
+	// (Note that this is the used in XSS attacks)
+	//location.href = "http://www.google.com";
+
+
+	// The localStorage object allows you to save data between browsing sessions
+	console.log(localStorage);
+	localStorage.setItem("myName", "Lindsay");
+
+	// Now look at the localStorage in the developer tools (in the Applications tab)
+	// Note that this data will only be available for the file:// protocol 
+	// which when you load a page from the file system (rather than from a web server)
+	// Note that localStorage is a keystore
+	const name = localStorage.getItem("myName");
+	if(name){
+		console.log("Hello "+name);
+	}else{
+		console.log("myName is not a key in the key store");
+	}
+
+	
+	
+
+	///////////////////////////////////////////////////////
+	// The Document Object and HTML Element Objects
+	///////////////////////////////////////////////////////
+
+	// getElementById()
+	let h1 = document.getElementById("main-header");
+	console.dir(h1);
+	
+	// querySelector() 
+	let h2 = document.querySelector("#sub-header");
+	console.log(h2);
+	let list = document.querySelector(".fruits");
+	console.log(list);
+	
+
+	//querySelectorAll()
+	let fruitListItems = document.querySelectorAll(".fruits li");
+	console.log(fruitListItems);
+
+	//getElementsByTagName()
+	let allListItems = document.getElementsByTagName("li");
+	console.log(allListItems);
+
+	//getElementsByClassName()
+	let allWarnings = document.getElementsByClassName("warning");
+	console.log(allWarnings);
+	
+		
+	//Note: All the methods that start with 'get' return live node lists 
+	//https://dev.to/jharteaga/difference-between-htmlcollection-and-nodelist-25bp
+
+
+
+	// Creating and Appending Elements to the DOM
+	// createElement()
+	const li = document.createElement("li");
+	li.innerHTML = "Strawberries";
+	
+
+	// appendChild()
+	list.appendChild(li);
+	
+
+	// addEventListener()
+	li.addEventListener("click", (evt) => {
+		//alert("Smells like strawberries in here...");
+		console.log(evt.target.innerHTML);
+	});
+	
+	
+
+	//getAttribute() setAtribtute()
+	console.log(h2.getAttribute("id"));
+	h2.setAttribute("class", "warning");
+	
+
+	// some attributes are treated as properties (such as the id attribute)
+	// but some aren't (so you have to use get/setAttribute())
+	console.log(h2.id);
+	//console.log(h2.class);
+	console.log(h2.getAttribute("class"));
+		
+	//closest() - finds the closest ancestor that matches the tag name passed in
+	console.log(li.closest("ul"));
+	
+
+	//PROPERTIES of HTML Element Objects (nodes) 
+	
+	//innerHTML
+	li.innerHTML = "<b>Frozen Strawberries</b>";
+	
+
+	//value - for form elements (textboxes, buttons, checkboxes, etc)
+	const btn = document.createElement("input");
+	btn.type = "button";
+	btn.value = "Click Me!";
+	document.body.appendChild(btn);
+	
+	
+	//style (use kabob-case in CSS, but camelCase in JS)
+	btn.style.backgroundColor = "blue";
+	btn.style.color = "white";
+	btn.style.padding = "6px";
+	
+
+	//classList
+	
+
+	// Data-binding to the DOM (we'll explore this more later)
+	const ages = ["child", "adult", "old"];
+	const sel = document.getElementById("selAge");
+
+	ages.forEach((a) => {
+		const opt = document.createElement("option");
+		opt.text = a;
+		sel.appendChild(opt);
+	})
+
+
+
+});
+
+	
+</script>
+</head>
+<body>
+
+	<h1 id="main-header" class="special promo">The DOM API</h1>
+	<h2 id="sub-header">This is an h2 element</h2>
+	<ul class="fruits">
+		<li>Apples</li>
+		<li>Bananas</li>
+		<li>Oranges</li>
+	</ul>
+	<div class="warning">This is a warning</div>
+	<div class="warning">This is another warning</div>
+	<form>
+		<label>Name</label>
+		<input type="text" id="txtName">
+		<label>Age</label>
+		<select id="selAge"></select>
+	</form>
+
+
+</body>
+</html>
