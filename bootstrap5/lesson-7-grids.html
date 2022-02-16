@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Net Ninja Pro - the Book</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container-lg my-5">
+    <h2>basic grid</h2>
+    <div class="row">
+      <div class="col">
+        <div class="p-5 bg-primary text-light">col 1</div>
+      </div>
+      <div class="col">
+        <div class="p-5 bg-primary text-light">col 2</div>
+      </div>
+      <div class="col">
+        <div class="p-5 bg-primary text-light">col 3</div>
+      </div>
+    </div>
+  </div>
+
+<!-- 
+The bootstrap grid system is based on a 12 unit row system
+  col-4 = the cell will occupy 4/12 of the row width
+  col-6 = this cell will occupy half the row (6/12)
+-->
+  <div class="container-lg my-5">
+    <h2>column widths</h2>
+    <div class="row">
+      <div class="col-6">
+        <div class="p-5 bg-primary text-light">col 1</div>
+      </div>
+      <div class="col-3">
+        <div class="p-5 bg-primary text-light">col 2</div>
+      </div>
+      <div class="col-3">
+        <div class="p-5 bg-primary text-light">col 3</div>
+      </div>
+    </div>
+  </div>
+
+
+<!--
+<div class="col-sm-4 col-lg-6">
+  At small screen widths this div will occupy 4/12 of the row
+  But at larger screens it will occupy 6/12 of the row
+
+<div class="col-md-4">
+  At small screen widths this cell would be 12/12
+  But at medium screens its 4/12
+-->
+  <div class="container-lg my-5">
+    <h2>responsive column widths</h2>
+    <div class="row gy-3"> <!-- manually change gutter using g{d}-{n} -->
+      <div class="col-sm-4 col-lg-6">
+        <div class="p-5 bg-primary text-light">col 1</div>
+      </div>
+      <div class="col-sm-4 col-lg-3">
+        <div class="p-5 bg-primary text-light">col 2</div>
+      </div>
+      <div class="col-sm-4 col-lg-3">
+        <div class="p-5 bg-primary text-light">col 3</div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- 
+Note in this example tha the cells in the row do not total up to 12
+(3 + 3 + 3 = 9)
+You can add a justify-content- class to figure out how to deal with the remaining space in the row 
+justify-content-center will center the 3 cells in the row.
+-->
+  <div class="container-lg my-5">
+    <h2>justifying columns</h2>
+    <div class="row justify-content-center"><!-- j-c-end, j-c-start, j-c-between, j-c-around -->
+      <div class="col-md-3">
+        <div class="p-5 bg-primary text-light">col 1</div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-5 bg-primary text-light">col 2</div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-5 bg-primary text-light">col 3</div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

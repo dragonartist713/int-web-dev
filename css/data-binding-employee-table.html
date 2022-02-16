@@ -24,6 +24,31 @@
 		const createEmployeeTable = (employees) => {
 			const table = document.createElement("table");
 			table.setAttribute("border", 1);
+
+			const headerRow = document.createElement("tr");
+			let th = document.createElement("th");
+			th.innerHTML = "<h3>  ID  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  First Name  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  Last Name  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  Email  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  Hired On  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  Salary  </h3>";
+			headerRow.appendChild(th);
+			th = document.createElement("th");
+			th.innerHTML = "<h3>  Password  </h3>";
+			headerRow.appendChild(th);
+			table.appendChild(headerRow);
+
 			employees.forEach((employee) => {
 				const tr = document.createElement("tr");
 				table.appendChild(tr);
@@ -38,9 +63,10 @@
 			return table;
 		};
 		const empTable = createEmployeeTable(employeeData);
-		console.log(empTable);
+		//console.log(empTable);
 
-		document.getElementById("employees")
+		const div = document.getElementById("employees")
+		div.appendChild(empTable);
 
 
 	});	
