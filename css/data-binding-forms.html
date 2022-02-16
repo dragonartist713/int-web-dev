@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Data Binding</title>
+	<style type="text/css">
+
+		/*
+		Here's a reference on CSS selectors
+		https://www.w3schools.com/cssref/css_selectors.asp
+		*/
+
+		/* Style all labels*/
+		label{
+			display: block;
+			font-size: 130%;
+			margin-top:  20px;
+			font-weight: bold;
+		}
+		
+		/* Style all labels that are the first sibling after a checkbox or radio button*/
+		input[type='checkbox'] + label, input[type='radio'] + label{
+			display: inline;
+			font-size: 100%;
+		}
+
+		/*Style label element that are the first sibling after a checkbox that is checked*/
+		input[type='checkbox']:checked + label{
+			color: red;
+		}
+
+		/*
+		This one makes no sense to me, because we don't use a 'checked' attribute
+		for a selected options, we use 'selected'
+		*/
+		option:checked{
+			background-color: red;
+			color: white;
+		}
+
+		
+
+	</style>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		// REMINDER - Do some posts with someForm and observe...
+		// If a checkbox is not checked, it won't get posted (sent)
+		// If a checkbox is checked, and it has not value (like the one for chips), it posts 'on'
+		// When you group checkboxes (by giving them the same name)
+		// You need to add [] to the name or they won't get posted properly
+		// Same with multi-selects 
+		// This is because you are sending multiple pieces of data - an array []
+
+		
+		// Get handles on the elements in the form
+		const frmSandwichOrder = document.querySelector(".sandwich-order-form");
+		const txtOrderId = frmSandwichOrder.querySelector("[name='orderId']");
+		const txtCustomerName = frmSandwichOrder.querySelector("[name='customerName'");
+		const dtOrderDate = frmSandwichOrder.querySelector("[name='date']");
+		const radSizes = frmSandwichOrder.querySelectorAll("[name='size']");
+		const selBread = frmSandwichOrder.querySelector("[name='bread']");
+		// don't forget the [] for meat and veggies in your selector!		
+		const chkMeats = frmSandwichOrder.querySelectorAll("[name='meat[]']");
+		const selVeggies = frmSandwichOrder.querySelector("[name='veggies[]']"); 
+		const chkChips = frmSandwichOrder.querySelector("[name='chips']");
+		const btnClear = frmSandwichOrder.querySelector("[name='clear']");
+		
+		// We'll use this as our data
+		const sandwichOrder = {
+			id: 1,
+			customerName: "Bob",
+			date: "2022-02-11",
+			size: "large",
+			bread: "wheat",
+			meats: ["turkey", "ham"],
+			veggies: ["lettuce", "tomatos"],
+			chips: true
+		};
+
+
+		
+		// This function takes an order object as a parameter
+		// And displays it's data in the form
+		const bindOrderToUI = order => {
+
+			// Set the value of the hidden textbox for order id
+			txtOrderId.value = order.id;
+
+			// Set the value of the textbox for customer name
+			txtCustomerName.value = order.customerName
+			
+			// Set the value of the date input (it must be a strin in yyyy-mm-dd format)
+			dtOrderDate.value = order.date;
+
+			// 'Check' the proper radio button based on order.size
+			// loop through the radio buttons and find the one that 
+			// has the value that matches order.size
+			radSizes.forEach(rb => {
+				//console.log(rb.value, order.size)
+				if(rb.value == order.size){
+					rb.checked = true;
+				}
+			});
+
+			// Set the selected option for the bread select box
+			selBread.value = order.bread;
+
+			// 'Check' the proper meat check boxes, based on the order.meats array
+			chkMeats.forEach(chk => {
+				//console.log(chk.value, order.meats);
+				if(order.meats.includes(chk.value)){
+					chk.checked = true;
+				}
+			});
+			
+			// Set the options in selVeggies to 'selected' 
+			// for each item in the order.veggies array
+			for(let x = 0; x < selVeggies.options.length; x++){
+				if(order.veggies.includes(selVeggies.options[x].value)){
+					selVeggies.options[x].selected = true;
+				}
+			};
+			
+			// Set the checkbox for chips to 'checked' if order.chips is true
+			chkChips.checked = order.chips;
+
+		}
+
+		bindOrderToUI(sandwichOrder);
+
+
+		// This function takes input entered into the UI
+		// and creates an order object
+		const bindOrderFromUI = () => {
+			
+			// Get the value of the hidden text box for order id
+			
+
+			// Get the value of the text box for customer name
+			
+
+			// Get the value of the date picker for order date (the string must be yyyy-mm-dd format)
+			
+			
+			// Get the value of the radio button that is 'checked'
+
+
+			// Get the value of the selected bread option
+
+
+			// Get the value of each meat checkbox that is 'checked'
+			
+
+			// Get the value of each veggie option that is 'selected'
+			
+
+			// Get the checked status of the chips checkbox (true or false)
+
+
+			// Create an 'order' object with the value that we just extracted from the UI
+			
+
+			// return the order object
+
+		}
+
+		
+
+		// Set up the code to clear the form (we may need to set selectedUser to null too)
+		
+		
+
+	});
+	</script>
+</head>
+<body>
+
+	<form class="sandwich-order-form" method="POST" action="http://www.wtc-web.com/form-handler.php">
+		
+		<input type="hidden" name="orderId">
+
+		<label>Customer Name:</label>
+		<input type="text" name="customerName">
+		<br>
+
+		<label>Date</label>
+		<input type="date" name="date">
+		<br>
+
+		<label>Size</label>
+		<input type="radio" name="size" value="small"><label>Small</label>
+		<input type="radio" name="size" value="medium"><label>Medium</label>
+		<input type="radio" name="size" value="large"><label>Large</label>
+		<br>
+
+		<label>Bread</label>
+		<select name="bread">
+			<option value="white">White</option>
+			<option value="wheat">Wheat</option>
+			<option value="rye">Rye</option>
+		</select>
+		<br>
+
+		<label>Meat Choices</label>
+		<input type="checkbox" name="meat[]" value="ham"><label>Ham</label>
+		<input type="checkbox" name="meat[]" value="turkey"><label>Turkey</label>
+		<input type="checkbox" name="meat[]" value="beef"><label>Beef</label>
+		<br>
+
+		<label>Veggie Choices</label>
+		<br>
+		<select name="veggies[]" multiple>
+			<option value="lettuce">Lettuce</option>
+			<option value="tomatos">Tomatos</option>
+			<option value="pickles">Pickles</option>
+		</select>
+		<br>
+
+		<label>Chips</label>
+		<input type="checkbox" name="chips">
+		<br>
+
+		<input type="submit" value="Place Order">
+		<input type="button" name="clear" value="Clear">
+
+	</form>
+
+</body>
+</html>
