@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Exam 1</title>
+    <style type="text/css">
+        div.answer{ 
+            background-color: lightgray; 
+            margin-bottom: 25px; 
+            padding: 18px;
+        }        
+    </style>
+    <script type="text/javascript">
+    window.addEventListener("load", ()=>{
+
+        // PROBLEM 1
+        // Create an array named 'friends' that includes the following string values: Bob, Sally, Betty
+        // Loop through the array and create a list item (an LI DOM element) that displays each friend name.
+        // Append each LI to the friend list in the HTML below:
+        const friends = ["Bob", "Sally", "Betty"];
+        const friendsList = document.querySelector(".friend-list");
+        //console.log(friendsList);
+        friends.forEach(f => {
+            let li = document.createElement("li");
+            li.innerHTML = friends[f];
+            friendsList.appendChild(li);
+        });
+        
+
+
+        // PROBLEM 2
+        // Add an event handler for when the form is submitted.
+        // If the user has not entered anything into the text box then prevent the default behaviour of the event,
+        // and show an alert that says "Please enter your name"
+        
+        document.addEventListener("submit", (evt) => {
+            const txtFirstName = document.getElementById(txtFirstName);
+            let isValid = true;
+
+            if(txtFirstName.value == "" || txtFirstName == null){
+                alert("Please enter your name.");
+                evt.preventDefault();
+            }
+        });
+                
+
+
+
+        // PROBLEM 3
+        // Write a function named getMailboxName() that extracts the mailbox name from an email address.
+        // (the mailbox name is the group of characters that appear before the @ in an email address)
+        // The function should have a paremeter named email, which is a string that represents an email address.
+        // The function should return the mailbox name (which is a string).
+        function getMailboxName(email){
+            let parts = email.split("@");
+            let box = parts[0];
+            return box;
+        };
+        // After you declare the function, uncomment the console logs below to test it:
+
+
+
+        console.log(getMailboxName("buster@gmail.com")); // should return 'buster'
+        console.log(getMailboxName("john.smith@gmail.com")); // should return 'john.smith'
+
+
+
+        // PROBLEM 4
+        // Write code that figures out the youngest person in the array of people
+        // Console log the name of the youngest person in the array.
+        const people = [
+            {name: "Bob", birthdate: new Date(1989, 0, 31) },
+            {name: "Kathy", birthdate: new Date(1995, 6, 22) },
+            {name: "Sue", birthdate: new Date(2001, 7, 15) },
+            {name: "Jason", birthdate: new Date(2001, 7, 14) }
+        ];
+       
+        people.forEach( cp => {
+            let date = people[cp].birthdate;
+            date.getTime();
+            //compare people using math
+        });
+
+        
+    });
+    </script>
+</head>
+<body>
+    <h1>Exam 1</h1>
+    <div class="answer">
+        Lindsay Hansen
+    </div>
+
+    <h2>Questions</h2>
+    <h3>Question 1</h3>
+    <p>
+        What is the scope of a variable that is declared witht the 'let' keyword?
+    </p>
+    <div class="answer">
+        block level
+    </div>
+
+    <h3>Question 2</h3>
+    <p>
+        Explain the target property of an event object (what is it?).
+    </p>
+    <div class="answer">
+        its the thing that the event happened to
+    </div>
+
+    <h2>Coding Problems</h2>
+    <p>
+        There are 4 coding problems for you to complete. 
+        Two of them require you to work with the HTML elements below.
+    </p>
+    
+    <h3>Problem 1</h3>
+    <ul class="friend-list"></ul>
+    
+    <h3>Problem 2</h3>
+    <form id="sampleForm" action="http://www.wtc-web.com/form-handler.php" method="POST">
+        <label>Enter your first name:</label>
+        <input type="text" id="txtFirstName" name="firstName" />
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

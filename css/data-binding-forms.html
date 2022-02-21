@@ -134,37 +134,68 @@
 		const bindOrderFromUI = () => {
 			
 			// Get the value of the hidden text box for order id
-			
+			const id = txtOrderId.value;
 
 			// Get the value of the text box for customer name
-			
+			const customerName = txtCustomerName.value;
 
 			// Get the value of the date picker for order date (the string must be yyyy-mm-dd format)
-			
+			const date = dtOrderDate.value;
 			
 			// Get the value of the radio button that is 'checked'
-
+			let size;
+			// radSizes.forEach(r => {
+			// 	//console.log(r.value, r.checked);
+			// 	if(r.checked == true){
+			// 		size = r.value;
+			// 	}
+			// });
+			//console.log(size);
+			const selectedRadio = document.querySelector("[name=size]:checked");
+			size = selectedRadio.value;
+			//console.log(size);
 
 			// Get the value of the selected bread option
-
+			const bread = selBread.value;
 
 			// Get the value of each meat checkbox that is 'checked'
-			
+			const meats = [];
+			chkMeats.forEach(chk =>{
+				if(chk.checked){
+					meats.push(chk.value);
+				}
+			});
 
 			// Get the value of each veggie option that is 'selected'
-			
+			const veggies = [];
+			for(let x=0; x< selVeggies.options.length; x++){
+				if(selVeggies.options[x].selected){
+					veggies.push(selVeggies.options[x].value);
+				}
+			};
+			//console.log(veggies);
 
 			// Get the checked status of the chips checkbox (true or false)
-
+			const chips = chkChips.checked;
 
 			// Create an 'order' object with the value that we just extracted from the UI
-			
+			const order = {
+				id: id,
+				customerName: customerName,
+				date: date,
+				size: size,
+				bread: bread,
+				meats: meats,
+				veggies: veggies,
+				chips: chips
+			};
 
 			// return the order object
-
+			return order;
 		}
 
-		
+		const newOorder = bindOrderFromUI();
+		console.log(newOorder);
 
 		// Set up the code to clear the form (we may need to set selectedUser to null too)
 		
