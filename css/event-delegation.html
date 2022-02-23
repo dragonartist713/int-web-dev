@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Data Binding Objects to Table</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		const employeeData = [
+			{"id": 1, "firstName": "Bob", "lastName": "Smith", email: "bob@acme.com", "salary": 45000, "hireDate":"3/12/2009", password: "xxx"},
+			{"id": 2, "firstName": "Betty", "lastName": "Jones", email: "betty@acme.com", "salary": 55000, "hireDate":"5/11/2017", password: "xxx"},
+			{"id": 3, "firstName": "Sally", "lastName": "Johsnson", email: "sally@acme.com", "salary": 65000, "hireDate":"5/21/2016", password: "xxx"},
+			{"id": 4, "firstName": "Ted", "lastName": "Thomas", email: "ted@acme.com", "salary": 45000, "hireDate":"9/14/2019", password: "xxx"},
+			{"id": 5, "firstName": "Jean", "lastName": "Parker", email: "jean@acme.com", "salary": 55000, "hireDate":"1/17/2017", password: "xxx"},
+			{"id": 6, "firstName": "Larry", "lastName": "Corker", email: "larry@acme.com", "salary": 65000, "hireDate":"8/19/2012", password: "xxx"},
+			{"id": 7, "firstName": "Morris", "lastName": "Smith", email: "morris@acme.com", "salary": 45000, "hireDate":"5/16/2002", password: "xxx"},
+			{"id": 8, "firstName": "Buster", "lastName": "Jenkins", email: "buster@acme.com", "salary": 55000, "hireDate":"2/23/2019", password: "xxx"},
+			{"id": 9, "firstName": "Grace", "lastName": "Anderson", email: "grace@acme.com", "salary": 85000, "hireDate":"05/03/2017", password: "xxx"}
+		];
+
+		// This sample will start out looking a lot like a sample we did earlier, which was
+		// data-binding-an-array-of-objects.html
+		// In that version, we added an event handler to each LI elment in the list
+		// In this version, we'll attach a single event handler to the UL that we create.
+		// This is known as 'event delegation'
+
+		//declare employee variable
+		let selectedEmployee;
+		//make variables for items in the list
+		const empDetailsForm = document.querySelector("#employee-details");
+		const txtFirstName = empDetailsForm.querySelector("[name=firstName]");
+		const txtLastName = empDetailsForm.querySelector("[name=lastName]");
+		//getting the id of the employees
+		const getEmployeeById = (id) => {
+			for(let x=0; x < employeeData.length; x++){
+				if(id == employeeData[x].id){
+					return employeeData[x];
+				};
+			};
+		};
+		//getting first and last names of employees
+		const showEmployeeDetails = (emp) => {
+			txtFirstName.value = emp.firstName;
+			txtLastName.value = emp.lastName;			
+		};
+		//building the list of employees
+		const createEmployeeList = (employees) => {
+			const list = document.createElement("ul");
+			employees.forEach(emp => {
+				const li = document.createElement("li");
+				li.innerHTML = emp.firstName;
+				li.dataset.employeeId = emp.id;
+
+				const btnEdit = document.createElement("input");
+				btnEdit.setAttribute("type", "button");
+				btnEdit.setAttribute("value", "Edit");
+				/* btnEdit.addEventListener("click", evt => {
+					const closestLi = evt.target.closest("li");
+					const selectedId = closestLi.dataset.employeeId;
+					selectedEmployee = getEmployeeById(selectedId);
+					showEmployeeDetails(selectedEmployee);
+				}); */
+
+				//adding edit button to the list
+				li.appendChild(btnEdit);
+
+				//create and add delete button to the list
+				const btnDelete = document.createElement("input");
+				btnDelete.setAttribute("type", "button");
+				btnDelete.setAttribute("value", "Delete");
+				li.appendChild(btnDelete);
+
+				//add list to the page
+				list.appendChild(li);
+			});
+			return list;
+		};
+
+		//grab the list of employee data
+		const empList = createEmployeeList(employeeData);
+		//put the list of the page
+		document.getElementById("employee-list").appendChild(empList);
+		//add function to the buttons
+		empList.addEventListener("click", evt => {
+			const closestLi = evt.target.closest("li");
+			const selectedId = closestLi.dataset.employeeId;
+
+			if(evt.target.value == "Edit"){
+				selectedEmployee = getEmployeeById(selectedId);
+				showEmployeeDetails(selectedEmployee);
+			}else if(evt.target.value == "Delete"){
+				alert("Are you sure you want to delete employee "+selectedId+"?")
+			}
+		});
+
+	});	
+
+	</script>
+	
+</head>
+<body>
+
+	<h1>Event Delegation</h1>
+	<p>
+		In the last version of this sample,
+		we attached and event handler to each button in the employee list.
+		But that's not efficient (you can end up with lots of event handlers if your you list gets to be very big).
+		A better approach is to add a single event handler to the list, and then make use of some API methods to figure out:
+	</p>
+	<ol>
+		<li>Which button got clicked on</li>
+		<li>Which list item contains the button that got clicked on</li>
+		<li>Which employee is represented by the button that got pressed</li>
+	</ol>
+
+	<h2>Employee List</h2>
+	<div id="employee-list"></div>
+
+	<h2>Employee Details Form (Simplified)</h2>
+	<form id="employee-details">
+		<label>First Name:</label>
+		<input type="text" name="firstName">
+		<br>
+		<label>Last Name:</label>
+		<input type="text" name="lastName">
+		<br>
+		<input type="submit" value="SAVE">
+	</form>
+
+	<h2>Employee Table</h2>
+	<div id="employee-table"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Toggle Selected List Item</title>
+	<style type="text/css">
+	.selected{
+		color: white;
+		background-color: #333;
+	}
+
+	li{
+		list-style: none;
+	}
+	</style>
+	<script type="text/javascript">
+	window.addEventListener("load", () => {
+		const listItems = document.querySelectorAll(".friends li");
+
+		listItems.forEach(li => {
+			li.addEventListener("click", evt => {
+				toggleSelectedListItem(evt.target);
+			});
+		});
+
+		const toggleSelectedListItem = selectedListItem => {
+			listItems.forEach(li => li.classList.remove("selected"));
+			selectedListItem.classList.add("selected");
+		};
+	});
+	</script>
+</head>
+<body>
+	<ul class="friends">
+		<li>Bob</li>
+		<li class="selected">Betty</li>
+		<li>Sally</li>
+	</ul>
+</body>
+</html>

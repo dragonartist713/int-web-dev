@@ -126,7 +126,7 @@
 
 		}
 
-		bindOrderToUI(sandwichOrder);
+		//bindOrderToUI(sandwichOrder);
 
 
 		// This function takes input entered into the UI
@@ -194,10 +194,16 @@
 			return order;
 		}
 
-		const newOorder = bindOrderFromUI();
-		console.log(newOorder);
+		// const newOorder = bindOrderFromUI();
+		// console.log(newOorder);
+		frmSandwichOrder.addEventListener("submit", evt => {
+			evt.preventDefault();
+			const newOrder = bindOrderFromUI();
+			console.log(newOrder);
+		});
 
 		// Set up the code to clear the form (we may need to set selectedUser to null too)
+		const btnCancel = frmSandwichOrder.querySelector("[name=clear]");
 		
 		
 
