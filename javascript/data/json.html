@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JSON Encoded Data</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		const fileInput = document.querySelector("[name=fileInput]");
+		fileInput.addEventListener("change", evt => {
+
+			// get the data from the selected file and pass it to the callback function
+		    const file = evt.target.files[0];
+		    console.log(`File chosen: ${file.name}`);
+
+		    // Create a FileReader object to open the file that was chosen
+		    const reader = new FileReader();
+
+		    // The 'load' method occurs when the opened file has finished loading the text into RAM
+		    reader.addEventListener("load", function(e) {
+		  	  	const text = e.target.result;
+				console.log(text);
+				// console.log(typeof text); // remember it's a text file, so it's a string.
+				// const data = JSON.parse(text);
+				// console.log(data);
+				
+				// // convert the data back to a string
+				// const str = JSON.stringify(data);
+				// console.log(str);
+			});
+
+		    reader.readAsText(file); 
+
+		});
+
+	});	
+
+	// Notes: 
+	// The file input has its 'accept' attribute set to only allow you to open .json files
+	// There are some rules to encoding data in JSON format.
+	// For example, The property names (keys) must be enclosed in double quotes
+
+	//Here's really good overview of JSON: https://www.w3schools.com/js/js_json.asp
+	</script>
+</head>
+<body>
+	<label>Load a .json file</label>
+	<input type="file" name="fileInput" accept=".json">
+</body>
+</html>

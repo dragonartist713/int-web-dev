@@ -1,0 +1,275 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Week 7 Coding Problems</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+  	
+  	div.answer{ 
+  		background-color: lightgray; 
+  		margin-bottom: 25px; 
+  	}
+  	
+  	#frm label{
+  		display: block;
+  	}
+
+  	#frm input[type=radio] + label{
+  		display: inline;
+  	}
+  	
+  	h4{ 
+  		margin-top: 40px;
+  	}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+  window.addEventListener("load", ()=>{
+
+
+	// Problem 1
+	// Write JavaScript code that loops through the LI elements in the friend-list below.
+	// Inside the loop, console log the values of the 'data' attributes of each LI element.
+	const friends = document.querySelectorAll(".friend-list li");
+	for(let x = 0; x < friends.length; x++){
+		console.log(friends[x]);
+	}
+
+
+	// Problem 2 - Step 1
+	const colors = ["Red", "Green", "Blue"];
+	// Bind the colors array to the 'colors' select box below
+	const selBox = document.querySelector("select");
+	//console.log(selBox);
+	const createColorOptions = options => {
+		
+		colors.forEach(c => {
+			//console.log(c);
+			const option = document.createElement("option");
+
+			option.innerHTML = c;
+			option.id = c;
+
+			selBox.appendChild(option);
+		});
+		
+	}
+	createColorOptions(colors);
+	// To do this, loop through the array of colors and create an OPTION element for each color.
+	// Display the color name inside the OPTION element.
+	// Then append the OPTION element to the select box.
+
+	// Problem 2 - Step 2
+	// Add a "change" event handler to the select box that will alert the value of the selected option.
+	selBox.addEventListener("onchange", (evt) => {
+		alert("You selected "+ evt.target);
+	});
+
+	
+
+	// Problem 3 - Step 1
+	const places = ["Asia", "Africa", "South America", "North America", "Europe", "Oceania", "Antarctica"];
+	// Loop through the places array and create checkboxes and labels for each string.
+	const placeDiv = document.getElementById("places");
+	const placeBoxesLabels = () => {
+		places.forEach(loc => {
+			
+			const chkPlace = document.createElement("input");
+			chkPlace.setAttribute("type", "checkbox");
+	// All of the checkboxes should have their NAME attribute set to: places[]
+			chkPlace.setAttribute("name", "places[]");
+	// Set the VALUE attribute of each checkbox to the current string in your loop.
+			console.log(chkPlace.setAttribute("value", ['places[loc]']));
+
+			const lblPlace = document.createElement("label");
+	// Display the current string in each LABEL elmeent.
+			lblPlace.innerHTML = places[loc];
+
+	// Append each checkbox and label to the 'places' DIV below. 
+			placeDiv.appendChild(chkPlace);
+			placeDiv.appendChild(lblPlace);
+		});
+	
+		
+	};
+	placeBoxesLabels(places);
+
+	// Problem 3 - Step 2
+	const placesVisited = ["Africa", "Asia", "Europe"];
+	// Use JavaScript to 'check' the checkboxes who's value is included in the placesVisited array.
+	// To do this, use querySelectorAll() to get a handle on the checkboxes.
+	// Then loop through them. Inside the loop check to see if the 'value' property of the current checkbox is included in the placesVisited array.
+	// If this is true, set the 'checked' attribute to true for the current checkbox
+
+
+
+	// Problem 4
+	const petData = [
+		{id:1, name: "Buster", type: "Dog", age: 7},
+		{id:2, name: "Sushi", type: "Gold Fish", age: 2},
+		{id:3, name: "Felix", type: "Cat", age: 12}
+	]
+	// Write a function named createPetsTable()
+	// The function should have a parameter that represents an array of pet objects (like the one above)
+	// The function should return a table that displays all the properties of a pet object in a row.
+	// The table should also include column headers.
+	// After you write the function, invoke it by passing in the petData, and append the return value
+	// to the 'pets' DIV below
+
+
+	// Problem 5 
+	// Extract the data that is set in the form below and use it to create a PizzaOder object
+	function PizzaOrder(customerName, date, size, type){
+		this.customerName = customerName;
+		this.date = date;
+		this.size = size;
+		this.type = type;
+	}
+	const frmPizzaOrder = document.querySelector("#frm");
+	const txtCustomerName = frmPizzaOrder.querySelector("[name='customerName'");
+	const dtOrderDate = frmPizzaOrder.querySelector("[name='date']");
+	const radSizes = frmPizzaOrder.querySelectorAll("[name='size']");
+	const selType = frmPizzaOrder.querySelector("[name='type']");
+
+	const bindOrderFromUI = () => {
+		const customerName = txtCustomerName.value;
+		const date = dtOrderDate.value;
+		let size;
+		const selectedRadio = document.querySelector("[name=size]:checked");
+		size = selectedRadio.value;
+		const type = selType.value;
+		const order = {
+			customerName: customerName,
+			date: date,
+			size: size,
+			type: type
+		};
+		return order;
+	};
+	let newOrder = PizzaOrder(bindOrderFromUI);
+	console.log(newOrder);
+	// Add a 'submit' event handler function to the form.
+	// In the body of the event handler function, do the following:
+	// 		Prevent the default behavior of the event 
+	//		Extract the data from the form and use it to create a PizzaOrder object.
+	//		Console log the pizza order object
+	
+	
+
+});	
+  </script>
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h1 class="text-white">Int Web Dev - Week 7 Questions and Coding Problems</h1>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+    	    	
+	    <h3>Question 1</h3>
+		<p>
+			Explain the difference between the 'target' property of an event object
+			and the 'currentTarget' property (of an event object).
+		</p>
+		<div class="p-2 text-dark answer">
+			target is the element the event happened to, currentTarget is the object the event is currently using
+		</div>
+
+		<h3>Question 2</h3>
+		<p>
+			When must you add a pair of square brackets <b>[]</b> to the name attribute of an input element in a form?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 3</h3>
+		<p>
+			Explain how the 'col' classes work in this Bootstrap sample code:
+		</p>
+		<pre><code class="language-html"><!--<div class="row justify-content-around">
+	<div class="col-6 col-lg-4">
+    	Some content goes here
+    </div>
+    <div class="col-lg-6">
+		Some more content goes here
+    </div>
+</div>--></code></pre>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+				
+		<h2>Coding Problems</h2>
+		<p>
+			There are coding problems for you to do in the script element on the page.
+		</p>
+
+		<h4>Friends (Problem 1)</h4>
+		<ul class="friend-list">
+			<li data-id="1" data-age="22" data-eye-color="blue">Bob</li>
+			<li data-id="2" data-age="44" data-eye-color="brown">Sally</li>
+			<li data-id="3" data-age="35" data-eye-color="green">Tim</li>
+		</ul>
+
+		<h4>Color Options (Problem 2)</h4>
+		<select name="colors"></select>
+
+		<h4>Places Visited (Problem 3)</h4>
+		<div id="places"></div>
+
+		<h4>Pets (Problem 4)</h4>
+		<div id="pets"></div>
+
+		<h4>Pizza Order Form (Problem 5)</h4>
+		<div class="card border-primary border-2">
+            <div class="card-header text-start text-primary">Sal's Pizzaria</div>
+            <div class="card-body text-start">
+              <h4 class="card-title">Pizza Order Form</h4>
+				<form id="frm" method="POST" action="http:/www.wtc-web.com/form-handler.php">
+					<label>Customer Name:</label>
+					<input type="text" name="customerName" value="Bob">
+					<label>Date:</label>
+					<input type="date" name="orderDate" value="2022-02-22">
+					<label>Size:</label>
+					<input type="radio" name="size" value="small"><label>Small</label>
+					<input type="radio" name="size" value="medium" checked><label>Medium</label>
+					<input type="radio" name="size" value="large"><label>Large</label>
+					<label>Type:</label>
+					<select name="type">
+						<option>Sausage</option>
+						<option>Pepperoni</option>
+						<option selected>Mushroom</option>
+					</select>
+					<br>
+					<input type="submit" value="SEND">
+				</form>
+			</div>
+		</div>
+	</main>
+  </div>
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+   <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+</body>
+</html>
+
+

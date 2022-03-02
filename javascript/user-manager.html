@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>User Manager - Branch 1</title>
+	<style type="text/css">
+		form label{
+			display: block;
+		}
+
+		#list-container li{
+			list-style: none;
+			border: 1px solid midnightblue;
+			margin: 6px;
+			padding: 10px;
+		}
+	</style>
+	<script type="text/javascript">
+
+	// Pre-reqs
+	// Knowledge of various JavaScript APIs
+	// Review localStorage
+	// JSON
+
+	let userRoleData = [
+		{id: 1, name: "Standard User"},
+		{id: 2, name: "Admin"}
+	]
+
+	let userData = [
+		{id: 7, firstName:"Bob", lastName:"Smith", email:"bob@smith.com", password:"test", roleId:1, active: true},
+		{id: 96, firstName:"Betty", lastName:"Smith", email:"betty@smith.com", password:"test", roleId:2, active: true},
+		{id: 33, firstName:"Barney", lastName:"Smith", email:"barney@smith.com", password:"test", roleId:1, active: false}
+	];
+
+
+	window.addEventListener("load", () => {
+
+		// Get handles on the UI 
+		const form = document.querySelector(".user-form");
+		const txtId = form.querySelector("[name=user_id]");
+		const txtFirstName = form.querySelector("[name=first_name]");
+		const txtLastName = form.querySelector("[name=last_name]");
+		const txtEmail = form.querySelector("[name=email]");
+		const txtPassword = form.querySelector("[name=password]");
+		const selRole = form.querySelector("[name=role]");
+		const chkActive = form.querySelector("[name=active]");
+		const btnCancel = form.querySelector(".btnCancel");
+		// Make sure I don't see any 'undefined' or 'null' in the log...
+		//console.log(form, txtId, txtFirstName, txtLastName, txtEmail, txtPassword, selRole, chkActive);
+
+		// clear/reset the form when the CANCEL button is pressed
+		btnCancel.addEventListener("click", () => form.reset());
+		
+		
+		// we may want to keep track of the selected user
+		let selectedUser;
+
+		// Get a user by it's id
+		// we've seen this before
+		const getById = (id) => {
+			for(let x = 0; x < userData.length; x++){
+				if(userData[x].id == id){
+					return userData[x];
+				}
+			}
+		}
+
+		// Here's where the starter file ends....
+
+		// STEP 1 - Set up the user list
+		const createUserListItem = (user) => {
+			
+		}
+
+		const createUserList = (users) => {
+			
+		}
+
+		const showUserList = () => {
+			
+		}
+
+		
+		// STEP 2 - Set up the user form
+		
+		// Bind the user role options to the select box
+		const createRoleOptions = (roles) => {
+			
+		}
+
+		
+		// Bind a user to the form
+		const showUserDetails = (user) => {
+			
+		}
+
+
+		// STEP 3 - Editing the selected user
+		
+		// Bind the form to a user object
+		const getUserInput = () => {
+			
+			// How should we validate the user input???
+			
+		}
+
+
+		form.addEventListener("submit", (evt) => {
+			
+			evt.preventDefault(); // we'll just prevent the default for now
+			
+		});
+
+
+		const update = (u) => {
+						
+		}
+
+		const insert = (u) => {
+			
+		}
+
+		const saveToLocalStorage = () => {
+			
+		}
+
+		const getDataFromLocalStorage = () => {
+			
+		}
+
+
+	});
+
+	
+
+	</script>
+</head>
+<body>
+	<section id="list-container"></section>
+	
+	<section id="user-details-container">
+		<form class="user-form" action="http:www.wtc-web.com/form-handler.php" method="POST">
+			<input type="hidden" name="user_id">
+			<label>First Name:</label>
+			<input type="text" name="first_name">
+			<label>Last Name:</label>
+			<input type="text" name="last_name">
+			<label>Email:</label>
+			<input type="email" name="email">
+			<label>Password:</label>
+			<input type="password" name="password">
+			<label>User Role:</label>
+			<select name="role">
+				
+			</select>
+			<label>
+				Active:
+				<input type="checkbox" name="active">
+			</label>
+			<input type="submit" value="SAVE">
+			<input type="button" class="btnCancel" value="CANCEL">
+		</form>
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+{
+    "customers": [
+        {
+          "customerId": 1,
+          "first_name": "Steve",
+          "last_name": "Smith",
+          "email": "ssmith@yahoo.com"
+        },
+        {
+          "customerId": 2,
+          "first_name": "Jake",
+          "last_name": "Delhomme",
+          "email": "jakeD@gmail.com"
+        },
+        {
+          "customerId": 3,
+          "first_name": "Curt",
+          "last_name": "Henning",
+          "email": "perfect@gmail.com"
+        }
+    ],
+    "purchases": [
+        {
+          "customerId": 1,
+          "date": "10/12/20",
+          "productId": [
+              "1", "2", "7"
+          ],
+          "description": "",
+          "totalCost": "52.32$"
+        },
+        {
+          "customerId": 1,
+          "date": "10/12/20",
+          "productId": [
+              "1", "2", "7", "23"
+          ],
+          "description": "",
+          "totalCost": "123.21$"
+        },
+        {
+          "customerId": 2,
+          "date": "10/12/20",
+          "productId": [
+              "1", "2", "7","21"
+          ],
+          "description": "",
+          "totalCost": "16.34$"
+        },
+        {
+          "customerId": 3,
+          "date": "10/01/20",
+          "productId": [
+              "1", "2", "7", "11"
+          ],
+          "description": "Avacados from Peru",
+          "totalCost": "32.21$"
+        }
+    ],
+    "products": [
+        {
+          "productId": 1,
+          "productName": "Avacado",
+          "description": "Avacados from Peru",
+          "cost": "1$"
+        },
+        {
+          "productId": 2,
+          "productName": "Milk",
+          "description": "Whole Milk",
+          "cost": "2.99$"
+        },
+        {
+          "productId": 3,
+          "productName": "PopTarts",
+          "description": "Toaster Tarts - Chocolate Flavored",
+          "cost": "3.99$"
+        },
+        {
+          "productId": 4,
+          "productName": "Sprite",
+          "description": "White Soda - Tasty",
+          "cost": "2.99$"
+        }
+    ]
+}
