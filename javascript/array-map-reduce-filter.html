@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Map, Reduce, Filter</title>
+<script type="text/javascript">
+window.addEventListener("load", ()=>{
+	
+	var employees = [
+		{id:1, firstName:"Betty", lastName:"Smith", salary:55000 },
+		{id:2, firstName:"Bo", lastName:"Hansen", salary:35000 },
+		{id:3, firstName:"Chris", lastName:"Jones", salary:45000 },
+		{id:4, firstName:"John", lastName:"Ortega", salary:75000 },
+		{id:5, firstName:"Cliff", lastName:"Long", salary:65000 },
+		{id:6, firstName:"Charlie", lastName:"Green", salary:60000 },
+		{id:7, firstName:"Tom", lastName:"Black", salary:52000 },
+		{id:8, firstName:"Sara", lastName:"Gray", salary:80000 },
+		{id:9, firstName:"Lisa", lastName:"Johnson", salary:31000 },
+		{id:10, firstName:"Michelle", lastName:"Link", salary:55000 }
+	];
+
+
+	// You may have to do some research on the following array methods in JavaSript:
+	// 		forEach(), map(), filter(), reduce()
+
+
+	/*
+	Problem 1
+	Use the forEach() array method to give each employee a 5% raise.
+	Make sure to console log the array to verify that each employee got the raise.
+	*/
+	employees.forEach(e => {
+		e.salary = (e.salary*1.05);
+		console.log(e);
+	});
+
+
+	/*
+	Problem 2
+	Use the map() array method to create an array of all the first and last names of the employees.
+	For example, the array that you create should look like this: ["Betty Smith", "Bo Hanson", etc....]
+	*/
+	
+	const nameArray = employees.map(nameConcat);
+
+	function nameConcat(e){
+		const fName = e.firstName;
+		const lName = e.lastName;
+		const fullName = fName + ' ' + lName;
+
+		return fullName;
+	};
+	console.log(nameArray);
+
+	/*
+	Problem 3
+	Use the filter() array method to create an array of all the employees whose salary is greater than $60,000
+	*/
+	const result = employees.filter(e => e.salary > 60000);
+	console.log(result);
+
+	/*
+	Problem 4
+	Use the reduce() array method to tally up the total of all employees salaries
+	*/
+	let initialValue = 0;
+	const salTotal = employees.reduce(salaryAdd, initialValue);
+	function salaryAdd(initialValue, e){
+		return initialValue + e.salary;
+	};
+	console.log(salTotal);
+
+
+	
+});
+</script>
+</head>
+<body>
+	<h1>Map, Reduce, Filter (methods of an array in JavaScript)</h1>
+	<p>You'll probably have to do some research to learn how to use the map(), reduce(), and filter() methods of an array in JavaScript.</p>
+</body>
+</html>

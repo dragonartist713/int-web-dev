@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Classes</title>
+    <script>
+        class BankAccount{
+
+            // private properties/instance variables
+            #balance;
+
+            constructor(id, customerName){
+                this.id = id;
+                this.customerName = customerName;
+                this.#balance = 0;
+            }
+
+            deposit(amount){
+                this.#balance += amount;
+            }
+
+            withdraw(amount){
+                if(amount < this.#balance){
+                    this.#balance -= amount;
+                }else{
+                    // How should we deal with this?
+                    throw new Error("Overdraft!!!");
+                }
+            }
+
+            get balance(){
+                return this.#balance;
+            }
+
+        }
+
+const acct = new BankAccount(1, "Bob");
+acct.deposit(50);
+acct.deposit(25);
+acct.withdraw(40);
+//acct.withdraw(40); // This will throw an 'Overdraft!' error
+
+// Q: What should you do if you know a method call could throw and error/exception?
+// A: Wrap it in a try/catch block
+try{
+	acct.withdraw(40);
+}catch(e){
+	console.log(e.message);
+	console.log("We're sorry, but you don't have the funds!");
+	// Crash Averted!!!
+}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

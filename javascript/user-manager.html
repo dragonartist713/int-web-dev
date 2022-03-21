@@ -22,11 +22,19 @@
 	// Review localStorage
 	// JSON
 
+	/*todo: organize code components into one of three categories:
+	1. Data Access
+	2. User Form
+	3. User List*/
+
+	//data access
 	let userRoleData = [
 		{id: 1, name: "Standard User"},
-		{id: 2, name: "Admin"}
+		{id: 2, name: "Admin"},
+		{id: 3, name: "Premium User"}
 	]
 
+	//data access
 	let userData = [
 		{id: 7, firstName:"Bob", lastName:"Smith", email:"bob@smith.com", password:"test", roleId:1, active: true},
 		{id: 96, firstName:"Betty", lastName:"Smith", email:"betty@smith.com", password:"test", roleId:2, active: true},
@@ -36,6 +44,9 @@
 
 	window.addEventListener("load", () => {
 
+		getDataFromLocalStorage();
+
+		//user form
 		// Get handles on the UI 
 		const form = document.querySelector(".user-form");
 		const txtId = form.querySelector("[name=user_id]");
@@ -56,6 +67,7 @@
 		// we may want to keep track of the selected user
 		let selectedUser;
 
+		//data access
 		// Get a user by it's id
 		// we've seen this before
 		const getById = (id) => {
@@ -69,31 +81,98 @@
 		// Here's where the starter file ends....
 
 		// STEP 1 - Set up the user list
+		//user list
 		const createUserListItem = (user) => {
-			
-		}
+			const li = document.createElement("li");
+			//template syntax
+			li.innerHTML = `<h3>${user.firstName} ${user.lastName}</h3>`;
+			li.dataset.userId = user.id;
 
+			if(user.active){
+				const btnDeactivate = document.createElement("input");
+				btnDeactivate.setAttribute("type", "button");
+				btnDeactivate.setAttribute("value", "Deactivate");
+				btnDeactivate.classList.add("btn-deactivate");
+				li.append(btnDeactivate);
+			}else{
+				const btnActivate = document.createElement("input");
+				btnActivate.setAttribute("type", "button");
+				btnActivate.setAttribute("value", "Activate");
+				btnActivate.classList.add("btn-activate");
+				li.append(btnActivate);
+			};
+
+			return li;
+		}
+		// const testLi = createUserListItem(userData[2]);
+		// console.log(testLi.outerHTML);
+		//user list
 		const createUserList = (users) => {
-			
+			const ul = document.createElement("ul");
+			users.forEach(u => {ul.append(createUserListItem(u))});
+
+			ul.addEventListener("click", (evt) => {
+				//console.log(evt.target, evt.currentTarget);
+				const closestLi = evt.target.closest("li");
+				//console.log(closestLi.dataset.userId);
+
+				if(closestLi && closestLi.dataset.userId){
+					const selectedUserId = closestLi.dataset.userId;
+
+					if(evt.target.classList.contains("btn-deactivate")){
+						alert("deactivate user "+selectedUserId)
+					}else if(evt.target.classList.contains("btn-activate")){
+						alert("activate user "+selectedUserId)
+					}else{
+						//alert("edit user "+selectedUserId)
+						selectedUser = getById(selectedUserId);
+						showUserDetails(selectedUser);
+					};
+				};
+			});
+
+			return ul;
 		}
 
+		// const testUl = createUserList(userData);
+		// console.log(testUl.outerHTML);
+		//user list
 		const showUserList = () => {
-			
+			const listContainer = document.querySelector("#list-container");
+			listContainer.innerHTML = '';
+			listContainer.append(createUserList(userData));
 		}
+		showUserList(userData);
 
 		
 		// STEP 2 - Set up the user form
 		
 		// Bind the user role options to the select box
+		//user form
 		const createRoleOptions = (roles) => {
-			
+			roles.forEach(r => {
+				const opt = document.createElement("option");
+				opt.value = r.id;
+				opt.innerHTML = r.name;
+				selRole.append(opt);
+			});
 		}
-
+		createRoleOptions(userRoleData);
 		
 		// Bind a user to the form
+		//user form
 		const showUserDetails = (user) => {
+			form.reset();
+			txtId.value = user.id;
+			txtFirstName.value = user.firstName;
+			txtLastName.value = user.lastName;
+			txtEmail.value = user.email;
+			txtPassword.value = user.password;
+			selRole.value = user.roleId;
+			chkActive.checked = user.active;
 			
 		}
+		// showUserDetails(userData[0]);
 
 
 		// STEP 3 - Editing the selected user
@@ -102,32 +181,66 @@
 		const getUserInput = () => {
 			
 			// How should we validate the user input???
-			
+
+			const user = {};
+			user.id = txtId.value;
+			user.firstName = txtFirstName.value;
+			user.lastName = txtLastName.value;
+			user.email = txtEmail.value;
+			user.password = txtPassword.value;
+			user.roleId = selRole.value;
+			user.active = chkActive.value;
+			return user;
 		}
 
 
 		form.addEventListener("submit", (evt) => {
 			
 			evt.preventDefault(); // we'll just prevent the default for now
+
+			const user = getUserInput();
+			// console.log(user);
+			if(user.id > 0){
+				//updating a user
+				updateUser(user);
+				showUserList();
+			}else{
+				//inserting a user
+				insertUser(user);
+				showUserList();
+			};
+
+			saveToLocalStorage();
 			
 		});
 
 
-		const update = (u) => {
-						
+		const updateUser = (u) => {
+			const userToReplace = getById(u.id);
+			const indexOfUserToReplace = userData.indexOf(userToReplace)
+			userData[indexOfUserToReplace] = u;
 		}
 
-		const insert = (u) => {
-			
+		const insertUser = (u) => {
+			u.id = new Date().getTime();
+			userData.push(u);
+			console.log(u);
 		}
 
 		const saveToLocalStorage = () => {
-			
+			const str = JSON.stringify(userData);
+			console.log(str);
+			localStorage.setItem("users", str);
 		}
 
-		const getDataFromLocalStorage = () => {
-			
+		function getDataFromLocalStorage(){
+			if(localStorage.getItem("users")){
+				const str = localStorage.getItem("users");
+				userData = JSON.parse(str);
+			};
 		}
+
+		
 
 
 	});

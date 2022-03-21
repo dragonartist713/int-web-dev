@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript Classes</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js" integrity="sha512-hpZ5pDCF2bRCweL5WoA0/N1elet1KYL5mx3LP555Eg/0ZguaHawxNvEjF6O3rufAChs16HVNhEc6blF/rZoowQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<style type="text/css">
+		body{ padding: 20px; font-family: arial; }
+		p{ color:#333; line-height: 140%; }
+	</style>
+</head>
+<body>
+	<h1>JavaScript Classes</h1>
+	<p>
+		These code samples assume that you know a little about OOP (hopefully from your Java class) 
+	</p>
+	<ul>
+		<li>What are <b>classes</b>?</li>
+		<li>What purpose do they serve?</li>
+	</ul>
+	<h2>Classes in JavaScript</h2>
+	<p>
+		Classes did not exist in JavaScript until the most recent major version (ES6).
+		Here's an example of a class that represents a bank account (and some code that makes use of the class):
+	</p>
+	<pre><code class="language-js">
+	class BankAccount{
+
+		constructor(id, customerName){
+			this.id = id;
+			this.customerName = customerName;
+			this.balance = 0;
+		}
+
+		deposit(amount){
+			this.balance += amount;
+		}
+
+		withdraw(amount){
+			this.balance -= amount;
+		}
+
+	}
+
+	const acct = new BankAccount(1, "Bob"); // don't forget 'new'
+	acct.deposit(50);
+	acct.deposit(25);
+	acct.withdraw(40);
+	acct.withdraw(40);
+	console.log(acct.balance);
+	acct.balance = 1000000000; // you shouldn't be able to affect balance directly
+	</code></pre>
+	<p>
+		You can add instance variables (also known as properties) to the constructor function (just like we did when we explored constructor functions in JavaScript).
+		Notice you can add methods to the class (no need to use the 'function' keyword).
+	</p>
+	<p>
+		Note that the balance of a bank account should only be changed by calling
+		the deposit() or withdraw() methods.
+		But the last line of code shows that the balance property (instance variable) can be directly changed.
+	</p>
+	<h2>Protecting Instance Variables By Making Them Private</h2>
+	<p>
+		You can prevent instance variables from being changed from outside the class by making them private.
+		To do this, you declare them above the constructor and prefix them with a hash tag (<b>#</b>).
+	</p>
+	<p>
+		Take a look at this version of the BankAccount class:
+	</p>
+	<pre><code class="language-js">
+	class BankAccount{
+
+		// declare private instance vars (properties) with #
+		#balance;
+
+		constructor(id, customerName){
+			this.id = id;
+			this.customerName = customerName;
+			this.#balance = 0; // make sure to add the #
+		}
+
+		deposit(amount){
+			this.#balance += amount; // make sure to add the #
+		}
+
+		withdraw(amount){
+			this.#balance -= amount; // make sure to add the #
+		}
+
+	}
+
+	const acct = new BankAccount(1, "Bob"); 
+	acct.deposit(50);
+	acct.deposit(25);
+	acct.withdraw(40);
+	acct.withdraw(40);
+	acct.balance = 1000000000; // Be careful, we just added a balance property to the account, which is not #balance!!!!
+	acct.#balance = 1000000000;
+	console.log(acct.#balance);
+	</code></pre>
+	<p>
+		The last two lines in this code sample will cause the program to crash, because you cannot access a private instance variable from outside of the class.
+	</p>
+
+	<h2>Adding Getters and Setters To Control Access To Private Instance Variables</h2>
+	<p>
+		You can create special methods (like getters and setters) that allow access to instance variables
+		by prefixing them with <b>set</b> or <b>get</b>.
+		Take a look at this version of our BanckAccount class:
+	</p>
+	<pre><code class="language-js">
+	class BankAccount{
+
+		// private properties/instance variables
+		#balance;
+
+		constructor(id, customerName){
+			this.id = id;
+			this.customerName = customerName;
+			this.#balance = 0; 
+		}
+
+		deposit(amount){
+			this.#balance += amount; 
+		}
+
+		withdraw(amount){
+			this.#balance -= amount; 
+		}
+
+		get balance(){
+			return this.#balance;
+		}
+
+		// set balance(amount){
+		// 	this.#balance = amount;
+		// }
+
+	}
+
+	const acct = new BankAccount(1, "Bob"); 
+	acct.deposit(50);
+	acct.deposit(25);
+	acct.withdraw(40);
+	acct.withdraw(40);
+	console.log(acct.balance); // Note that this looks like a property!
+	// If we didn't comment out the set balance(){...}
+	// we could change the balance like so: acct.balance = 1000000
+	</code></pre>
+	<p>
+		Note that in the console.log() it appears that we are accessing a property, but we are actually calling the get method for it.
+	</p>
+	<p>
+		I commented out the set balance method because, as mentioned earlier, we only want to change the balance when a deposit or withdraw occurs.
+		But if it were not commented out, we could change the balance like so:
+	</p>
+	<pre><code class="language-js">
+	acct.balance = 1000000;
+	</code></pre>
+	<p>
+	Note that in .net, getter and setter methods are called properties!
+	They look like properties when you use them (no parenthesis) and they allow access to instance variables.
+	</p>
+	<p>
+		If you haven't noticed, it's possible to over draft our bank account.
+		Let's fix that by adding some code to withdraw() method:
+	</p>
+	<pre><code class="language-js">
+	class BankAccount{
+
+		// private properties/instance variables
+		#balance;
+
+		constructor(id, customerName){
+			this.id = id;
+			this.customerName = customerName;
+			this.#balance = 0; 
+		}
+
+		deposit(amount){
+			this.#balance += amount; 
+		}
+
+		withdraw(amount){
+			if(amount < this.#balance){
+				this.#balance -= amount;
+			}else{
+				// How should we deal with this?
+				throw new Error("Overdraft!!!");
+			} 
+		}
+
+		get balance(){
+			return this.#balance;
+		}
+
+	}
+
+	const acct = new BankAccount(1, "Bob");
+	acct.deposit(50);
+	acct.deposit(25);
+	acct.withdraw(40);
+	//acct.withdraw(40); // This will throw an 'Overdraft!' error
+	
+	// Q: What should you do if you know a method call could throw and error/exception?
+	// A: Wrap it in a try/catch block
+	try{
+		acct.withdraw(40);
+	}catch(e){
+		console.log(e.message);
+		console.log("We're sorry, but you don't have the funds!");
+		// Crash Averted!!!
+	}
+	</code></pre>
+	
+
+	<h2>Extending a Class</h2>
+	<p>
+		One of the most powerful features of object-oriented programming is that you can extend a class.
+	</p>
+	<p>
+		In the next example, we'll 'extend' the features and functionality of the BankAccount class
+		by creating a sub class that allows you to earn interest on your balance!
+	</p>
+	<pre><code class="language-js">
+	class InterestBearingAccount extends BankAccount{
+
+		#interestRate;
+		#interestEarned;
+
+		constructor(id, name, interestRate){
+			super(id, name);
+			this.#interestRate = interestRate;
+			this.#interestEarned = 0;
+		}
+
+		addInterest(){
+			const interest = this.balance * this.#interestRate;
+			this.deposit(interest);
+			this.#interestEarned += interest;
+		}
+
+		get interestEarned(){
+			return this.#interestEarned;
+		}
+	}
+
+	const ibAcct = new InterestBearingAccount(1, "Bob", 0.10); // don't forget 'new'
+	ibAcct.deposit(50);
+	ibAcct.deposit(25);
+	ibAcct.withdraw(40);
+	ibAcct.addInterest();
+	console.log(`BALANCE: ${ibAcct.balance}  INTEREST EARNED: ${ibAcct.interestEarned}`);
+	
+	console.log(ibAcct); // Note that the prototype is a BankAccount object
+	
+	// look at what happens when you stringify it
+	// (it only includes the non-private instance variables)
+	console.log(JSON.stringify(ibAcct));
+	</code></pre>
+	<p>
+		Note the <b>extends BankAccount</b> on the first line.
+		This means that an InterestBearingBankAccount object has all the features and functionality of a BankAccount, along with a few additional ones.
+		In fact, a InterestBearingBankAccount <b>is</b> a BankAccount that allows to earn interest on your savings!
+		So we've sub-classed the BankAccount and extended it by adding the features that allow it to add and keep track of interest earnings.
+	</p>
+	<p>
+		Notice how the constructor passes the id and customerName up to the super class (the super class is often refered to as the base class).
+	</p>
+	<p>
+		Set a break point on the line that calls the InterestBearingBankAccount constructor, then step into it and notice
+		how the code executes.
+		Calling <b>super()</b> and passing in the id and customerName params allows the BankAccount class to set the id and customerName params.
+	</p>
+	<p>
+		Note that you can't change this.#balance from inside of InterestBearingBankAccount
+		because it's private. 
+		In other OOP languages you could make an instance variable 'protected'
+		which makes it available to sub-classes, but JavaScript does not support protected instance variables at this time.
+	</p>
+	<p>
+		If you console.log the ibAcct variable, you should see that it's prototype is the BankAccount class.
+		JavaScript uses what's known as <b>prototypal</b> inheritance rather than <b>classical</b> inheritance (which is used by C# and Java).
+		Let's not worry about the difference between the two (but there are plenty of resources out there on the web if you are curiious).
+	</p>
+	<p>
+		Now we'll extend the InterestBearingAccount class and create a sub-class that charges you service fees every time you make a withdraw (BOOOOO!):
+	</p>
+	<pre><code class="language-js">
+	class FullServiceBankAccount extends InterestBearingAccount{
+
+		#serviceFeeRate;
+		#totalServiceFees;
+
+		constructor(id, name, interestRate, serviceFeeRate){
+			super(id, name, interestRate);
+			this.#serviceFeeRate = serviceFeeRate;
+			this.#totalServiceFees = 0;
+		}
+
+		// We are 'overriding' the super class' version of withdraw() (so we can collect a service fee)
+		withdraw(amount){
+			const serviceFee = amount * this.#serviceFeeRate;
+			super.withdraw(amount + serviceFee); // we are calling the super class' version of withdraw()
+			this.#totalServiceFees += serviceFee;
+		}
+
+		get totalServiceFees(){
+			return this.#totalServiceFees;
+		}
+	}
+
+	const fsAcct = new FullServiceBankAccount(1, "Bob", 0.10, 0.05); 
+	fsAcct.deposit(50);
+	fsAcct.deposit(25);
+	fsAcct.withdraw(40);
+	console.log(fsAcct.balance);
+	fsAcct.addInterest();
+	console.log(`BALANCE: ${fsAcct.balance}`);
+	console.log(`INTEREST EARNED: ${fsAcct.interestEarned}`);
+	console.log(`TOTAL SERVICE FEES: ${fsAcct.totalServiceFees}`);
+	// Set a break point on the call to withdraw() and observe how the code flows into the super class
+	// when you hit super.withdraw()
+	</code></pre>
+
+	<h2>Calling Super Methods</h2>
+	<p>
+		You can <b>override</b> a method in a super class and still call it by using <b>super.</b>.
+		This allows you to extend methods of the super class (add additional functionality to them).
+		In the FullServiceBankAccount class we are overriding the withdraw method because we want to add the service fee
+		to the amount of the withdraw.
+		Once we adjust the amount, we call the super class' version of withdraw() by prefixing it with <b>super.</b> so that the balance can be adjusted.
+		JavaScript will look at the protoype to see if it has a withdraw() method to call.
+		If it doesn't find one, it will look at the prototype's prototype.
+		It will keep searching up the 'chain' of prototypes until it finds one that includes a withdraw() method
+	</p>
+	<p>
+		Set a break point on the call to withdraw() and observe how the code flows into the super class
+		when you step into super.withdraw()	
+	</p>	
+
+	<h2>Getting the Specific Type of a Variable</h2>
+	<p>
+		Finally, here's how you can figure out the exact data type of a variable that stores an object:
+	</p>
+	<pre><code class="language-js">
+	console.log(typeof acct); // This isn't super helpful!
+	console.log(acct.constructor.name); 
+	console.log(ibAcct.constructor.name); 
+	console.log(fsAcct.constructor.name); 		
+	</code></pre>
+
+</body>
+</html>
