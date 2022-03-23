@@ -41,6 +41,15 @@
   // Problem 1
   // Use the filter() method to create an array of the cats that have been vaccinated.
   // Log the array when you are done
+
+  const result = cats.filter(isVaccinated);
+
+  function isVaccinated(cat){
+	let vax = cat.vaccinated;
+	return vax == true;
+  };
+
+  console.log(result);
   
   
 
@@ -51,6 +60,12 @@
   // Hint: The array that you create should look like this: 
   //		["Felix (Bob Smith)","Garfield (Bob Smith)","Milo (Patty Jones)"]
   // Log the array when you are done
+  const catOwners = cats.map(arr => {
+	let str = arr.name + " (" + arr.owner + ")";
+	return str;
+  });
+
+  console.log(catOwners);
 
   
 	
@@ -59,24 +74,48 @@
   // Use the filter() method to create an array of cats that are more than a year old in age.
 	// Then log the array
 	// HINT: You should be ablet to parse a string like this: "2022-02-22" into a Date object like so: new Date("2022-02-22");
+	const oldCats = cats.filter(cat => {
+		const age = new Date(cat.birthdate);
+		const year = age.getFullYear();
+		const date = new Date();
+		const now = date.getFullYear();
 
+		return (now - year) > 1;
+	});
+
+	console.log(oldCats);
 	
 	
 	// Problem 4
 	// Make a copy of the cats array
+	const cats2 = JSON.parse(JSON.stringify(cats));
+	// console.log(cats2);
 	
 
 
 	// Problem 5
 	// Make a copy of the first cat in the original cats array
-	
-
+	const cat1 = JSON.parse(JSON.stringify(cats[0]));
+	// console.log(cat1);
 
 
 	// Problem 6
 	// Bind the data for the first cat (from the original cats array)
 	// to the form below
-	
+	const frmCatDetails = document.getElementById("frm");
+	const txtCatId = frmCatDetails.querySelector("[name='catId']");
+	const txtCatName = frmCatDetails.querySelector("[name='catName']");
+	const txtOwnName = frmCatDetails.querySelector("[name='ownerName']");
+	const dtBirthday = frmCatDetails.querySelector("[name='birthdate']");
+	const chkVaxxed = frmCatDetails.querySelector("[name='vaccinated']");
+
+
+	txtCatId.value = cats[0].id;
+	txtCatName.value = cats[0].name;
+	txtOwnName.value = cats[0].owner;
+	dtBirthday.value = cats[0].birthdate;
+	chkVaxxed.checked = cats[0].vaccinated;
+
 	
 
 });	
@@ -97,7 +136,7 @@
 			What is <b>inheritance</b> in object-oriented programming?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			one class (child) gaining the attributes and methods of another class (parent)
 		</div>
 
 		<h3>Question 2</h3>
@@ -105,7 +144,7 @@
 			Why is inheritance a powerful feature of object-oriented programming?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			it lets us reuse the code from the parent class for another without rewriting it all again
 		</div>
 
 		<h3>Question 3</h3>
@@ -126,7 +165,7 @@ if(d1 == d2){
 			Explain why we should see "It's false!" in the console log.
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			because d1 and d2 are different objects, despite having the same contents
 		</div>
 
 		<h3>Question 4</h3>
@@ -147,7 +186,7 @@ if(d1 == d2){
 			Explain why we should see "It's true!" in the console log.
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			d2 has been assigned the object d1 and so now reference the exact same object, thus they are equal
 		</div>
 
 		<h3>Question 5</h3>
@@ -168,7 +207,7 @@ if(obj1 == obj2){
 			Explain why we should see "It's false!" in the console log.
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			same reason the dogs werent the same, two objects referencing different things
 		</div>		
 
 		<h3>Question 6</h3>
@@ -189,7 +228,7 @@ if(obj1 == obj2){
 			Explain why the console log will show true.
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			because its true that firstCat is pointing at index 0 of the cats array
 		</div>
 
 		<h2>Coding Problems</h2>
