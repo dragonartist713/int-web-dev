@@ -53,11 +53,31 @@
 				const tr = document.createElement("tr");
 				table.appendChild(tr);
 				let td = document.createElement("td");
+				td.innerHTML = employee.id;
+				tr.appendChild(td);
+
+				td = document.createElement("td");
 				td.innerHTML = employee.firstName;
 				tr.appendChild(td);
 
 				td = document.createElement("td");
 				td.innerHTML = employee.lastName;
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.innerHTML = employee.email;
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.innerHTML = employee.hireDate;
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.innerHTML = employee.salary;
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.innerHTML = employee.password;
 				tr.appendChild(td);
 			});
 			return table;

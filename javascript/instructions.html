@@ -1,0 +1,719 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Introduction to Node Package Manager</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    aside{
+	    background-color:lightgray; 
+	    padding:20px; 
+	    border-radius: 14px; 
+	    margin: 20px 0 20px 0;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container-fluid bg-dark p-3">
+        <div class="container-xl">
+          <h1 class="text-white">Introduction to Node Package Manager</h1>
+        </div>
+      </div>
+      <div class="container-xl">
+        <main class="mt-3">
+
+
+
+
+<p>
+	JavaScript was specifically designed to run in a web browser.
+	But NodeJS allowed web developers break out of the browser, and use JavaScript to build all types of programs (not just web pages).
+	NodeJS programs can be shared in an open source repository at <a href="http://npmjs.com" target="_blank">npmjs.com</a>.
+	NPM (Node Package Manager) is a NodeJS program that you can use to download programs (known as <b>packages</b>) from the npmjs repository.
+	You need to <a href="https://nodejs.org/en/download/" target="_blank">install NodeJS</a> before you can install NPM.
+</p>
+<p>
+	Installing NodeJS (and NPM) on Windows is straight forward. 
+	Just run the installer and follow all the defaults.
+	If you are using your Ubunutu VM (which we've used in some classes), you have to enter the following commands:
+</p>
+<pre><code class="language-markup"> sudo apt update
+sudo apt install curl
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+sudo apt install -y nodejs
+node -v
+npm -v</code></pre>
+
+<p>
+	If you are using VSCode, you should restart it so that you can run node commands from the terminal.
+</p>
+<p>
+	<a href="https://intwebdev.wtc-web.com/npm-project.zip">Download the files for this tutorial</a> (and extract the zip file), then open the terminal and navigate to the project folder (npm-project).
+</p>
+<p>
+	To enable a project to make use of NPM, run this command (make sure you are running the command from the project folder, which in this case is <b>npm-project</b>):
+</p>
+<pre><code class="language-markup">npm init --yes</code></pre>
+<p>
+	This command will create a file named <b>package.json</b> in your project folder.
+	The package.json file will keep track of all the NPM packages that you install for the project.
+	Note that if you do not include the <b>--yes</b> option, you'll be prompted to answer a series of questions about your project.
+	And your answers will show up in the package.json file that serve to describe your project. 
+	By using the <b>--yes</b> option, the package.json file will include default information that you can update later. 
+</p>
+<p>
+	Take a look at the package.json file that was created. 
+	It's a JSON file that contains only general information about your project now,
+	but it will be updated to keep track of all the packages that we install.
+	This allows you to know the <b>dependencies</b> of a project just by looking at the package.json file.
+</p>
+<p>
+	Right now your package.json file looks like this:
+</p>
+<pre><code class="language-markup">{
+  "name": "npm-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}</code></pre>
+
+
+<h3>Enabling Our Project To Use ES6 Modules</h3>
+<p>
+	Now we'll configure our project to use ES6 modules.
+	We'll talk more about ES6 modules soon.
+	To do this, add a key/property named 'type' and set it's value to 'module', to the package.json file so that it looks like this:
+</p>
+<pre><code class="language-markup">{
+	"type": "module",         <<<<<< ADD THIS LINE
+	"name": "npm-project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}</code></pre>
+
+
+<h3>Running the Project on a Live Web Server</h3>
+<p>
+	We'll do one more thing before we start installing packages, I want to show you that you can quickly launch the project in a NodeJS web server 
+	by running this command:
+</p>
+<pre><code class="language-markup">npx serve ./src</code></pre>
+<p>
+	You may be prompted to install a package, if so choose Y (for yes).
+	To shut down this server, press <b>Ctrl + C</b> in the terminal, and then press Y.
+</p>
+<p>Now let's get started with installing packages...</p>
+    
+<h2>Install Babel Packages</h2>
+<p>
+	Babel is a tool that compiles modern JavaScript into Classic JavaScript (so your pages work in older browsers that don't support modern JS).
+	Run these commands in the project folder to install a few Babel packages that we'll be using:
+</p>
+<pre><code class="language-markup">npm install --save-dev @babel/core 
+npm install --save-dev @babel/cli 
+npm install --save-dev @babel/preset-env 
+npm install --save-dev @babel/plugin-syntax-class-properties</code></pre>
+<p>
+	You could install all four packages with a single command like so (just separate each package name with a space):
+</p>
+<pre><code class="language-markup">npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/plugin-syntax-class-properties</code></pre>
+<p>
+	Note that the <b>--save-dev</b> option means that the package.json file will be updated to show that the project is using the Babel plugins.
+	Take a look inside package.json and you should see a setting called <b>devDependencies</b> that include each of the Babel packages that we just installed.
+</p>
+<p>	
+	You'll also see that a <b>node_modules</b> folder has been created in the project directory. 
+	This is the folder where packages get downloaded to when you install them.
+</p>
+<aside>
+	<h3>A Note About Git</h3>
+	<p>
+		You should always 'ignore' the node_modules folder, and keep it out of your Git repository because it can get to be extremely large.
+		If you clone a repository that depends on NPM packages, you can simply run <b>npm install</b> to create the node_modules folder and install all the packages that are listed in the package.json file.	
+	</p>
+</aside>
+<p>
+	The Babel packages that we just installed can be configured by adding a file named <b>babel.config.js</b>.
+	Go ahead and create this file in the project folder and add this to it:
+</p>
+<pre><code class="language-markup">
+export default {
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": "ie > 4" // Just added this to test if it would actually change anything
+                }
+            }
+        ]
+    ],
+    "plugins":  ["@babel/plugin-syntax-class-properties"]
+}
+</code></pre>
+<p>
+	Don't worry about understanding the details of this file, it just instructs Babel to compile our mode JavaScript to 'classic' code that can run on IE4.
+	It also instructs Babel to convert any JavaScript classes that we create in our project to classic JavaScript.
+	Classes were not supported by JavaScript until ES6.
+</p>
+<p>
+	Now we're ready to try out Babel and convert our modern JavaScript code from ES6 to Classic JS.
+	Converting code from one language to another is known as <b>transpiling</b>.
+	Run this command in the terminal:
+</p>
+<pre><code class="language-markup">npx babel src -d dist</code></pre>
+<p>
+	This will launch Babel and it will look for any .js files in the source folder.
+	And it will put the transpiled versions of the files in a folder named <b>dist</b>
+	(the <b>-d</b> option allows you to tell Babel where to put the transpiled code).
+	When you want to run a package like Babel from the command line, you prefix it with <b>npx</b>.
+</p>
+<p>
+	Make sure to look at the <b>es6.js</b> and the <b>user.js</b> files in both the src and the dist folders.
+	You'll see that Babel converted (transpiled) our modern JavaScript into classic JavaScript.
+</p>
+<p>
+	So now our project has a src folder, which is where we write our source code,
+	and a <b>dist</b> folder, which is the compiled version of our project.
+	Dist stands for 'distribution', so to publish your website you would copy the contents of the dist folder to the doc root directory of your web server.
+</p>
+<p>
+	The Babel plugin compiled and moved our .js files into the dist folder, but it did not touch any of the other files in our src directory.
+	They would need to be copied into the dist folder as well. 
+	We could copy those files manually, but we can also install some other NPM packages to automate the process for us.
+</p>
+
+<h2>Install Gulp</h2>
+<p>
+	Now, we'll use NPM to install a package called Gulp, which is a <b>task runner</b> (it can automate many tasks for us).
+</p>
+<p>
+	We actually need to install two Gulp packages. The first one allows us to run Gulp commands from the terminal.
+	We'll install this one 'globally' (by adding <b>-g</b> to the npm install command).
+	When you install a package globally, it can be used by any project on your computer 
+	(it doesn't get installed into the node_modules folder, instead it get installed in a place that can accessible to all of your NPM projects).
+</p>
+<pre><code class="language-markup">npm install gulp-cli -g</code></pre>
+    
+<aside>
+	<h3>Installing Packages Globally on Mac and Ubuntu</h3>
+	<p>
+		IF you are using Mac OS or Ubuntu, you will need to install global packages using <b>sudo</b>:
+	</p>
+	<pre><code class="language-markup">sudo npm install gulp-cli -g</code></pre>
+</aside>
+<aside>
+	<h3>Updating the gulp-cli Package</h3>	
+	<p>
+		If you already installed gulp you can check the version:
+	</p>
+	<pre><code class="language-markup">npx gulp -v</code></pre>
+	<p>
+		If you have an old version, you can remove it, then install the newest version:
+	</p>
+	<pre><code class="language-markup">
+	npm rm -g gulp-cli
+	npm install gulp-cli -g
+	</code></pre>
+</aside>
+
+<p>
+	We also need to install Gulp in this project.
+	Apparently you must install the <b>gulp-cli</b> package globally, and then install <b>gulp</b> into your project.
+	Run this command from your project folder:
+</p>
+
+<pre><code class="language-markup">npm install gulp --save-dev</code></pre>
+<h3>Configuring Gulp</h3>
+<p>
+	Now we need to create a configuration file for gulp, which will define all the tasks that we want to run.
+	Create a file named <b>gulpfile.js</b> in your project folder and paste this code into it.
+</p>
+<pre><code class="language-js">
+// IMPORTS
+import gulp from 'gulp';
+
+
+// TASK FUNCTIONS
+const test = (done) => {
+    console.log("Test task running...");
+    done();
+}
+
+
+// EXPORTS (in order to run the task functions, they must be exported)
+export {test}
+</code></pre>
+<p>
+	This is a JavaScript file, but some of it may look unfamiliar if you haven't worked with NodeJS.
+	The first line imports the gulp package from the node_modules folder.
+	NodeJS will automatically look inside the node_modules folder for it.
+	This is a little different than using a &lt;script&gt; element to import a .js file into a web page.
+	But remember that NodeJS programs do not necessarily run in a browser.
+</p>
+<p>
+	Next we have a function that should look somewhat familiar to you. 
+	In gulp, you define a 'task' by writing a function.
+	This task function doesn't actually do anything other than write a message into the terminal.
+	You'll see the message in minute when we run the task.
+	If you are wondering about the parameter (done), it's a callback function that NodeJS will pass into the task function.
+	You should invoke this function after your task is complete, this lets NodeJS know that your task has completed.
+	There are other ways to write your task functions, but we'll be using this approach.
+</p>
+<p>
+	The last line 'exports' the test function. 
+	In NodeJS you have to export the parts of a .js file 
+	that you want to be accessible to other files.
+	By exporting a function you make it 'public'.
+</p>
+<p>
+	Run this command (from the project folder) to invoke our test task function:
+</p>
+<pre><code class="language-markup">npx gulp test</code></pre>
+<p>You should see the console log message in the terminal (along with some statistics about the task)</p>
+<p>
+	Now add a task function to gulpfile.js that will copy all .html and .css files into the dist folder:
+</p>
+<pre><code class="language-js">
+const copy = (done) => {
+    gulp.src("src/**/*.html").pipe(gulp.dest("dist/"));
+    gulp.src("src/**/*.css").pipe(gulp.dest("dist/"));
+    done();
+}
+</code></pre>
+<p>
+	In the body of the function, a few methods of the gulp object (which we imported at the top of the file) are being called.
+	The <b>src()</b> method allows you to specify the files you want to copy.
+	The <b>*.html</b> in the path (the parameter passed to src()) indicates that you want to copy all files that have an .html extension.
+	The <b>**</b> in the path tells gulp to do a recursive copy, so it would copy any html files that are inside of sub-directories within the src folder.
+	The <b>pipe()</b> method allows you take the files that are returned by src() and feed them into another method, which in this case is called <b>dest()</b>.
+	The parameter passed into dest() is the path that your files will be copied to.
+	Don't worry if this all seems very strange to you, remember you are writing JavaScript for NodeJS, not for the browser.
+</p>
+<p>
+	Make sure to export the task, so update the last line of gulpfile.js to look like this:
+</p>
+<pre><code class="language-js">export {test, copy}</code></pre>
+<p>
+	Now you can run the task from the terminal:
+</p>
+<pre><code class="language-markup">npx gulp copy</code></pre>
+<p>
+	Make sure to look around inside the dist folder. 
+	You should see that your .html and .css files have been copied into it.
+</p>
+
+
+<h3>Integrating Babel into a Gulp Task</h3>
+<p>
+	We can create a task to do the Babel work that we previously set up.
+	Then we don't have to run the Babel job separately.	
+</p>
+<p>
+	First install the gulp-babel package:
+</p>
+<pre><code class="language-markup">npm install --save-dev gulp-babel</code></pre>
+<p>
+	Then add this import at the top of gulpfile.js:
+</p>
+<pre><code class="language-js">import babel from 'gulp-babel';</code></pre>
+<p>
+	Now we can run babel commands in our tasks. So let's create a task function to do just that (add this task function to gulpfile.js):
+</p>
+<pre><code class="language-js">
+const transpile = (done) => {
+    gulp.src('src/**/*.js')
+            .pipe(babel())
+            .pipe(gulp.dest('./dist'));
+    done();
+}
+</code></pre>
+<p>
+	Don't forget to export the task at the bottom of gulpfile.js, the last line should now look like this:
+</p>
+<pre><code class="language-js">export {test, copy, transpile }</code></pre>
+<p>
+	Now you can run the babel task from the terminal like so:
+</p>
+<pre><code class="language-markup">npx gulp transpile</code></pre>
+
+
+<h3>Optimizing Images With Gulp</h3>
+<p> 
+	We also need a task to copy the images folder to the dist folder, but we'll optimize the images along the way.
+	Install this package:
+</p>
+<pre><code class="language-markup">npm install gulp-imagemin  --save-dev</code></pre>
+<p>
+	Import the package into the gulpfile:
+</p>
+<pre><code class="language-js">import imagemin from 'gulp-imagemin';</code></pre>
+<p>
+	Add this task function:
+</p>
+<pre><code class="language-js">
+const images = (done) => {
+    gulp.src('src/images/**/*')
+        .pipe(imagemin({ optimizationLevel: 5 }))
+        .pipe(gulp.dest('dist/images/'));
+
+    done();
+}
+</code></pre>
+<p>
+	Note that this task 'pipes' the source files through the <b>imagemin</b> package before piping them to the destination folder.
+</p>
+<p>Now update the export line at the bottom of gulpfile.js, it should now look like this:</p>
+<pre><code class="language-js">export {test, copy, babel, images }</code></pre>
+<p>
+	Now you can run the task from the terminal like so:
+</p>
+<pre><code class="language-markup">npx gulp images</code></pre>
+<p>
+	After you run the command, look at file sizes of the images in the dist folder compared to the src folder.
+</p>
+
+
+<h3>Running Multiple Tasks At The Same Time</h3>
+<p>
+	We've got a few separate task functions in our gulpfile now, ideally we want to run them all at the same time.
+	We can do so by adding this to the very end of the file:
+</p>
+<pre><code class="language-js">export default gulp.parallel(copy, transpile, images);</code></pre>
+<p>
+	Now you can run all tasks by simply entering <b>npx gulp</b> in the terminal (we'll do that next).
+	In this case we are setting the default property of the export object to call the gulp <b>parallel()</b> method. 
+	The parameters that you pass in are the names of the task functions that you want to run 'in parallel'.
+</p>
+<p>
+	Now go ahead and run all the tasks functions by entering this in the terminal:
+</p>
+<pre><code class="language-markup">npx gulp</code></pre>
+
+
+<h2>ES6 Modules</h2>
+<p>
+	It's not unusual for a web page to link to many .js files.
+	But if you're not careful, this can lead to <b>namespace collisions</b>, which is when you end up with two variables with 
+	the same name, in the same scope.
+</p>
+<p>
+	In the src/js folder you'll see two example JavaScript libraries.
+	libraryA.js contains this code:
+</p>
+<pre><code class="language-js">
+function doSomething(){
+    alert("doing something");
+}
+
+function anotherFunction(){
+    alert("foo");
+}	
+</code></pre>
+<p>
+	And libraryB.js contains this code:
+</p>
+<pre><code class="language-js">
+function doSomething(){
+    alert("doing something else");
+}	
+</code></pre>
+<p>
+	Note that both libraries declare a function named doSomething().
+	If you look in index.html, you'll see that it includes both libraries (they are commented out).
+	So, if your page links to both libraries and calls doSomething(), which version will execute?
+	If you want to play around, look in index.html and notice that there are SCRIPT elements that link to both .js files (they are commented out).
+</p>
+	We can avoid these namespace collisions by using ES6 modules.
+	By the way, we imported a few ES6 modules into gulpfile.js in the previous lesson (an NPM package can include multiple modules).
+	Here are some resources on ES6 modules:
+</p>
+<ul>
+	<li><a href="https://www.tutorialspoint.com/es6/es6_modules.htm" target="_blank">https://www.tutorialspoint.com/es6/es6_modules.htm</a></li>
+	<li><a href="https://www.sitepoint.com/using-es-modules/" target="_blank">https://www.sitepoint.com/using-es-modules/</a></li>
+	<li><a href="https://www.freecodecamp.org/news/how-to-use-es6-modules-and-why-theyre-important-a9b20b480773/" target="_blank">https://www.freecodecamp.org/news/how-to-use-es6-modules-and-why-theyre-important-a9b20b480773/</a></li>
+</ul>
+<p>
+	Now look at the files named <b>moduleA.js</b> and <b>moduleB.js</b> inside the src/js folder.
+	I've converted the two libraries into ES6 modules simply by adding the <b>export</b> statement at the bottom.
+	Now these modules can be imported into another .js file.
+	A common practice is to create a file named <b>main.js</b> that imports all the modules needed for a page.
+	And then link your web page to main.js.
+</p>
+<p>
+	Look inside main.js, and note how it imports functions from both modules, but renames one version of doSomething to doSomethingElse.
+	Now, if you use ES6 modules to create your libraries, you don't have to worry about namespace collisions, 
+	because the developers who use your modules can name them as they choose.
+</p>
+<p>
+	Finally, look inside the index.html file and notice how it's linking to main.js, it includes a <b>type</b>
+	attribute that is set to a value of <b>module</b>. This declares that main.js is using ES6 modules.
+</p>
+<pre><code class="language-markup"><!--<script src="js/main.js" type="module"></script>--></code></pre>
+<p>
+	Note that as of today (early 2022), ES6 modules will not work if you launch a page directly from the file system.
+	You must load the pages from a web server.
+	Remember, you can do this by running <b>npx serve ./src</b> from the terminal.
+</p>
+<p>
+	There's more to ES6 modules than what we've covered here (there a diffent ways of importing and exporting moduels), but this is a start.
+</p>
+
+
+<h2>Unit Testing With Jest</h2>
+
+<p>
+	<b>Question:</b> How do you know if the code you wrote for a function works? 
+	<br>
+	<b>Answer:</b> You test it!!!!
+</p>
+<p>
+	Complex appications are built one function at a time. 
+	You need to make sure each function works before you go and drop it into a complex application.
+</p>
+<p>
+	Here's a very simple function that has two string parameters.
+	The function just concatenates the two strings and returns the result:
+</p>
+<pre><code class="language-js">
+const getFullName(firstName, lastName){
+	return firstName + " " + lasstName;
+}
+</code></pre>
+<p>
+	If you look at the code for this function, you'll see that there's an error in it.
+	This is just one reason why you should come up with some sort of routine to test 
+	each and every function that you write.
+</p>
+<p>At the most basic level, you could test this function with a simple console log like this one:</p>
+<pre><code class="language-js">
+console.log(getFullName("Bob", "Jones"));
+</code></pre>
+<p>
+	Running a simple test like this to ensure that your function works is the bare minimum you can do to test your work.
+	A simple test like this can save your career.
+	Many programmers (myself included) have rushed to make a quick change to a program. 
+	It's usually such a simple change that we didn't even bother to test it before pushing the changes up to the live server.
+</p>
+<p>
+	There are formal ways to test the functions you write, which are known as <b>unit testing</b> frameworks.
+	We'll install one in a minute.
+</p>
+<p>
+	First, open the <b>grading.js</b> file which is in the src/js folder and spend a minute to 
+	read the description of how the function is supposed to work.
+	Here is the code that you will see in the grading.js file:
+</p>
+<pre><code class="language-js">
+/**
+Takes a test score (a number) as a parameter, and returns a letter grade.
+The letter grade should be determined by the test score like so:
+90 - 100 should return "A"
+80 - 89 should return "B"
+70 - 79 should return "C"
+60 - 69 should return "D"
+A test score lower than 60 should return "F"
+
+@param {number} score       The score to be converted into a letter grade
+@return {string}            The letter grade for the score
+*/
+function calculateLetterGrade(score) {
+  if (score >= 90) {
+    return "A";
+  } else if (score >= 80) {
+    return "B";
+  } else if (score > 70) {
+    return "C";
+  } else if (score > 60) {
+    return "D";
+  } else {
+    return "F";
+  }
+}
+
+export { calculateLetterGrade };
+</code></pre>
+<p>
+	Note the export statement at the bottom of the file, this is an ES6 module
+	that exports one function (calculateLetterGrade).
+</p>
+<p>
+	If you look in the main.js file you'll see code that looks like this:
+</p>
+<pre><code class="language-js">
+import {calculateLetterGrade} from './grading.js';
+
+if(calculateLetterGrade(90) == "A"){
+    console.log("Test Passed!");
+}else{
+    console.log("Test Failed!!!");
+}
+</code></pre>
+<p>
+	It runs one test by passing a score of 90, and checking to see if the result is equal to "A".
+	If so, then our test passes!
+	Unfortunately, many values other than "A" could potentionally be passed in as the parameter (argument).
+</p>	
+<aside>
+	<h3>Optional Activity</h3>
+	<p>
+		Add a few more if statements to test the other valid values that can be passed into calculateLetterGrade.
+		You might find a bug or two.
+	</p>
+</aside>
+
+
+<p>
+	You can automate the testing process by using a framework that we'll download with NPM.
+	Run this command (from your project folder) to install a unit testing framework called <b>Jest</b>:
+</p>
+<pre><code class="language-markup">npm install --save-dev jest</code></pre>
+<p>
+	Take a look at the <b>grading.test.js</b> file in the tests folder, it has this code in it:
+</p>
+<pre><code class="language-js">
+import { calculateLetterGrade } from "../src/js/grading";
+
+
+describe("Test valid params for calculateLetterGrade()", () => {
+    test("90 is an A", () => {
+        const score = 90;
+        const expectedResult = "A";
+        expect(calculateLetterGrade(score)).toEqual(expectedResult);
+    });
+
+    test("80 is an B", () => {
+        expect(calculateLetterGrade(80)).toEqual("B");
+    });
+
+    test("70 is a C", () => {
+        expect(calculateLetterGrade(70)).toEqual("C");
+    });
+
+    test("60 is a D", () => {
+        expect(calculateLetterGrade(60)).toEqual("D");
+    });
+
+    test("59 is an F", () => {
+        expect(calculateLetterGrade(59)).toEqual("F");
+    });
+
+});	
+</code></pre>
+<p>
+	Note at the top of the file that it imports the function that we are testing.
+	In the rest of the file you'll see lots of method calls to function that are defined 
+	in the Jest framework, such as <b>describe()</b>, <b>test()</b>,  and <b>expect()</b>.
+	Here's a quick run down of those functions:
+</p>
+<ul>
+	<li><b>describe()</b> Allows you to group individual tests into categories (or suites)</li>
+	<li>
+		<b>test()</b> Is used to run a single test. You pass in two parameters, the first is a message that describes what you are testing,
+		and the second param is a function that includes your test code. When you run your tests (which we'll see soon)
+		Jest will automatically invoke this function.
+	</li>
+	<li>
+		<b>expect()</b> - Actually runs the test code and compares the result to the value passed into <b>toEqual()</b>.
+	</li>
+</ul>
+<p>
+	To run the test, enter this command in the terminal (make sure the terminal is in the my-project folder):
+</p>
+
+<pre><code class="language-markup">npx jest tests/</code></pre>
+<p>
+	This will run all tests in all files in the tests folder. 
+	Right now we only have one test (in a single test file), but we'll be adding many more soon.
+	If you want to run tests for just one test file, you could do it like this:
+</p>
+<pre><code class="language-markup">npx jest tests/grading.test.js</code></pre>
+<p>
+	When you run the tests for the first time, you'll notice that a couple of them failed!
+	If our test code is correct, this indicates that we have a bug in our code!
+	Let's fix the bugs and get all the tests to pass!
+</p>
+
+
+<h2>Setting Up a Mock API Server</h2>
+<p>
+	A huge part of software development these days includes integrating with other systems.
+	Instead of building traditional web pages, oganizations are now builing 'APIs' that just serve raw
+	data. 
+	This allows other organizations to build apps that make use of the raw data.
+	Web apps like these are refered to as <b>web services</b>, or <b>APIs</b>. 
+</p>
+<p>
+	Now we'll install an NPM package that allows us to set up a 'mock' web service.
+	The package is called <b>JSON Server</b>.
+	To install JSON Server, run this command from the project folder
+	(remember that you must run this command using <b>sudo</b> if you are using Mac OS or Ubuntu):
+</p>
+<pre><code class="language-markup">npm install -g json-server</code></pre>
+<p>
+	Note that the <b>-g</b> will install JSON Server globally, which means you can launch it from any project folder.
+</p>
+<p>
+	Look at the <b>sample-data.json</b> file in the project folder.
+	This file contains the data that our mock server will use.
+</p>
+<p>
+	To launch JSON Server, and point it to the sample-data.json file, run this command from the project folder:
+</p>
+<pre><code class="language-markup">npx json-server --watch sample-data.json</code></pre>
+<p>
+	When the server starts, you should see a URL in the terminal, 
+	it will look something like this: <b>http://localhost:3000/posts</b>. 
+	Go ahead and open a browser and navigate to the URL, you should see the data from the sample file.
+</p>
+<p>
+	To stop the server, press <b>Ctrl + C</b>.
+</p>
+
+        </main>
+    </div>
+    <div class="container-fluid bg-dark py-2 mt-3"> 
+        <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

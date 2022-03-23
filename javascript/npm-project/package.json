@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "npm-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.16.11",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "jest": "^27.5.1"
+  }
+}

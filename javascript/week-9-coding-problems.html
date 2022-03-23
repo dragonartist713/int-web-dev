@@ -1,0 +1,164 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Week 9 Coding Problems</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+  	
+  	div.answer{ 
+  		background-color: lightgray; 
+  		margin-bottom: 25px; 
+  	}
+  	
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+  window.addEventListener("load", ()=>{
+
+
+	// Problem 1
+	// Loop through the properties(keys) in the following object
+	// and console log each key and it's value
+	const order = {id:101, customer: "Charlie Anderson", product: "Bike", price: 10.00}
+
+
+
+	// You'll use this array for the next two problems
+	const orders = [
+		{id:101, customer: "Charlie Anderson", product: "Bike", price: 10.00}, 
+		{id:117, customer: "Charlie Anderson", product: "Radio", price: 17.00}, 
+		{id:121, customer: "Charlie Anderson", product: "TV", price: 20.00}, 
+		{id:130, customer: "Charlie Anderson", product: "Book", price: 10.00}, 
+		{id:104, customer: "Betty Jones", product: "Bike", price: 10.00}, 
+		{id:105, customer: "Betty Jones", product: "Shoes", price: 25.00}, 
+		{id:112, customer: "Betty Jones", product: "TV", price: 30.00}, 
+		{id:107, customer: "Bob Smith", product: "Radio", price: 42.00}, 
+		{id:123, customer: "Bob Smith", product: "Bike", price: 10.00}, 
+		{id:153, customer: "Bob Smith", product: "Monitor", price: 16.00}, 
+		{id:157, customer: "Bob Smith", product: "Keyboard", price: 18.00},
+		{id:157, customer: "Mark Johnson", product: "Microwave", price: 11.00} 
+	];
+
+
+	// Problem 2
+	// Use the filter() method to create an array of the purchases the Bob Smith made.
+	// For example:
+	// 		const bobsPurchases = orders.filter(/*function goes here*/);
+	// console log the returned array
+
+
+
+
+	// Problem 3
+	// Use the reduce() method to figure out the total of Bob's purchases. 
+	// console log the result
+
+
+
+	
+	// Problem 4
+	// Create a class named User that has the following properties
+	// 		firstName
+	// 		lastName
+	// 		email
+	// 		#password  (note that this one is private)
+	//
+	// The constructor should have parameters that allow you to set all of the properties.
+	// Make the #password property 'write-only' by adding a 'set' password method.
+
+	// Instantiate a User object (don't forget 'new') with the following property values
+	// 		firstName: Betty
+	// 		lastName: Jones
+	// 		email: betty@jones.com
+	// 		password: test123
+	// Then console log it.
+
+	// Finally, change Betty's password to 'pencil'
+	// Then console log the User object again.
+
+
+
+
+	// Problem 5
+	// Create a sub class of the User class named Customer
+	// The Customer class will extend the User class by adding an 'orders' property (which is not private)
+	// The constructor should have all the same params as the User constructor, make sure to pass these params into the super constructor.
+	// In the constructor, you can initialize the orders property to an empty array.
+
+	// Instantiate a Customer object and pass in the following parameters:
+	// 		firstName: Bob
+	// 		lastName: Smith
+	// 		email: bob@smith.com
+	// 		password: test123
+
+	// Then set the orders property by assigning it bobsPurchases (from problem 2)
+
+	// Finally, log the Customer object.
+	
+
+});	
+  </script>
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h1 class="text-white">Int Web Dev - Week 9 Questions and Coding Problems</h1>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+    	    	
+	  <h3>Question 1</h3>
+		<p>
+			What is a read-only property in JavaScript?
+		</p>
+		<div class="p-2 text-dark answer">
+			it prevents the field from being modified but the text can still be highlighted and copied
+		</div>
+
+		<h3>Question 2</h3>
+		<p>
+			What is the difference between a <b>for in</b> loop and a <b>for of</b> loop?
+		</p>
+		<div class="p-2 text-dark answer">
+			for in loops through properties, for of loops through values
+		</div>
+
+		<h3>Question 3</h3>
+		<p>
+			What is <b>component-based design</b>? How does it differ from page-centric design?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h2>Coding Problems</h2>
+		<p>
+			There are coding problems for you to do in the script element on the page.
+		</p>
+		
+	</main>
+  </div>
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+   <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+</body>
+</html>
+
+

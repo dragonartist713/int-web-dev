@@ -1,0 +1,230 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Week 10 Coding Problems</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+  	
+  	div.answer{ 
+  		background-color: lightgray; 
+  		margin-bottom: 25px; 
+  	}
+  	
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+  window.addEventListener("load", ()=>{
+
+  // You'll use this array in some of the coding problems
+  const cats = [
+  	{id: 1, name: "Felix", birthdate:"2022-02-22", vaccinated: true, owner:"Bob Smith"},
+  	{id: 2, name: "Garfield", birthdate:"2019-10-23", vaccinated: false, owner:"Bob Smith"},
+  	{id: 3, name: "Milo", birthdate:"2020-04-11", vaccinated: true, owner:"Patty Jones"}
+  ];
+
+
+  // Problem 1
+  // Use the filter() method to create an array of the cats that have been vaccinated.
+  // Log the array when you are done
+  
+  
+
+
+  // Problem 2
+  // Use the map() method to create an array of strings.
+  // Each string should include the cat's name and it's owner's name.
+  // Hint: The array that you create should look like this: 
+  //		["Felix (Bob Smith)","Garfield (Bob Smith)","Milo (Patty Jones)"]
+  // Log the array when you are done
+
+  
+	
+
+  // Problem 3
+  // Use the filter() method to create an array of cats that are more than a year old in age.
+	// Then log the array
+	// HINT: You should be ablet to parse a string like this: "2022-02-22" into a Date object like so: new Date("2022-02-22");
+
+	
+	
+	// Problem 4
+	// Make a copy of the cats array
+	
+
+
+	// Problem 5
+	// Make a copy of the first cat in the original cats array
+	
+
+
+
+	// Problem 6
+	// Bind the data for the first cat (from the original cats array)
+	// to the form below
+	
+	
+
+});	
+  </script>
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h1 class="text-white">Int Web Dev - Week 9 Questions and Coding Problems</h1>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+    	    	
+	  <h3>Question 1</h3>
+		<p>
+			What is <b>inheritance</b> in object-oriented programming?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 2</h3>
+		<p>
+			Why is inheritance a powerful feature of object-oriented programming?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 3</h3>
+		<p>
+			Consider this code sample:
+		</p>
+		<pre><code class="language-js">
+const d1 = new Dog("Buster", "German Shepard");	
+const d2 = new Dog("Buster", "German Shepard");
+
+if(d1 == d2){
+	console.log("It's true!");
+}else{
+	console.log("It's false!");
+}	
+		</code></pre>
+		<p>
+			Explain why we should see "It's false!" in the console log.
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 4</h3>
+		<p>
+			Consider this code sample:
+		</p>
+		<pre><code class="language-js">
+const d1 = new Dog("Buster", "German Shepard");	
+const d2 = d1;
+
+if(d1 == d2){
+	console.log("It's true!");
+}else{
+	console.log("It's false!");
+}	
+		</code></pre>
+		<p>
+			Explain why we should see "It's true!" in the console log.
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 5</h3>
+		<p>
+			Consider this code sample:
+		</p>
+		<pre><code class="language-js">
+const obj1 = {id: 1, name: "Bob"};	
+const obj2 = {...ob1};
+
+if(obj1 == obj2){
+	console.log("It's true!");
+}else{
+	console.log("It's false!");
+}	
+		</code></pre>
+		<p>
+			Explain why we should see "It's false!" in the console log.
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>		
+
+		<h3>Question 6</h3>
+		<p>
+			Consider this code sample:
+		</p>
+		<pre><code class="language-js">
+			const cats = [
+				{id: 1, name: "Felix", birthdate:"02-22-2022", vaccinated: true, owner:"Bob Smith"},
+				{id: 2, name: "Garfield", birthdate:"10-23-2019", vaccinated: false, owner:"Bob Smith"},
+				{id: 3, name: "Milo", birthdate:"04-11-2020", vaccinated: true, owner:"Patty Jones"}
+			];
+
+			const firstCat = cats[0];
+			console.log(firstCat == cats[0]); 
+		</code></pre>
+		<p>
+			Explain why the console log will show true.
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h2>Coding Problems</h2>
+		<p>
+			There are coding problems for you to do in the script element on the page.
+		</p>
+				
+		<div class="card border-primary border-2">
+      <div class="card-header text-start text-primary">Cat Details</div>
+      <div class="card-body text-start">
+				<form id="frm" method="POST" action="http:/www.wtc-web.com/form-handler.php">
+					<label class="form-label">Cat ID</label>
+					<input type="text" class="form-control" name="catId">
+					<label class="form-label">Cat Name:</label>
+					<input type="text" class="form-control" name="catName">
+					<label class="form-label">Owner Name:</label>
+					<input type="text" class="form-control" name="ownerName">
+					<label class="form-label">Birth Date:</label>
+					<input type="date" class="form-control" name="birthdate">
+					<label class="form-label">Vaccinated:</label>
+					 <input class="form-check-input" type="checkbox" name="vaccinated">
+				  <br>
+					<input type="submit" class="btn btn-primary" value="SEND">
+				</form>
+			</div>
+		</div>
+		
+	</main>
+  </div>
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+   <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+</body>
+</html>
+
+
+
+

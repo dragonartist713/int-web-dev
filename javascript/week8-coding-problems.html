@@ -45,6 +45,12 @@
 	// Declare a constant named 'friends' 
 	// and initialize it to an array of objects with the following
 	// properties(keys) and values:
+
+	const friends = [
+		{id: 101, name: "Bob", age: 22, eyeColor: "blue"},
+		{id: 111, name: "Mary", age: 41, eyeColor: "blue"},
+		{id: 114, name: "Betty", age: 22, eyeColor: "brown"}
+	];
 	
 	//  id 		name 			age 		eyeColor	
 	//  ----------------------------------
@@ -60,9 +66,9 @@
 	// Loop through the friends array from the previous problem
 	// and create an LI DOM element for each object in the array.
 	// Display the friend name inside the LI element
-	// Add data- attributes to each element for the id, age, and eyeColor
-	// Remember that to add data- attributes with JavaScript, you must work with 
-	//  the 'dataset' property of a DOM element object 
+	// ???Add data- attributes to each element for the id, age, and eyeColor???
+	// ???Remember that to add data- attributes with JavaScript, you must work with ???
+	//  ???the 'dataset' property of a DOM element object ???
 	// Then append each LI to the 'friend-list below'
 	// Hint: when you are done, the page should include the following HTML after it loads:
 	//
@@ -72,11 +78,23 @@
 	// 		<li data-id="114" data-age="11" data-eye-color="brown">Betty</li>
 	// 	</ul>
 
+	let list = document.querySelector(".friend-list");
+	
+
+	friends.forEach((friend) => {
+		const li = document.createElement("li");
+		li.setAttribute("data-id", friend.id);
+		li.setAttribute("data-age", friend.age);
+		li.setAttribute("data-eye-color", friend.eyeColor);
+		li.innerHTML = friend.name;
+		list.appendChild(li);
+	});
 
 	// Problem 3
 	// Use prompt() to ask the user to enter his/her name.
 	// Then store the user input in localStorage with a key of 'userName'.
-
+	let name = prompt("Please enter your name.");
+	localStorage.setItem("userName", name);
 
 	// Problem 4
 	// Convert the data in the variable below into a JSON string:
@@ -86,16 +104,57 @@
 		{id: 2, name: "Buster", age: 11},
 		{id: 3, name: "Garfield", age: 7}
 	]; 
+	
+	localStorage.setItem("cats", JSON.stringify(myCats));
 
 
 
 	// Problem 5
 	// Fetch the data for the 'cats' key from localStorage
+	let tuna = localStorage.getItem("cats");
 	// Then convert it from a JSON string into an array of objects
+	const cats = JSON.parse(tuna);
 	// Then create a table to display the all the properties of each cat
 	// Make sure to include column headers in the table
-	// Finally, append the table to the div on the page with an id of 'cat-data'
+	const makeCatTable = (cats) => {
+		const table = document.createElement("table");
+		table.setAttribute("border", 1);
+		table.setAttribute("class", "table");
 
+		const headerRow = document.createElement("tr");
+		let th = document.createElement("th");
+		th.innerHTML = "<b>  ID  </b>";
+		headerRow.appendChild(th);
+		th = document.createElement("th");
+		th.innerHTML = "<b>  Name  </b>";
+		headerRow.appendChild(th);
+		th = document.createElement("th");
+		th.innerHTML = "<b>  Age  </b>";
+		headerRow.appendChild(th);
+		table.appendChild(headerRow);
+
+		cats.forEach((cat) => {
+			const tr = document.createElement("tr");
+			table.appendChild(tr);
+			let td = document.createElement("td");
+			td.innerHTML = cat.id;
+			tr.appendChild(td);
+
+			td = document.createElement("td");
+			td.innerHTML = cat.name;
+			tr.appendChild(td);
+
+			td = document.createElement("td");
+			td.innerHTML = cat.age;
+			tr.appendChild(td);
+		});
+		return table;
+	};
+	// Finally, append the table to the div on the page with an id of 'cat-data'
+	const catTable = makeCatTable(cats);
+
+	const div = document.getElementById("cat-data")
+	div.appendChild(catTable);
 
 
 
@@ -107,7 +166,7 @@
 	// date = 2022-02-22
 	// size = large
 	// type = pepperoni
-
+	
 
 	// After you create the pizza order object, bind its data to the form below:
 
@@ -117,8 +176,27 @@
 		this.size = size;
 		this.type = type;
 	}
+	let pizza = new PizzaOrder("Bob", "2022-02-22", "large", "Pepperoni");
+	console.log(pizza);
 	
-	
+	const frmPizzaOrder = document.getElementById("frm");
+	const txtCustomerName = frmPizzaOrder.querySelector("[name='customerName'");
+	const txtOrderDate = frmPizzaOrder.querySelector("[name='orderDate'");
+	const radSize = frmPizzaOrder.querySelectorAll("[name='size'");
+	const selType = frmPizzaOrder.querySelector("[name='type'");
+
+	const bindOrderToUI = (order => {
+		txtCustomerName.value = order.customerName;
+		txtOrderDate.value = order.date;
+		radSize.forEach(rb => {
+			if(rb.value == order.size){
+				rb.checked = true;
+			}
+		});
+		selType.value = order.type;
+	});
+
+	bindOrderToUI(pizza);
 	
 
 });	
@@ -139,7 +217,7 @@
 			What is <b>data binding</b>? Why is it so important when building business applications that work with databases?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			data binding attaches data to something that displays it and its important because the display of the data needs to stay up to date without having to update code.  it updates automatically when the database its linked to is changed.
 		</div>
 
 		<h3>Question 2</h3>
@@ -147,7 +225,7 @@
 			When using the debugger, what is the difference between <b>Step Over</b> and <b>Step Into</b>?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			step over skips the line, executing any functions and returning results without line-by-line debugging said functions.  step into does basically the same thing except it will also follow the function calls and run through them line-by-line.
 		</div>
 
 		<h3>Question 3</h3>
@@ -155,7 +233,7 @@
 			What are some rules for encoding data in JSON format?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			data is written in name/value pairs, "name":"Value".  data must be of type string, number, object, array, boolean, or null.  syntax is derived from javascript object notation.
 		</div>
 
 		<h3>Question 4</h3>
@@ -163,7 +241,7 @@
 			What method of the JSON API would you use to convert an array of objects into a JSON string?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			stringify
 		</div>
 
 		<h3>Question 5</h3>
@@ -171,7 +249,7 @@
 			What method of the JSON API would you use to convert a JSON encoded string into an array of objects?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			parse
 		</div>
 
 		<h3>Question 6</h3>
@@ -180,7 +258,7 @@
 			Other than JSON, what are some common ways to encode data?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			encoding breaks the data into digital signals. base64, hex
 		</div>
 
 		
