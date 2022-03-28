@@ -1,0 +1,12 @@
+---
+layout: base-layout.njk
+title: My Blog
+pagination:
+  data: collections.blog
+  size: 10
+  reverse: true
+---
+{% for post in collections.blog %}
+    <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+    <br>
+{% endfor %}

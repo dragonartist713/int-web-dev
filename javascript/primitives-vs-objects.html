@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Primitives vs Objects</title>
+	<script type="text/javascript">
+		
+
+		// Primitives vs References: 
+		// 		https://www.javascripttutorial.net/javascript-primitive-vs-reference-values/
+		// Good article on comparing objects in JS:
+		// 		https://dmitripavlutin.com/how-to-compare-objects-in-javascript/
+		
+
+		// Primitives are: numbers, strings, booleans
+		// A variable that stores a primitive stores a value
+
+		// References are objects 
+		// A variable that stores an object stores a reference to that object)
+
+
+		// Primitives are copied by value
+		let x = 7;
+		let y = x;		// copy the value of x into y
+		y++;			// modify y
+		console.log(x); // x is still 7
+
+
+		var str1 = "Hello";
+		str2 = str1;		// copy the value of str1 into str2
+		str2 += " world";
+		console.log(str1);  // str1 is still "hello"
+
+
+
+		// Objects are copied by memory address
+		class Cat {
+			constructor(id, name, breed){
+				this.id = id;
+				this.name = name;
+				this.breed = breed;
+			}
+		}
+
+		const c1 = new Cat(1, "Felix", "Saimese");
+		const c2 = c1;			// c1 and c2 are pointing to the same memory address (the same object)
+		console.log(c1 == c2);  // Two variables that point to the same object
+		c1.name = "Buster";     // changing c1 is the same as changing c2
+		c2.breed = "mut";
+		console.log(c1, c2);
+
+
+		// Comparing objects for equality
+		// If two variables refer to the same memory address, they are the same object
+		const c3 = new Cat(1, "Felix", "Saimese");
+		const c4 = new Cat(2, "Garfield", "Tabby");
+		console.log(c3 == c4); // Two variables that point to different objects at different memory addresses
+
+
+		const c5 = new Cat(3, "Tom", "Longtail");
+		const c6 = {...c5};
+		// are c5 and c6 the same object?
+		// are c5 and c6 the same cat?
+		// c5 and c6 refer to the same cat but not the same object
+
+
+		////////////////////////////////////////////////
+		// Passing primitives and objects as parameters
+		////////////////////////////////////////////////
+
+		// Primitives are passed (as params) by value, which means a copy of the value is pass into a function
+		const updateNumber = (someNumber) => {
+			someNumber++;
+			console.log("updated number: " + someNumber);
+		}
+
+		let number = 10;
+		updateNumber(number); // a copy of number gets passed in
+		console.log(number);  // this shows that although the function changed the param, x is unchanged
+
+
+
+		// Objects are passed by reference (which means their memory address)
+		const updateObject = (someObject) => {
+			someObject.age = 21;
+		}
+
+		let obj = {age:7};
+		console.log(obj);
+		updateObject(obj); 
+		console.log(obj); // the function updated the object's age
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
