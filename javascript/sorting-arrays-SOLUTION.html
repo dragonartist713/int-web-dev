@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sorting Arrays</title>
+	<script type="text/javascript">
+		
+	const salesData = [
+		{id: 101, customer:"Charlie Anderson", product: "Bike", price: 10.00, date: "02-21-2022"},
+		{id: 117, customer:"Charlie Anderson", product: "Radio", price: 17.00 , date: "02-22-2022"},
+		{id: 121, customer:"Charlie Anderson", product: "TV", price: 20.00 , date: "02-23-2022"},
+		{id: 130, customer:"Charlie Anderson", product: "Book", price: 10.00 , date: "02-23-2022"},
+		{id: 104, customer:"Betty Jones", product: "Bike", price: 10.00 , date: "02-21-2022"},
+		{id: 105, customer:"Betty Jones", product: "Shoes", price: 25.00, date: "02-21-2022"}, 
+		{id: 112, customer:"Betty Jones", product: "TV", price: 30.00 , date: "02-23-2022"},
+		{id: 107, customer:"Bob Smith", product: "Radio", price: 42.00, date: "02-21-2022"}, 
+		{id: 123, customer:"Bob Smith", product: "Bike", price: 10.00 , date: "02-21-2022"},
+		{id: 153, customer:"Bob Smith", product: "Monitor", price: 16.00 , date: "02-23-2022"},
+		{id: 157, customer:"Bob Smith", product: "Keyboard", price: 18.00, date: "02-23-2022"},
+		{id: 157, customer:"Mark Johnson", product: "Microwave", price: 11.00, date: "02-22-2022"} 
+	];
+
+		
+	// Sort by price (highest to lowest)
+	salesData.sort((a,b) => {
+		if(a.price < b.price){
+			return 1;
+		}else if(a.price > b.price){
+			return -1;
+		}else{
+			return 0;
+		}
+	});
+
+	//console.log(salesData);
+
+
+
+	// Sort by date (most recent first)
+	salesData.sort((a,b) => {
+		const dateA = new Date(a.date + " CST");
+		const dateB = new Date(b.date + " CST");
+		if(dateA < dateB){
+			return 1;
+		}else if(dateA > dateB){
+			return -1;
+		}else{
+			return 0;
+		}
+	});
+
+	//console.log(salesData);
+	
+	
+	// Sort by product (alphabetically A-Z)
+	salesData.sort((a,b) => {
+		if(a.product > b.product){
+			return 1;
+		}else if(a.product < b.product){
+			return -1;
+		}else{
+			return 0;
+		}
+	});
+
+	//console.log(salesData);
+
+	// Sort by customer (alphabetically A-Z)
+	salesData.sort((a,b) => {
+		const aLastName = a.customer.split(" ")[1]
+		const bLastName = b.customer.split(" ")[1]
+		if(aLastName > bLastName){
+			return 1;
+		}else if(aLastName < bLastName){
+			return -1;
+		}else{
+			return 0;
+		}
+	});
+
+	console.log(salesData);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
