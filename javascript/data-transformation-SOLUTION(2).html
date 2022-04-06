@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Transformation</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(() => {
+
+		const salesData = [
+			{id: 101, customer:"Charlie Anderson", product: "Bike", price: 10.00, date: "02-21-2022"},
+			{id: 117, customer:"Charlie Anderson", product: "Radio", price: 17.00 , date: "02-22-2022"},
+			{id: 121, customer:"Charlie Anderson", product: "TV", price: 20.00 , date: "02-23-2022"},
+			{id: 130, customer:"Charlie Anderson", product: "Book", price: 10.00 , date: "02-23-2022"},
+			{id: 104, customer:"Betty Jones", product: "Bike", price: 10.00 , date: "02-21-2022"},
+			{id: 105, customer:"Betty Jones", product: "Shoes", price: 25.00, date: "02-21-2022"}, 
+			{id: 112, customer:"Betty Jones", product: "TV", price: 30.00 , date: "02-23-2022"},
+			{id: 107, customer:"Bob Smith", product: "Radio", price: 42.00, date: "02-21-2022"}, 
+			{id: 123, customer:"Bob Smith", product: "Bike", price: 10.00 , date: "02-21-2022"},
+			{id: 153, customer:"Bob Smith", product: "Monitor", price: 16.00 , date: "02-23-2022"},
+			{id: 157, customer:"Bob Smith", product: "Keyboard", price: 18.00, date: "02-23-2022"},
+			{id: 157, customer:"Mark Johnson", product: "Microwave", price: 11.00, date: "02-22-2022"} 
+		];
+     	
+
+		// Figure out the quantity of each product sold
+    const getSalesByProduct = (sales) => {
+			const salesObj = {};
+			sales.forEach(s => {
+				const product = s.product;
+				if(salesObj[product]){
+					salesObj[product]++;
+				}else{
+					salesObj[product] = 1;
+				}
+			});
+			return salesObj;
+    }
+
+    console.log("Sales by Product", getSalesByProduct(salesData));
+
+
+
+  	// Figure out the amount of sales for each customer
+  	const getSalesByCustomer = (sales) => {
+		const customerSalesObj = {};
+  		
+			/*
+			// Approach 1 - uses forEach()
+  		sales.forEach(s => {
+  			if(customerSalesObj[s.customer]){
+  				customerSalesObj[s.customer] += s.price;
+  			}else{
+  				customerSalesObj[s.customer] = s.price;
+  			}
+  		});
+			*/
+
+			// Approach 2 - uses old school loop
+			for(let x = 0;  x < sales.length; x++){
+				const customer = sales[x].customer;
+				if(customerSalesObj[customer]){
+  				customerSalesObj[customer] += sales[x].price;
+  			}else{
+  				customerSalesObj[customer] = sales[x].price;
+  			}
+			}
+
+    	return customerSalesObj;
+    }
+
+
+    console.log("Sales by Customer", getSalesByCustomer(salesData));
+
+
+  	// Figure out the total sales for each day
+  	const getDailySales = (sales) => {
+			
+  		
+  		// Approach 1 - Use forEach()
+			const dailySalesObj = {};
+  		sales.forEach(s => {
+  			if(dailySalesObj[s.date]){
+  				dailySalesObj[s.date] += s.price;
+  			}else{
+  				dailySalesObj[s.date] = s.price;
+  			}
+  		});
+
+  		return dailySalesObj;
+  		
+  		/*
+  		// Aproach 2 - Use reduce()
+			return sales.reduce((obj, s)=>{
+				if(obj[s.date]){
+					obj[s.date] += s.price;
+				}else{
+					obj[s.date] = s.price;
+				}
+				return obj;
+			}, {});
+			*/
+  	}
+
+    console.log("Daily Sales", getDailySales(salesData));
+
+
+
+  	/*
+		The functions we wrote return an object, for example getDailySales() should return an object like this:
+
+			{"02-21-2022": 97, "02-22-2022": 28, "02-23-2022", 94}
+
+		Each property (aka key) is a string that represents a date, it's corresponding value is the total sales for that date
+
+		
+		In order to use google charts, we need the data in this format:
+
+			[
+			  ["02-21-2022", 97], 
+			  ["02-22-2022", 28], 
+			  ["02-23-2022", 94]
+			]
+
+		This is a 2-D array that simulates a table.
+		Each nested array represents a row of values.
+		
+		If we were to add column headers to this table, it would look like this:
+
+		DATE 						SALES(in $)
+		---------------------------
+		02-21-2022	 		97 
+	  02-22-2022 			28 
+	  02-23-2022	 		94
+
+		We'll need to specify column headers when we create our next chart.
+		But first, we need to convert the our data object into a 2-D array
+		*/
+
+
+
+		// Converts a simple (sales?) object into a 
+		// 2-D array that can be used with Google Charts
+		const convertObjectToArray = (obj) => {
+			const ar = [];
+			for(key in obj){
+				ar.push([key, obj[key]]);
+			}
+			return ar;
+		}
+
+		console.log(convertObjectToArray(getDailySales(salesData)));
+
+
+
+		// Part 2 - Simple Charts
+		const div = document.getElementById("chart-container");
+
+		// display a chart that shows the quantity of sales for each product
+		const chartSalesByProduct = () => {
+			const obj = getSalesByProduct(salesData);
+			//console.log(obj);
+			const ar = convertObjectToArray(obj);
+			console.log(ar);
+
+			const dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('string', 'Product');
+			dataTable.addColumn('number', 'Quantity');
+			dataTable.addRows(ar);
+
+			const options = {
+				title: "Sales By Product"
+			};
+
+			const chart = new google.visualization.PieChart(div);
+			chart.draw(dataTable, options)
+		}
+
+		//chartSalesByProduct();
+
+
+
+
+
+		const chartCustomerPurchases = () => {
+			const obj = getSalesByCustomer(salesData);
+			//console.log(obj);
+			const ar = convertObjectToArray(obj);
+			console.log(ar);
+
+			const dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('string', 'Customer');
+			dataTable.addColumn('number', 'Purchases');
+			dataTable.addRows(ar);
+
+			const options = {
+				title: "Customer Purchases"
+			};
+
+			const chart = new google.visualization.PieChart(div);
+			chart.draw(dataTable, options)
+		}
+
+		//chartCustomerPurchases();
+		
+
+
+
+		// Part 3 - Advanced Charts (must be a data ninja to do this)
+
+		// get the unique dates from the salesData
+		const getUniqueSalesDates = () => {
+			const dates = [];
+
+			salesData.forEach(s => {
+				if(!dates.includes(s.date)){
+					dates.push(s.date);
+				}
+			});
+
+			return dates;
+			// Note: we should sort the dates! (we'd have to parse them into Date objs)
+
+			//here's another way to get unigue dates:
+			//		const dates = salesData.map(s => s.date);
+			//		const uniqueDays = [...new Set(dates)];
+			//source:  https://dev.to/soyleninjs/3-ways-to-remove-duplicates-in-an-array-in-javascript-259o
+		}
+
+		console.log(getUniqueSalesDates());
+
+
+		// get the unique products from the salesData
+		const getUniqueProducts = () => {
+			const products = [];
+			
+			salesData.forEach(s => {
+				if(!products.includes(s.product)){
+					products.push(s.product);
+				}
+			});
+
+			return products;
+		}
+
+		console.log(getUniqueProducts());
+
+		
+		// gets the total sales for a given product on a given day
+		const getTotalSalesForProductByDay = (product, day) => {
+			
+			const productSales = salesData.filter(s => {
+				return s.product == product && s.date == day;
+			});
+
+			//console.log(productSales);
+
+			const totalSales = productSales.reduce((total, s) => total + s.price, 0);
+			return totalSales;
+		}
+
+		console.log(getTotalSalesForProductByDay("Bike", "02-21-2022"));
+
+		
+		// Create a chart of the daily product sales
+		const chartDailyProductSales = () => {
+
+			// Get the unique days from the salesData
+			const days = getUniqueSalesDates();
+			// Get the unique products from the salesData
+			const products = getUniqueProducts();
+
+			// This will be the array that we pass into Google Charts
+			const ar = [];
+
+			days.forEach(d => {
+				// The first column in each row will be the date (as a Date obj)
+				const salesDate = new Date(d + " CST");
+				const row = [salesDate];
+				// To add all the other cells to the row, we'll loop through the products
+				// and get the total sales for each on the given day
+				products.forEach(p => row.push(getTotalSalesForProductByDay(p,d)))
+				ar.push(row);
+			});
+
+			console.log(ar);
+
+			const dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('date', 'DATE');
+			products.forEach(p => dataTable.addColumn('number', p));
+			dataTable.addRows(ar);
+
+			var options = {
+				title: "Daily Product Sales",
+				hAxis: {title: 'Sales'},
+	      vAxis: {title: 'Date'},
+	      height: 600,
+	      width:1000,
+	      bar: {groupWidth: "95%"}
+			}
+
+			var chart = new google.visualization.BarChart(div);
+			chart.draw(dataTable, options);
+		}
+
+		chartDailyProductSales();
+
+
+		/*
+		const selBox = document.getElementById("chart-select");
+		selBox.addEventListener("change", evt => {
+			//console.log("CHANGE!");
+			//switch(evt.target.value){
+			switch(parseInt(selBox.value)){
+				case 1:
+						chartSalesByProduct();
+					break;
+				case 2:
+						chartCustomerPurchases();
+					break;
+				case 3:
+						chartDailyProductSales();
+					break;
+				default:
+					console.log("unrecognized case!");
+			}
+		});
+		*/
+
+	});
+		
+	</script>
+</head>
+<body>
+	<h1>Data Transformation</h1>
+	<select id="chart-select">
+		<option>Choose one...</option>
+		<option value="1">Product Sales</option>
+		<option value="2">Customer Purchases</option>
+		<option value="3">Daily Product Sales</option>
+	</select>
+	<div id="chart-container"></div>
+</body>
+</html>

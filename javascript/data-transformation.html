@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Transformation</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	google.charts.load('current', {'packages':[corechart]});
+	google.charts.setOnLoadCallback(() => {
+		const salesData = [
+			{id: 101, customer:"Charlie Anderson", product: "Bike", price: 10.00, date: "02-21-2022"},
+			{id: 117, customer:"Charlie Anderson", product: "Radio", price: 17.00 , date: "02-22-2022"},
+			{id: 121, customer:"Charlie Anderson", product: "TV", price: 20.00 , date: "02-23-2022"},
+			{id: 130, customer:"Charlie Anderson", product: "Book", price: 10.00 , date: "02-23-2022"},
+			{id: 104, customer:"Betty Jones", product: "Bike", price: 10.00 , date: "02-21-2022"},
+			{id: 105, customer:"Betty Jones", product: "Shoes", price: 25.00, date: "02-21-2022"}, 
+			{id: 112, customer:"Betty Jones", product: "TV", price: 30.00 , date: "02-23-2022"},
+			{id: 107, customer:"Bob Smith", product: "Radio", price: 42.00, date: "02-21-2022"}, 
+			{id: 123, customer:"Bob Smith", product: "Bike", price: 10.00 , date: "02-21-2022"},
+			{id: 153, customer:"Bob Smith", product: "Monitor", price: 16.00 , date: "02-23-2022"},
+			{id: 157, customer:"Bob Smith", product: "Keyboard", price: 18.00, date: "02-23-2022"},
+			{id: 157, customer:"Mark Johnson", product: "Microwave", price: 11.00, date: "02-22-2022"} 
+		];
+     	
+
+		// Figure out the quantity of each product sold
+      	const getSalesByProduct = (sales) => {
+      		    		
+      	}
+
+      	console.log("Sales by Product", getSalesByProduct(salesData));
+
+
+
+      	// Figure out the amount of sales for each customer
+      	const getSalesByCustomer = (sales) => {
+      		
+      	}
+
+
+      	console.log("Sales by Customer", getSalesByCustomer(salesData));
+
+
+      	// Figure out the total sales for each day
+      	const getDailySales = (sales) => {
+      		      		
+      	}
+
+      	console.log("Daily Sales", getDailySales(salesData));
+
+		const div = document.getElementById("chart-container");
+
+		const chartSalesByProduct = () => {
+			const obj = getSalesByProduct;
+			//console.log(obj);
+			const ar = convertObjectToArray(obj);
+			console.log(ar);
+
+			const dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('string', 'Product');
+			dataTable.addColumn('number', 'Quantity');
+			dataTable.addRows(ar);
+
+			const options = {
+				title: "Sales By Product",
+				height: "100%",
+				width: "100%"
+			};
+
+			const chart = new google.visualization.BarChart(div);
+			chart.draw(dataTable, options);
+		};
+		chartSalesByProduct();
+
+		const getSalesDates = () => {
+			const dates = [];
+
+			salesData.forEach(s => {
+				if(!dates.includes(s.date)){
+					dates.push(s.date);
+				}
+			});
+
+			return dates;
+		};
+
+		console.log(getSalesDates());
+
+		const getProducts = () => {
+			const products = [];
+
+			salesData.forEach(s => {
+				if(!products.includes(s.product)){
+					products.push(s.product);
+				}
+			});
+
+			return products;
+
+		};
+
+		console.log(getProducts());
+
+		const getTotalSalesForProductByDay = (product, day) => {
+			const productSales = salesData.filter(s => {
+				return s.product == product && s.date == day;
+			});
+
+			//console.log(productSales);
+
+			const totalSales = productSales.reduce((total, s) => {return total + s.price}, 0);
+			return totalSales;
+		};
+
+		console.log(getTotalSalesForProductByDay("Bike", "02-21-2022"));
+
+		const createChart = () => {
+			const days = getSalesDates();
+			const products = getProducts();
+
+			const ar = [];
+
+			days.forEach(d => {
+				const salesDate = new Date(d + " CST");
+				const row = [salesDate];
+				products.forEach(p => {row.push(getTotalSalesForProductByDay(d, p))});
+				ar.push(row);
+			});
+
+			console.log(ar);
+
+			const dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('date', 'Date');
+			products.forEach(p => dataTable.addColumn('number', p));
+			dataTable.addRows(ar);
+
+			var options = {
+				title: "Daily Product Sales"
+			};
+
+			var chart = new google.visualization.BarChart(div);
+			chart.draw(dataTable, options);
+		};
+	});
+	</script>
+</head>
+<body>
+	<h1>Data Transformation</h1>
+	<div></div>
+</body>
+</html>
