@@ -1,0 +1,6 @@
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    //runs gulp, which builds the site, then runs 11ty
+    "build": "gulp & npx eleventy --serve"
+
+    type npm build to start the site

@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="description" content="Welcome to my site!  It's about me and stuff.">
+		<title>Blog Entry</title>
+		<link REL=StyleSheet HREF="../styles/reset.css" TYPE="text/css">
+		<link REL=StyleSheet HREF="../styles/main.css" TYPE="text/css">
+        <link rel="stylesheet" href="../styles/prism.css">
+        <script src="../js/prism.js"></script>
+		<script src="../js/main.js"></script>
+	</head>
+	<body>
+		<header class="banner">
+			<h1>JavaScript APIs</h1>
+		</header>
+		<nav id="main-nav">
+					<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="../pictures.html">Pictures</a></li>
+				<li><a href="../blog/index.html">Blog</a></li>
+				<li><a href="../contact.html">Contact</a></li>
+			</ul>
+
+		</nav>
+		<div id="content">
+			<aside class="sidenav">
+				<img src="../images/chibi-rothsis.PNG" width=50% alt="a chibi version of one of my characters reading a book about fire magic">
+				<h1 class=heading>My hobbies</h1>
+					<ul>
+						<li>Pathfinder</li>
+						<li>Dice Collecting</li>
+						<li>Videogames</li>
+						<li>Sewing</li>
+						<li>Drawing and Digital Painting</li>
+						<li>Beading</li>
+						<li>Crochet</li>
+					</ul>
+			</aside>
+			<main>
+				<h1>String Methods</h1>
+                <p>
+                    First thing to mention should probably be that API stands for Application Programming Interface.  It's code that lets two applications communicate with each other, taking the inputs from a user and delivering them to the system then returning the reply.
+                    <br>
+                    I'll be going a little more in-depth with JavaScript specifically and its variety of methods that deal with strings.
+                </p>
+                <p>
+                    The first one we'll look at is string length.  It returns the length of the specified string.  Simple enough.
+                    <pre>
+                        <code class="language-js">
+                            let msg = "seven";
+                            let length = msg.length;
+                        </code>
+                    </pre>
+                    Returning the length variable would give a result of 7, useful for things like password fields that check for numbers of characters.
+                </p>
+                <p>
+                    Next is replace() and it does what it says.  It replaces the the first instance of a specified string with another you provide.
+                    <pre>
+                        <code class="language-js">
+                            let msg = "This page contains HTML, CSS, and HTML."
+                            let newMsg = msg.replace("HTML", "JavaScript");
+                        </code>
+                    </pre>
+                    The message would thus become "This page contains JavaScript, CSS, and HTML."
+                </p>
+                <p>
+                    Lastly, I'll mention includes().  It searches for strings that include the string it's given
+                    <pre>
+                        <code class="language-js">
+                            const msg = "This string contains words."
+
+                            let result = msg.includes("words");
+                            console.log(result);
+                        </code>
+                    </pre>
+                    The console would display 'true' as the message does contain 'words'.
+                </p>
+                <!--Create a blog page that is an instructional article about one of the following 
+                    JavaScript APIs: Date methods, -String methods-, DOM methods. 
+                    Choose one of these topics and do some research to understand at least three methods. 
+                    Then write a web page that explains each of the methods. 
+                    In your article you should explain the following (6 pts):
+                        What each method does, and when it may be useful.
+                        The parameter(s) that can be passed in when invoking each method 
+                        (make sure to include the data type of each parameter).
+                        What each method returns (make sure to mention the data type)
+                        Make sure that your paragraphs are well-well written and that your code 
+                        sample display code that is perfectly formatted.
+                    Here are the technical requirements for building the page (4 pts):
+                        It must use prismJS (or another code syntax highligher) to display at 
+                        least 3 code samples
+                        It must include atleast one Font Awesome icon
+                    The page should have include:
+                        a HEADER element at the top of the page which displays the title of your 
+                        article in relatively large font
+                        An ARTICLE element, which should contain your article and code samples
+                        A FOOTER element at the bottom of the page which display the copyright symbol, 
+                        the current year, and your first and last name (use relatively small font)
+                        The page should look professional (so you'll have to add some CSS code)
+                        The page should have breathing room:
+                            set the line-height so that the text is easy to read
+                            set margin and padding apporpriately
+                        Use a font that is easy to read
+                        Use colors that make the page easy to read (there should be good contrast between 
+                        the font colors and the background colors
+                        Set background colors and font colors for the HEADER and FOOTER elements-->
+
+			</main>
+		</div>
+		<footer class="footer">
+			&copy; Lindsay Hansen 2022.
+		</footer>
+		<div id="mobile-nav-button">&#9776;</div>
+	</body>
+</html>

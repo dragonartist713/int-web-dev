@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="description" content="Welcome to my site!  It's about me and stuff.">
+		<title>Summarizing CSS Flexbox</title>
+		<link REL=StyleSheet HREF="../styles/reset.css" TYPE="text/css">
+		<link REL=StyleSheet HREF="../styles/main.css" TYPE="text/css">
+        <link rel="stylesheet" href="../styles/prism.css">
+        <script src="../js/prism.js"></script>
+		<script src="../js/main.js"></script>
+	</head>
+	<body>
+		<header class="banner">
+			<h1>CSS Flexbox</h1>
+		</header>
+		<nav id="main-nav">
+					<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="../pictures.html">Pictures</a></li>
+				<li><a href="../blog/index.html">Blog</a></li>
+				<li><a href="../contact.html">Contact</a></li>
+			</ul>
+
+		</nav>
+		<div id="content">
+			<aside class="sidenav">
+				<img src="../images/chibi-rothsis.PNG" width=50% alt="a chibi version of one of my characters reading a book about fire magic">
+				<h1 class=heading>My hobbies</h1>
+					<ul>
+						<li>Pathfinder</li>
+						<li>Dice Collecting</li>
+						<li>Videogames</li>
+						<li>Sewing</li>
+						<li>Drawing and Digital Painting</li>
+						<li>Beading</li>
+						<li>Crochet</li>
+					</ul>
+			</aside>
+			<main>
+				<h1>What is Flexbox?</h1>
+				<p>
+					Flexbox is a layout method for designing webpages.  It allows for flexible responsive pages without having to mess with float.
+				</p>
+				<h1>How does it work?</h1>
+				<p>
+					A parent element is created and given one or more child elements.
+                    <pre>
+                        <code class="language-html">
+	&lt;div class="flex-container"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                    To make it flexible, we add a bit of CSS to control the parent container.
+                    <pre>
+                        <code class="language-css">
+                            .flex-container {
+                                display: flex;
+                            }
+                        </code>
+                    </pre>
+                    From there, we can make them stack in various ways.  Such as vertically.
+                    <pre>
+                        <code class="language-css">
+                            .flex-container {
+                                display: flex;
+                                flex-direction: column;
+                            }
+                        </code>
+                    </pre>
+                </p>
+			</main>
+		</div>
+		<footer class="footer">
+			&copy; Lindsay Hansen 2022.
+		</footer>
+		<div id="mobile-nav-button">&#9776;</div>
+	</body>
+</html>
