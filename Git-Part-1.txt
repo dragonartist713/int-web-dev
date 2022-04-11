@@ -22,7 +22,7 @@ These are the Git commands that you'll need to know:
 You'll also need to understand these concepts:
 
 	readme.md
-	.gitinore
+	.gitignore
 	resolving merge conflicts
 	undoing changes (revert (for commits), reset (for staged changes), checkout (for unstaged changes)
 
