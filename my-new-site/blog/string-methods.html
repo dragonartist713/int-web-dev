@@ -1,29 +1,10 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-    <title>ZaphoraBlog 3 - String Methods</title> 
-    <link rel="stylesheet" type="text/css" href="/styles/main.css">
-    <link rel="stylesheet" type="text/css" href="/styles/prism.css">
-    <script src="/js/prism.js"></script>
-    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
-    <script src="/js/bootstrap.min.js" defer></script>
-    <!--bootstrap icons-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
-</head> 
-<body> 
-    <header>
-    <h1>Site Header</h1>
-    </header>
-    <nav>
-    <a href="/">Home</a>
-    <a href="/contact/">Contact</a>
-    <a href="/blog/">Blog</a>
-    </nav> 
-    <main> 
-    <h1>ZaphoraBlog 3 - String Methods</h1>
-    <h1>String Methods</h1>
+---
+layout: base-layout.njk 
+title: ZaphoraBlog 3 - String Methods
+"tags": ["blog"]
+date: 2021-03-01
+---
+<h1>String Methods</h1>
 <p>
     First thing to mention should probably be that API stands for Application Programming Interface.  It's code that lets two applications communicate with each other, taking the inputs from a user and delivering them to the system then returning the reply.
     <br>
@@ -33,11 +14,11 @@
     The first one we'll look at is string length.  It returns the length of the specified string.  Simple enough.
     <pre>
         <code class="language-js">
-            let msg = "seven";
+            let msg = "four";
             let length = msg.length;
         </code>
     </pre>
-    Returning the length variable would give a result of 7, useful for things like password fields that check for numbers of characters.
+    Returning the length variable would give a result of 4, useful for things like password fields that check for numbers of characters.
 </p>
 <p>
     Next is replace() and it does what it says.  It replaces the the first instance of a specified string with another you provide.
@@ -61,7 +42,3 @@
     </pre>
     The console would display 'true' as the message does contain 'words'.
 </p>
-    </main> 
-    <footer class="footer">&copy; Lindsay Hansen 2021.</footer>
-</body> 
-</html>
