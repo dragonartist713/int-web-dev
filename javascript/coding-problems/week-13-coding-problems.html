@@ -59,16 +59,26 @@
 	// The function should return the cat object who's id that matches the parameter 
 	// Hint: You may want to use an old school for loop for this.
 	const getCatById = (id) => {
-
+		for(i = 0; i < cats.length; i++){
+			if(id == cats[i].id){
+				return cats[i];
+			}
+		}
 	}
 
 	// To test the function, uncomment this line:
-	// console.log(getCatById(7));
+	console.log(getCatById(7));
 
 	
 	// Problem 2 - The sort() method
 	// Sort the cats array by age (youngest to oldest)
 	// console log the array after you have it sorted
+	const catsByAgeSort = (obja, objb) => {
+		return obja.age - objb.age;
+	};
+
+	const sortCatsAge = cats.sort(catsByAgeSort);
+	console.log(sortCatsAge);
 
 
 	
@@ -79,23 +89,36 @@
 	// Hint: look at what we did for the first few functions in data-transformation.html
 	// Hint: this is what the function should return: {Siamese: 3, Mut: 1, Tabby: 3}
 	const getCatCountByBreed = () => {
-
+			const catObj = {};
+			cats.forEach(c => {
+				const breed = c.breed;
+				if(catObj[breed]){
+					catObj[breed]++;
+				}else{
+					catObj[breed] = 1;
+				}
+			});
+			return catObj;
 	}
 
 	// To test the function, uncomment this line:
-	//console.log(getCatCountByBreed());
+	console.log(getCatCountByBreed());
 
 
 	// Problem 4 - A function that get all cats for a given breed 
 	// The function should have a string param that represents a breed of cat (for example "Tabby"). 
 	// The function should return an array of all the cats that match the breed passed.
 	// Hint: Use the filter() method
-	const getCatsByBreed = (breed) => {
-
+	const getCatsByBreed = (b) => {
+		const breedArr = cats.filter((c) =>{
+			return b == c.breed
+		});
+		return breedArr;
 	}
 
 	// To test the function, uncomment this line:
-	//console.log(getCatsByBreed("Siamese"));
+	console.log(getCatsByBreed("Siamese"));
+	//breed doesnt look like a word anymore
 
 
 	// Problem 5 - a function that creates a cat list
@@ -106,13 +129,21 @@
 	// 		2. Include a data attribute that stores the id of each cat.
 	const createCatList = (catArray) => {
 		const ul = document.createElement("ul");
-		// TODO: put your code here
+		
+		cats.forEach(c => {
+			const li = document.createElement("li");
+			li.innerHTML = c.name;
+			li.dataset.catId = c.id
+
+			ul.appendChild(li);
+		});
+
 		return ul;
 	}
 
 	// To test the function, uncomment the next 2 lines:
-	//const list = createCatList(cats);
-	//document.getElementById("cat-list").append(list)
+	const list = createCatList(cats);
+	document.getElementById("cat-list").append(list);
 
 
 	// Problem 6
@@ -126,7 +157,14 @@
 		<option>Mut</option>
 	</select>
 	*/
-
+	//const catForm = document.getElementById("frm");
+	const catSelBreed = document.querySelector("select[name]");
+	//console.log(catSelBreed);
+	catBreeds.forEach(b => {
+		const opt = document.createElement("option");
+		opt.innerHTML = b;
+		catSelBreed.appendChild(opt);
+	});
 
 	// Problem 7
 	// Add an event handler that listens for clicks on the list of cats below.
@@ -136,7 +174,13 @@
 	// If so, it should extract the id from the target and then fetch the cat with the matching id.
 	// (you can use the getCatById() method)
 	// For now, just console log the cat object (we'll make an update in the next problem)
-
+	
+	list.addEventListener("click", (e) => {
+		let target = e.target;
+		if(target.dataset.catId){
+			console.log(getCatById(target.dataset.catId));
+		}
+	});
 
 
 	// Problem 8
@@ -175,7 +219,7 @@
 			What is a <b>doc root relative</b> link/path?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			a path that starts with a slash to represent the root folder, listing the rest of the path after it
 		</div>
 
 		<h3>Question 2</h3>
@@ -183,7 +227,7 @@
 			What character does a doc root relative link/path start with?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			/
 		</div>
 
 		<h3>Question 3</h3>
@@ -191,7 +235,7 @@
 			What is the <b>document root directory</b> of a web server?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			the folder that the website lives in
 		</div>
 
 		<h3>Question 4</h3>
@@ -199,7 +243,7 @@
 			What is a <b>static site generator</b>?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			a template that runs in the page to build the style of the pages
 		</div>
 
 		<h3>Question 5</h3>
@@ -207,7 +251,7 @@
 			What is an <b>Apache server</b>?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			apache is a popular web server service, also the oldest
 		</div>
 
 		<h3>Question 6</h3>
@@ -215,7 +259,7 @@
 			Other than Apache, what are some other common web server applications?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			nginx, oracle
 		</div>
 
 		<h3>Question 7</h3>
@@ -223,7 +267,7 @@
 			What does <b>XAMPP</b> stand for?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			Cross-Platform, Apache, MySQL, PHP, and Perl
 		</div>
 
 		<h3>Question 8</h3>
@@ -231,7 +275,7 @@
 			What are a few different types of servers you can simulate with XAMPP?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			apache, mysql, mariadb
 		</div>
 
 		<h3>Question 9</h3>
@@ -239,7 +283,7 @@
 			What is the name of the document root directory for the Apache server when using XAMPP?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			htdocs
 		</div>
 
 		<h3>Question 10</h3>
@@ -247,7 +291,7 @@
 			What is the default port for HTTP (web) servers?
 		</p>
 		<div class="p-2 text-dark answer">
-			Put your answer here
+			80
 		</div>
 
 				
