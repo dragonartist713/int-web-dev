@@ -102,7 +102,7 @@
 	}
 
 	// To test the function, uncomment this line:
-	console.log(getCatCountByBreed());
+	//console.log(getCatCountByBreed());
 
 
 	// Problem 4 - A function that get all cats for a given breed 
@@ -117,7 +117,7 @@
 	}
 
 	// To test the function, uncomment this line:
-	console.log(getCatsByBreed("Siamese"));
+	//console.log(getCatsByBreed("Siamese"));
 	//breed doesnt look like a word anymore
 
 
@@ -157,13 +157,13 @@
 		<option>Mut</option>
 	</select>
 	*/
-	//const catForm = document.getElementById("frm");
-	const catSelBreed = document.querySelector("select[name]");
+	const frmCat = document.getElementById("frm");
+	const selCatBreed = frmCat.querySelector("[name='catBreed']");
 	//console.log(catSelBreed);
 	catBreeds.forEach(b => {
 		const opt = document.createElement("option");
 		opt.innerHTML = b;
-		catSelBreed.appendChild(opt);
+		selCatBreed.appendChild(opt);
 	});
 
 	// Problem 7
@@ -178,7 +178,7 @@
 	list.addEventListener("click", (e) => {
 		let target = e.target;
 		if(target.dataset.catId){
-			console.log(getCatById(target.dataset.catId));
+			bindCat(getCatById(target.dataset.catId));
 		}
 	});
 
@@ -187,6 +187,14 @@
 	// Write a function that binds a cat to the form on the page
 	// The function should have a parameter that represents a cat object to be bound to the form.
 	const bindCat = (cat) => {
+		const txtCatId = frmCat.querySelector("[name='catId']");
+		const txtCatName = frmCat.querySelector("[name='catName']");
+		const txtCatAge = frmCat.querySelector("[name='catAge']");
+
+		txtCatId.value = cat.id;
+		txtCatName.value = cat.name;
+		txtCatAge.value = cat.age;
+		selCatBreed.value = cat.breed;
 
 	}
 
