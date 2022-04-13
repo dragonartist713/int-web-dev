@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 // YOU SHOULD SET THESE TWO VARIABLES...
 $admin_email = "pantherspawstudios@gmail.com";//MAKE SURE TO PUT YOUR EMAIL ADDRESS HERE!!!
-$email_subject = "Your Website - Contact Form Submitted";
+$email_subject = "Zaphoradraik - Contact Form Submitted";
 
 if(empty($admin_email)){
   die("You did not set the 'admin email' so I don't know who to send the email to!!!");
@@ -73,8 +73,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     // send the email
 		if(send_email($admin_email, $email_subject, $first_name, $last_name, $email, $comments)){
 			$confirmation_message = "<h3>Thank you for contacting me. I will get back to you as soon as I can</h3>";
-		}else{
+      header("Location: /contact-confirm/");
+    }else{
 			$confirmation_message = "<h3 class=\"validation\">There was an error submitting your information.</h3>";
+      header("Location: /contact-error/");
     }
 	}else{
     // There are input validation errors, so show them

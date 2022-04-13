@@ -22,6 +22,11 @@ function copyPHP(done){
     done();
 };
 
+function copyImages(done){
+    gulp.src('./images/**/*.*')
+        .pipe(gulp.dest('./_site/images/'));
+    done();
+};
 
 // EXPORTS
-exports.default = gulp.series(copyCSS, copyJS, copyPHP);
+exports.default = gulp.series(copyCSS, copyJS, copyPHP, copyImages);
