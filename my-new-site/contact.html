@@ -2,25 +2,18 @@
 layout: base-layout.njk 
 title: Contact Me
 ---
-<form id="contactForm" method="POST" action="http://wtc-web.com/form-handler.php">
-    <label>Name:</label>
-    <input type="text" id="txtName" name="name">
-    <div class="validation-message" id="vName">xxx</div>
+<form id="contactForm" method="POST" action="/contact-submit.php">
+    <label>First Name:</label>
+    <input type="text" id="txtFirstName" name="firstName" required>
     <br>
-
-    <label>Comments:</label>
-    <textarea id="txtComments" name="comments"></textarea>
-    <div class="validation-message" id="vComments">xxx</div>
+    <label>Last Name:</label>
+    <input type="text" id="txtLastName" name="lastName" required>
     <br>
-
-    <label>Age:</label>
-    <input type="text" id="txtAge" name="age">
-    <div class="validation-message" id="vAge">xxx</div>
-    <br>
-
     <label>Email:</label>
-    <input type="text" id="txtEmail" name="email">
-    <div class="validation-message" id="vEmail">xxx</div>
+    <input type="text" id="txtEmail" name="email" required>
+    <br>
+    <label>Comments:</label>
+    <textarea id="txtComments" name="comments" required></textarea>
     <br>  
     <input type="submit" value="SUBMIT">   
 </form>
