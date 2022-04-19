@@ -12,49 +12,17 @@
   /*   flex-shrink: 1; */
   }
   
-  
   /* to help visualize */
-  header {
+  nav {
     --border-width: 0px;
+    padding: 3rem;
+    padding-top: 0;
   }
   
-  .info {
-    font-size: 1.5rem;
-    margin-top: max(3rem, 10vh);
-  }
-  
-  .dot {
-    padding: 0.25rem;
-    width: 0;
-    display: inline-block;
-    border-radius: 50%;
-  }
-  
-  .orange {
-    background: hsl(var(--clr-orange));
-  }
-  .green {
-    background: hsl(var(--clr-green));
-  }
   /* general styling */
   
-  header {
+  nav {
     margin-block: 3rem;
-  }
-  
-  :root {
-    --clr-orange: 7 100% 63%;
-    --clr-blue: 239 100% 50%;
-    --clr-green: 125 50% 50%;
-    --spacer: 2rem;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
   
   body {
@@ -66,12 +34,36 @@
   
   h1 {
     margin-bottom: 1em;
-    font-size: clamp(2rem, 5vw + 1rem, 4rem);
+    font-size: clamp(30px, 50%, 1000px);
+    padding-left: 3rem;
+    padding-top: 3rem;
     line-height: 1.1;
-    color: hsl(var(--clr-orange));
-    text-shadow: 0.05em 0.05em 0 hsl(0 0% 0% / 0.7);
+    color: violet;
+    text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.7);
   }
   body {
       background-image: url("/images/page-bg.jpg");
       background-color: violet;
+  }
+  .button {
+    background-color: magenta;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.3s;
+  }
+  .button:hover {
+    background-color: rgb(255, 158, 231);
+    color: black;
+  }
+  .faded {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      opacity: 0.5;
   }
