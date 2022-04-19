@@ -12,17 +12,20 @@
     <!--bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
 </head> 
-<body> 
+
     <header>
-    <h1>Welcome to Zaphorablog</h1>
+    <h1>Zaphorablog</h1>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/"><i class="bi bi-house-heart"> Home</i></a></li>
+                <li><a href="/contact/"><i class="bi bi-envelope-paper-heart"> Contact</i></a></li>
+                <li><a href="/blog/"><i class="bi bi-file-text"> Blog</i></a></li>
+            </ul>
+        </nav> 
     </header>
-    <nav>
-    <a href="/">Home</a>
-    <a href="/contact/">Contact</a>
-    <a href="/blog/">Blog</a>
-    </nav> 
+<body> 
     <main> 
-    <h1>{{ title }}</h1>
+    <h3>{{ title }}</h3>
     {{ content | safe }}
     </main> 
     <footer class="footer">&copy; Lindsay Hansen 2021.</footer>
