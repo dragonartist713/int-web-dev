@@ -1,0 +1,271 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Review Problems for Intermediate Web Programming</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <style type="text/css">
+    
+    /*
+    Bootstrap default colors: ;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    */
+
+    h1{color: #198754; margin-top: 30px; }
+    h2{color: #666; font-size: 125%; font-weight: bold; margin-top: 20px;}
+    h3{color: #0d6efd; font-size: 110%; font-weight: bold; margin-top: 15px;}
+
+
+
+    main{
+        padding:40px;
+    }
+
+    aside{
+        padding:20px;
+        background-color:#ced4da;
+        border-radius:15px;
+    }
+
+    .img-container img{
+      width: 100%;
+    }
+
+    .img-container.full{
+      width: 100%;
+    }
+
+
+
+  </style>
+
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h2 class="text-white">Review Problems for Intermediate Web Programming</h2>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+       
+<!-- CONTENT START-->
+<script>
+
+/*
+PROBLEM 1
+Write a function named calculateTip that has two parameters.
+The first parameter should be named billAmount (it should represent the amount of a dinner bill).
+The second parameter should be named tipPercent (it should represent a percent for a tip).
+The function should return the tip amount based on the parameters.
+Make sure to invoke the function and console log the return value to test it.
+*/
+
+ 
+  function calculateTip (billAmount, tipPercent) {
+    var tip
+    if (tipPercent >= 1){
+        tip = billAmount * (tipPercent/100)
+      } else {
+        tip = billAmount * tipPercent
+      }
+    return tip
+  }
+  console.log(calculateTip(30,10))
+
+
+
+/*
+PROBLEM 2
+Declare a variable named myTextFile and initialize it to an object that has the following
+propertys (keys) and values (note that the object represents a file on your computer):
+
+PROPERTY (KEY)		VALUE
+--------------------------------
+name 				hello-world.txt
+location 			C:\desktop
+extension 			txt
+size 				1000
+*/
+  var myTextFile = {
+    name: "hello-world.txt",
+    location: "C:\desktop",
+    extension: "txt",
+    size: 1000,
+    copyTo: function (location){
+      console.log("Copying " + this.name + " to " + location);
+    }
+  }
+
+
+/* 
+PROBLEM 3
+Create an array of objects. 
+Each object (element) in the array represents a file on your computer.
+Use the following chart to set the property values for each element:
+
+name 				location 			extension  		size
+--------------------------------------------------------------
+MyResume.docx 		C:\documents		docx 			2501
+FamilyPic.jpg 		C:\desktop 			jpg				43000
+DogPic.jpg 			C:\documents 		jpg 			10002
+All-About-CSS.docx 	C:\documents 		docx 			50004
+*/
+  var myFiles = [
+    {name: "MyResume.docx", location: "C:\documents", extension: "docx", size: 2501},
+    {name: "FamilyPic.jpg", location: "C:\desktop", extension: "jpg", size: 43000},
+    {name: "DogPic.jpg", location: "C:\documents", extension: "jpg", size: 10002},
+    {name: "All-About-CSS.docx", location: "C:\documents", extension: "docx", size: 50004}
+  ]
+
+
+/*
+PROBLEM 4 (use the array that you created in the previous poblem)
+Write code that figures out how many .docx files in the documents folder have a file size larger than 10000.
+*/
+
+  var largeDocNum = 0;
+
+  for(var i = 0; i < myFiles.length; i++){
+    var x = myFiles[i];
+    if(x.extension == "docx" && x.size > 10000 && x.location == "C:\documents"){
+        largeDocNum++
+    }
+  }
+  
+  console.log(largeDocNum);
+/*
+PROBLEM 5
+Go back to the myTextFile object (from problem 2) and add a method named copyTo.
+The method should have a parameter named location.
+In the body of the method, add this code:
+
+	console.log("Copying " + this.name + " to " + location);
+
+Invoke the method and pass in the following string for the parameter: C:\documents
+*/
+
+  myTextFile.copyTo("C:\documents")
+
+/*
+PROBLEM 6
+Add the following elements to the body of this page:
+
+1. An INPUT element, set the TYPE attribute to 'text' and the ID attribute to 'txtBillAmount'
+2. Another INPUT element, set the TYPE attribute to 'text' and the ID attribute to 'txtTipPercent'
+3. Another INPUT element, set the TYPE attribute to 'button' and the ID attribute to 'btnCalculateTip'
+4. Add LABEL elements for each of the text inputs, the first label should display 'Bill Amount', the second label should display 'Tip Percent'
+*/
+
+/*
+PROBLEM 7
+Add JavaScript code that does the following:
+1. Wait until the window finishes loading before running any of the code in the following steps.
+2. Declare and initialize variables that 'get a handle' on each of the INPUT elements that you added in the previous problem.
+3. When the button is clicked, show an alert that displays the tip amount based on both the bill amount and the tip percent entered by the user.
+*/
+  window.addEventListener("load", () => {
+    var txtBillAmount = document.getElementById("txtBillAmount");
+    var txtTipPercent = document.getElementById("txtTipPercent");
+    var btnCalculateTip = document.getElementById("btnCalculateTip");
+
+    btnCalculateTip.addEventListener("click", () => {
+      //parseFloat to keep the decimal places
+      var bill = parseFloat(txtBillAmount.value)
+      var tip = parseFloat(txtTipPercent.value)
+      alert("Your tip is " + calculateTip(bill,tip) + ".")
+    })
+  });
+
+
+// PROBLEM 8
+var testScores = [78, 85, 93, 98]
+/*
+Use a loop to solve the following problems regarding the testScores array:
+- figure out the highest test score
+- figure out the lowest test score
+- figure out the average test score
+*/
+max = 0;
+min = 100;
+sum = 0;
+
+for (var x = 0; x < testScores.length; x++){
+  var score = testScores[x]
+  if (score > max){
+    max = score
+  } 
+  if (score < min){
+    min = score
+  }
+  sum += score;
+}
+
+avg = sum/testScores.length
+console.log(max, min, sum, avg);
+
+</script>
+<label>Bill</label><br>
+<input type= "text" id="txtBillAmount"><br>
+<label>Tip Percent</label><br>
+<input type= "text" id="txtTipPercent"><br>
+<input type= "button" id="btnCalculateTip" value = "Calculate Tip">
+
+<h2>Things you learned about JavaScript in Web Programming</h2>
+<ol>
+  <li>Variables</li>
+  <li>Data Types</li>
+  <li>IF Statements</li>
+  <li>Functions
+    <ol>
+      <li>Parameters</li>
+      <li>Return Values (and their data types)</li>
+    </ol>
+  </li>
+  <li>Objects
+    <ol>
+      <li>Properties</li>
+      <li>Methods</li>
+    </ol>
+  </li>
+  <li>Arrays</li>
+  <li>Loops</li>
+  <li>The DOM</li>
+  <li>Event Handling</li>
+</ol>
+<h2>Complete The Coding Problems in the SCRIPT Element of this Page</h2>
+
+<!-- CONTENT END-->
+      
+    </main>
+  </div>
+
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+    <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+
+</body> 
+</html>
