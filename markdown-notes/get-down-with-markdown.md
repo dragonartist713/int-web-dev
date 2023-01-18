@@ -65,5 +65,6 @@ Put a nested list here (you can put whatever items you want in it)
 Put a code sample here (you can choose any programming language for the sample)
     `<code>This text is yellow</code>`
 
-## BONUS PROBLEM 2 
-Add and in-page link at the top of this file that jumps down to here {#end}
+
+## BONUS PROBLEM 2 <a name="end"></a>
+Add and in-page link at the top of this file that jumps down to here

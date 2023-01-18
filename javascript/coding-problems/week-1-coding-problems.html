@@ -85,7 +85,7 @@
 		// Problem 6
 		// Get a handle on the form (below in the HTML) and add an event handler for the submit event.
 		// Prevent the default behavior of the event (which is to send the data entered into the form)
-		// Than validate the user input (you'll need to get handles on the two text boxes in the form). 
+		// Then validate the user input (you'll need to get handles on the two text boxes in the form). 
 		// If the input is valid show alert that says 'VALID'
 		// If the input is not valid, show an alert that says 'NOT VALID'.
 		// In order for the input to be valid:
@@ -93,31 +93,21 @@
 		//		a number greater than 0 must be entered for the age
 
 		document.querySelector("#form1").addEventListener("submit", (evt) => {
-			if(validateContactForm() == false){
-				evt.preventDefault();
-				alert("NOT VALID");
+			evt.preventDefault();
+			let formIsValid = true;
+			const txtName = document.getElementById("txtName");
+			const txtAge = document.getElementById("txtAge");
+		
+			if(txtName.value == ""){
+				formIsValid = false;
 			}
-
+			if(isNaN(txtAge.value) || txtAge >! 0){
+				formIsValid = false;
+			}
 			
-
-			function validateContactForm(){
-				const formIsValid = true;
-				const txtName = document.getElementById("#txtName");
-				const txtAge = document.getElementById("#txtAge");
-			
-				if(txtName == ""){
-					formIsValid = false;
-				}
-				if(txtAge == "" || txtAge >! 0){
-					formIsValid = false;
-				}
-
-				return formIsValid;
-
-			};
 			
 		});
-		console.log(txtName);
+		//console.log(txtName);
 	});
 		
 	</script>

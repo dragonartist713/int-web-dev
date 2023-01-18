@@ -15,21 +15,24 @@
 		}
 	</style>
 	<script type="text/javascript">
+	//wait until the page loads to execute your JavaScript code
 	window.addEventListener("load", () => {
+
 		//click events
 		const btn1 = document.querySelector("#btn1");
 		const btn2 = document.querySelector("#btn2");
 		const btn3 = document.querySelector("#btn3");
+		//console.log(btn1, btn2, btn3)
 
 		btn1.addEventListener("click", (evt) => {
 			console.log(evt);
 		});
 
 		const eventHandler = (evt) => {
-			if(evt.target == btn2){
-				console.log("You clicked 2.");
-			}else if(evt.target == btn3){
-				console.log("You clicked 3.")
+			if(evt.target.id == "btn2"){
+				console.log("You clicked button 2.");
+			}else if(evt.target.id == "btn3"){
+				console.log("You clicked button 3.")
 			}
 		};
 
@@ -41,6 +44,7 @@
 		const txtPageY = document.querySelector("#txtPageY");
 
 		window.addEventListener("mousemove", (evt) => {
+			//console.log(evt.pageX, evt.pageY)
 			txtPageX.value = evt.pageX;
 			txtPageY.value = evt.pageY;
 		});
