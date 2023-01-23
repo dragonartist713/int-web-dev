@@ -93,18 +93,27 @@
 		//		a number greater than 0 must be entered for the age
 
 		document.querySelector("#form1").addEventListener("submit", (evt) => {
-			evt.preventDefault();
-			let formIsValid = true;
-			const txtName = document.getElementById("txtName");
-			const txtAge = document.getElementById("txtAge");
-		
-			if(txtName.value == ""){
-				formIsValid = false;
+			if(validateContactForm() == false){
+				evt.preventDefault();
+				alert("NOT VALID");
 			}
-			if(isNaN(txtAge.value) || txtAge >! 0){
-				formIsValid = false;
-			}
-			
+
+			function validateContactForm(){
+				let formIsValid = true;
+				const txtName = document.querySelector("#txtName");
+				const txtAge = document.querySelector("#txtAge");
+				
+
+				if(txtName.value == ""){
+					formIsValid = false;
+				}
+				if(txtAge.value == NaN || txtAge >! 0){
+					formIsValid = false;
+				}
+
+				return formIsValid;
+
+			};
 			
 		});
 		//console.log(txtName);
