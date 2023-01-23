@@ -50,8 +50,10 @@
 		});
 
 		//keyboard events
+		//keypress works for printable keys (letters, etc)
+		//keyup and keydown track all keys when released or pressed
 		const txt1 = document.querySelector("#txt1");
-		txt1.addEventListener("keypress", (evt) => {
+		txt1.addEventListener("keydown", (evt) => {
 			console.log(evt.key);
 		});
 
@@ -59,6 +61,8 @@
 		//form events
 		const form = document.querySelector("#surveyForm");
 		form.addEventListener("submit", (evt) => {
+
+			console.log(evt);
 			
 			const txtFirstName = form.querySelector("#txtFirstName")
 			const txtAge = form.querySelector("#txtAge")
@@ -81,13 +85,18 @@
 
 		//change events
 		const changeHandler = (evt) => {
-			console.log(evt.target.checked);
+			console.log(evt);
 		};
 
-		//const selBox = document.getElementById
-		/*radios.forEach((ce) => {
+		const selBox = document.querySelector("#selColor")
+		const chkBox = document.querySelector(".some-checkbox")
+
+		selBox.addEventListener("change",changeHandler)
+		chkBox.addEventListener("change",changeHandler)
+
+		/* radios.forEach((ce) => {
 			ce.addEventListener("change", changeHandler);
-		});*/
+		}); */
 
 		const fileInput = document.getElementById("file-input");
 		fileInput.addEventListener("change", (evt) => {
@@ -95,11 +104,12 @@
 		})
 
 		const circleDiv = document.querySelector("#circleDiv");
-		/*
-		window.addEventListener("mousemove", (evt)=>{
-			// circleDiv.style.left = evt.pageX + "px";
-			// circleDiv.style.top = evt.pageY + "px";
-
+		
+		//makes the circle follow the mouse
+		/* window.addEventListener("mousemove", (evt)=>{
+			//circleDiv.style.left = evt.pageX + "px";
+			//circleDiv.style.top = evt.pageY + "px";
+		//centers pointer tip in circle
 			const style = window.getComputedStyle(circleDiv);
 			//console.log(parseInt(style.width));
 			const width = parseInt(style.width);
@@ -107,8 +117,9 @@
 			circleDiv.style.left = (evt.pageX - width/2) + "px";
 			circleDiv.style.top = (evt.pageY - height/2) + "px";
 		
-		});*/
+		}); */
 		let following = false;
+
 		circleDiv.addEventListener("click", () =>{
 			following = !following;
 			if(following){
@@ -116,7 +127,7 @@
 			}else{
 				window.removeEventListener("mousemove", followMouse);
 			}
-			
+					
 		});
 		const followMouse = (evt) =>{
 			const style = window.getComputedStyle(circleDiv);
