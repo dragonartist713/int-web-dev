@@ -338,7 +338,7 @@ When you checkout a new branch, Git replaces all the files in the project folder
 
 Note that you cannot switch to another branch unless you commit the changes you've made to the current branch (we'll talk more about this later)
 
-Update the index.html file too look like this:
+Update the index.html file to look like this:
 ```html
 <html>
 	<head>
