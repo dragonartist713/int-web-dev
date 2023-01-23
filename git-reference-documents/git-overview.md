@@ -184,7 +184,7 @@ git log
 ```
 
 Note that you can revert your project to the state it was in after any commit.
-To do this you would have to get the ID of the commit that you want to rever to 
+To do this you would have to get the ID of the commit that you want to revert to 
 (by using the git log command) and then enter **git revert** followed by the commit ID.
 
 
