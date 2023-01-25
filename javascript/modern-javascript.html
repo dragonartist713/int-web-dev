@@ -96,11 +96,18 @@
         
         //querySelector() and querySelectorAll()
         //the param for these is a css selector
+        // # = id, . = class
 
         const btn1 = document.querySelector("#btn1");
         const ul = document.querySelector("ul.fruits");
+        const lis = document.querySelectorAll(".fruits li")
         console.log(btn1);
         console.log(ul);
+        console.log(lis);
+
+        lis.forEach((li) => {
+            console.log(li)
+        })
 
 
         //template syntax
@@ -138,7 +145,7 @@
     <h1 id="my-h1">Modern Javascript</h1>
     <button id="btn1">Button 1</button>
     <ul class="fruits">
-        <li>Apples</li>
+        <li><b>Apples</b></li>
         <li>Oranges</li>
     </ul>
 </body>
