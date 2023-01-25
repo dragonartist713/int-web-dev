@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern JavaScript</title>
+    <!-- <style>css(background: black)</style> -->
     <script>
     window.addEventListener("load", () => {
 
@@ -12,48 +13,46 @@
         // var x = 7; // this is the old way to declare a variable
 
         const milesPerGallon = 35;
+        //semicolon optional
         //milesPerGallon = 70; //you can't change a constant
 
-        // In Java you declare a constant like this:
+        // In Java you declare a constant like this: Capital case
         //final MILES_PER_GALLON = 35;
 
-        // In C# you declare a constant like this:
+        // In C# you declare a constant like this: Pascal case
         //const MilesPerGallon = 35;
 
         // let
         let mpg = 35;
         mpg = 40;
 
-        /*
-        // this example shows that let uses block-leve scoping
+        
+        // this example shows that let uses block-level scoping
         function passOrFail(score){
+            let result
             if(score >= 70){
                 //var result = "PASS";
-                let result = "PASS";
+                result = "PASS";
             }
             console.log(result);
         }
 
-        passOrFail(75);
-        */
+        passOrFail(75);        
 
-        // If you aren't sure whether to use const or let, 
-        // use const and change it later if you need to
-
-
-
+        // If you aren't sure whether to use const or let, use const and change it later if you need to
 
         // ARROW FUNCTIONS
 
-        /*
+        someOldFunction()
+        //someNewFunction() //cant call an arrow function before its defined
+        
         // the 'classic' way to declare  function:
         function someOldFunction(){
 
-        }
-        */
+        }        
 
         // an arrow function
-        const someOldFunction = () => {
+        const someNewFunction = () => {
 
         }
 
@@ -73,6 +72,7 @@
 
         // Looping through arrays with forEach()
         const scores = [88,92,94];
+        scores.push(100)
 
         // classic javascript
         for(let x = 0; x < scores.length; x++){
