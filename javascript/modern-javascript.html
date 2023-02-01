@@ -61,15 +61,6 @@
             console.log("You clicked on the window");
         });
 
-        //abbreviating arrow functions
-        const anArray = ["This", "Array", "Contains", "Strings"];
-        anArray.forEach((ce) => { console.log(ce); });
-        //if theres only one parameter, can omit the parentheses
-        anArray.forEach(ce => { console.log(ce); });
-        //if theres only one statement in the funtion, can omit the curly braces
-        anArray.forEach(ce => console.log(ce));
-
-
         // Looping through arrays with forEach()
         const scores = [88,92,94];
         scores.push(100)
@@ -110,18 +101,6 @@
         })
 
 
-        //template syntax
-        const firstName = "Bob";
-        const lastName = "Smith";
-
-        let fullNameStr = `First Name: ${firstName} Last Name: ${lastName}`;
-        console.log(fullNameStr);
-
-        const jibberish = `fdsjklf;dsajklfdsaklf;sdjkldsajfdlkajfl;kdsjfl
-        ;dsajkfalkfdsl;jfdsal;kjl;
-        fdhsjakhjdksahfjkdshaklakjsaklfjdfhieuhfiebnunvuibsajv
-        kcbxzvduisnaklvbjcobaubewab voa;o`;
-
         //the ternary operator
         let score = 62;
         let result;
@@ -134,9 +113,43 @@
             //new method
         result = score >= 60 ? "PASS" : "FAIL"
 
+        ////////////////////////////
+        //different ways to write functions
+        //////////////////////////////////////////////////
 
+        //abbreviating arrow functions
+        const anArray = ["This", "Array", "Contains", "Strings"];
+        anArray.forEach((ce) => { console.log(ce); });
+        //classic
+        anArray.forEach(function(ce){console.log(ce)})
+        //arrow
+        anArray.forEach((ce) => {console.log(ce)})
+        //if the arrow function has one parameter, you can omit the ()
+        anArray.forEach(ce => {console.log(ce)})
+        //if the arrow function has one statement/line of code, you can omit {}
+        anArray.forEach(ce => console.log(ce))
+        //if it is a single return statement, you can omit return and {}
+        anArray.findIndex(ce => {return ce == "This"})
+        anArray.findIndex(ce => ce == "This")
 
+        const isEven = number => number % 2 == 0
+        console.log(isEven(2))
+        console.log(isEven(3))
 
+        ////////////////////////////
+        //template syntax
+        //////////////////////////////////////////////////
+        
+        const firstName = "Bob";
+        const lastName = "Smith";
+
+        let fullNameStr = `First Name: ${firstName} Last Name: ${lastName}`;
+        console.log(fullNameStr);
+
+        const jibberish = `fdsjklf;dsajklfdsaklf;sdjkldsajfdlkajfl;kdsjfl
+        ;dsajkfalkfdsl;jfdsal;kjl;
+        fdhsjakhjdksahfjkdshaklakjsaklfjdfhieuhfiebnunvuibsajv
+        kcbxzvduisnaklvbjcobaubewab voa;o`;
 
     });
     </script>

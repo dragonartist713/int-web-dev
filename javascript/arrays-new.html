@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Arrays</title>
+	<script type="text/javascript">
+	
+	window.addEventListener("load", () => {
+
+
+		// How do you 'interface' with an array in JavaScript?
+		// Well, you need to know how they work, which includes knowing:
+		// 	1. They are objects (that have properties and methods, just like objects in any language)
+		// 	2. You work with them by using their properties and methods
+		// YOU INTERFACE WITH AN ARRAY (OR ANY OBJECT) BY USING IT'S PROPERTIES AND METHODS
+		// PROPERTIES AND METHODS ARE THE TOOLS YOU USE TO SOLVE PROBLEMS!!! 
+
+
+		// The API (application programming interface) of an object is 
+		// it's collection of properties and methods that you can use.
+
+		// Here's a reference on array methods in JavaScript:
+		// https://www.w3schools.com/js/js_array_methods.asp
+		
+		// This one is more complete and up-to-date, but maybe more difficult to understand:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+		
+		// There are many others, you should find one you like!
+
+		
+		// Now let's explore the Array API in JavaScript
+		
+		// But first, remember that when using a method you should understand 3 things:
+		// 1. What does it do? (But you don't need to understand how it does it)
+		// 2. What parameters can you pass in (including the data types of parameters)
+		// 3. What does it return (including the data type)
+
+		// We'll use the following arrays during this activity:
+
+		// an array of numbers
+		const scores = [75,85,95];
+
+		// an array of strings
+		const pets = ["Buster", "Bruno", "Felix"];
+
+		// an array of objects (extremely useful because this is how you get data from a database)
+		const employees = [
+			{"id": 1, "firstName": "Bob", "lastName": "Smith", email: "bob@acme.com", "salary": 45000, "hireDate":"3/12/2009", password: "xxx"},
+			{"id": 2, "firstName": "Betty", "lastName": "Jones", email: "betty@acme.com", "salary": 55000, "hireDate":"5/11/2017", password: "xxx"},
+			{"id": 3, "firstName": "Sally", "lastName": "Johsnson", email: "sally@acme.com", "salary": 65000, "hireDate":"5/21/2016", password: "xxx"},
+			{"id": 4, "firstName": "Ted", "lastName": "Thomas", email: "ted@acme.com", "salary": 45000, "hireDate":"9/14/2019", password: "xxx"},
+			{"id": 5, "firstName": "Jean", "lastName": "Parker", email: "jean@acme.com", "salary": 55000, "hireDate":"1/17/2017", password: "xxx"},
+			{"id": 6, "firstName": "Larry", "lastName": "Corker", email: "larry@acme.com", "salary": 65000, "hireDate":"8/19/2012", password: "xxx"},
+			{"id": 7, "firstName": "Morris", "lastName": "Smith", email: "morris@acme.com", "salary": 45000, "hireDate":"5/16/2002", password: "xxx"},
+			{"id": 8, "firstName": "Buster", "lastName": "Jenkins", email: "buster@acme.com", "salary": 55000, "hireDate":"2/23/2019", password: "xxx"},
+			{"id": 9, "firstName": "Grace", "lastName": "Anderson", email: "grace@acme.com", "salary": 85000, "hireDate":"05/03/2017", password: "xxx"}
+		];
+
+		// Review
+		// Items in an array are called elements
+		// Each element in an array has an index number (starting at 0)
+		// Use bracket notation to access an element by it's index number
+		console.log(scores[0]);
+		console.log(pets[0]);
+		console.log(employees[0]);
+		
+		// Arrays are objects that have a length property
+		console.log(scores.length);
+		console.log(pets.length);
+		console.log(employees.length);
+
+		// The length of an array is one higher than the highest index number 
+		console.log("Last employee", employees[employees.length-1]);
+
+		// PART 1
+
+		/////////////////
+		// concat() - merges one (or more) arrays into one
+		/////////////////
+		const array1 = [1,2,3]
+		const array2 = [4,5,6]
+		const array3 = array1.concat(array2)
+		console.log(array3)
+
+
+		//////////////////
+		// join()
+		//////////////////
+		console.log(array3.join())
+		console.log(array3.join(''))
+		console.log(array3.join('-'))
+
+
+		/////////////////
+		// forEach()
+		/////////////////
+		array3.forEach(n => console.log(n))
+
+		
+		// If you need the index as well as the current element, then add a 2nd param
+		
+
+		// An issue with forEach()
+		// Assume you need to write a function that get's an employee by id
+		
+
+		///////////////////////////////////////
+		// push() - adds an element to an array
+		/////////////////////////////////////// 
+		pets.push("Lassie")
+		console.log(pets)
+
+
+		////////////////////////////////////////////////////
+		// includes() - tells you if a value is in an array
+		////////////////////////////////////////////////////
+		
+
+
+		///////////////////////////////////
+		// pop() - returns the last element AND removes it from the array
+		//////////////////////////////////
+		let petName = pets.pop()
+		console.log(petName, pets)
+
+		
+		//////////////////////////////////////
+		// indexOf() - returns the index of a value in an array OR -1
+		///////////////////////////////////////
+		
+
+
+		////////////////////
+		// find() - returns the first element in the array that matches a condition
+		// Note - the function that you pass into find() must return true or false
+		////////////////////
+		const empId = prompt("Enter an employee id");
+		let matchingEmployee = employees.find((emp) => {return emp.id == empId})
+		console.log(matchingEmployee);
+
+
+		///////////////////////
+		// findIndex()
+		///////////////////////
+		
+		//matchingEmployeeIndex = employees.findIndex((emp) => {return emp.id == empId})
+		matchingEmployeeIndex = employees.findIndex((emp) => {
+			if(emp.id == empId){
+				return true
+			}else{
+				return false
+			}
+		})
+		console.log(matchingEmployeeIndex);
+		// find the index of the employee with the email of sally@acme.com
+		matchingEmployeeIndex = employees.findIndex((emp) => {return emp.email == "sally@acme.com"})
+		console.log(matchingEmployeeIndex)
+		
+
+
+
+
+		// Part 2
+
+
+		/////////////////////////////////////
+		//slice() - extracts a slice from an array
+		// params are the start and end position
+		// *note that the end position is not included
+		//////////////////////////////////////
+		const names = ["Bob", "Sally", "Betty", "Paul", "Jenny"];
+		const numbers = [7,5,6,1,5];
+		const namesSlice = names.slice(1,3)
+		const numbersSlice = numbers.slice(2,4)
+		console.log(namesSlice)
+		console.log(numbersSlice)
+		console.log(numbers)
+
+		///////////////////////
+		// splice()
+		/////////////////////////////////
+		// params are the start position and how many to remove
+		// *note that the splice method removes the spliced elements from the array!
+		const namesSplice = names.splice(1,3)
+		console.log(namesSplice, names)
+
+
+
+		///////////////////////////////////
+		//shift() - returns the first element and removes it from the array
+		///////////////////////////////////
+		const firstElement = pets.shift();
+		console.log(firstElement,pets)
+
+
+		/////////////////////////////
+		// map()
+		/////////////////////////////
+		const employeeNames = employees.map((emp) => {
+			return `${emp.firstName} ${emp.lastName}`
+		})
+		console.log(employeeNames)
+
+		
+		//////////////////////////////
+		// filter()
+		//////////////////////////////
+		const highestPaidEmployees = employees.filter((emp) => {
+			return emp.salary > 50000
+		})
+		console.log(highestPaidEmployees)
+		// create an array of all the employees that earn more than 50K
+		
+
+
+
+		//////////////////////////////
+		// reduce() - takes two params
+		// 1. a function (accumulator, currentElement) => {}
+		// 2. an initial value for the accumulator
+		//////////////////////////////
+		
+		const salarySum = employees.reduce((sum,emp) => {
+			return sum + emp.salary
+		}, 0)
+		console.log(salarySum)
+
+		
+
+
+		////////////////////////////////
+		// Chaining Array Methods
+		////////////////////////////////
+		//figure out the average salary of all the employees who make more than 50000
+		const total = employees.filter(emp => emp.salary > 50000).reduce((sum,emp) => sum + emp.salary, 0)
+		console.log(total)
+		const avg = total / highestPaidEmployees.length
+		console.log(avg)
+
+
+
+	});	
+
+	</script>
+</head>
+<body>
+	<h1>JavaScript Arrays</h1>
+	<p>How do you 'interface' with an array in JavaScript?</p>
+	<p>Well, you need to know how they work, which includes knowing:</p>
+	<ol>
+		<li>They are objects (that have properties and methods, just like objects in any language)</li>
+		<li>2. You work with them by using their properties and methods</li>
+	</ol>
+	<p>
+		<b>
+			You interface with an array (or any object) by using it's properties and methods.
+			Properties and methods are the tools you use to solve problems.
+		</b>
+	</p>
+	
+
+	<p>
+		The <b>API</b> (application programming interface) of an object is 
+		it's collection of properties and methods that you can use.
+	</p>
+	<p>
+		Here are some references on array methods in JavaScript:
+	</p>
+	<ol>
+		<li><a href="https://www.w3schools.com/js/js_array_methods.asp" target="_blank">This one is fairly easy to understand</a></li>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">This one is more complete but more difficult to understand</a></li>
+	</ol>
+	<p>There are many others, you should find one you like!</p>
+	<p>In this activity we'll explore the Array API in JavaScript.</p>
+	<p>But first, remember that when using a method you should understand 3 things:</p>
+	<ol>
+		<li>What does it do? (But you don't need to understand how it does it)</li>
+		<li>What parameters can you pass in (including the data types of parameters)</li>
+		<li>What does it return (including the data type)</li>
+	</ol>
+</body>
+</html>
