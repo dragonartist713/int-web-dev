@@ -27,23 +27,16 @@
 
   	//PROBLEM 1
   	// Create an array of numbers. The array should store the following numbers: 42,34,27
-	const numbers = [42,34,27];
 
   	//PROBLEM 2
   	// Use bracket notation to console log the last element in the array
-	  console.log(numbers[2]);
 
   	//PROBLEM 3
   	// Use the push() method to add the following two numbers to the array: 40,28
-	  numbers.push(40,28);
 
   	//PROBLEM 4
   	// Write code that figures out the average of all the elements in the array of numbers.
-  	let sum = 0;
-	numbers.forEach((ce) => {
-		sum += ce;
-	});
-	let avg = sum/numbers.length-1;
+  	
 
   	//PROBLEM 5
   	// Write code that figures out which cat in the array below is the oldest
@@ -54,35 +47,6 @@
   		{name: "Garfield", age: 7}
   	];
 
-	
-
-	function findOldestCat(){
-		//finds highest age of all cats
-		let highestAge = 0;
-		cats.forEach((ce) => {
-			if(ce.age > highestAge){
-				highestAge = ce.age;
-			}
-			
-		});
-		//console.log(highestAge);
-
-		//finds index number of oldest cat
-		let eldest = cats.findIndex(findCat);
-			
-		function findCat (ce) {
-			return ce.age == highestAge;
-		};
-		
-		//prints oldest cat
-		console.log("Eldest Cat's Name: "+cats[eldest].name);
-		console.log("Eldest Cat's Age: "+cats[eldest].age);
-	};
-
-	findOldestCat();
-
-	 
-
 
   	//PROBLEM 6
   	// Add an event handler for when the form (at the bottom of the page) is submitted.
@@ -91,15 +55,10 @@
   	// But in order for the form to submit, the user MUST check the checkbox
   	// If the checkbox is not checked, then prevent the form from submitting and display 
   	// some sort of message to the user that informs them that they must check the box
-	const frmSignup = document.querySelector("#frmSignup")
-	const chkAgree = document.querySelector("#chkAgree")
-	//console.log(frmSignup, chkAgree)
-	frmSignup.addEventListener("submit", (evt) => {
-		if(chkAgree.checked == false){
-			evt.preventDefault()
-			alert("Please agree to our terms before submitting.")
-		}
-	})
+
+
+
+
 
 
   	// I put this code here for the terms of service modal window
@@ -139,7 +98,7 @@
 			Explain the <b>indexOf()</b> method for arrays. What does it do? What parameters does it take (make sure to mention the data type(s))? What does it return (again, mention the data type)?
 			</p>
 			<div class="p-2 text-dark answer">
-				it returns the first index that matches a given parameter, if none exitsts it returns -1.  it accepts the item to be searched for and a starting position (will search the full array if starting position not given)
+				Put your answer here
 			</div>
 
 			<h3>Question 2</h3>
@@ -147,7 +106,7 @@
 					What is an <b>event handler</b> (also known as a <b>callback</b>)?
 			</p>
 			<div class="p-2 text-dark answer">
-				its a function that listens for a particular event, activating a block of code when the event its waiting for happens
+				Put your answer here
 			</div>
 
 			<h3>Question 3</h3>
@@ -155,7 +114,7 @@
 				What is the default behavior for when a form is submitted?
 			</p>
 			<div class="p-2 text-dark answer">
-				to submit the form and send its data to the database or form handler
+				Put your answer here
 			</div>
 			
 			<h3>Question 4</h3>
@@ -163,7 +122,7 @@
 				Which attribute of a form element determines where the data is sent when a form is submitted?
 			</p>
 			<div class="p-2 text-dark answer">
-				action
+				Put your answer here
 			</div>
 			
 			<h3>Question 5</h3>
@@ -177,7 +136,7 @@
 				Which property of the someCheckbox object would you check to find if the checkbox is checked or not checked?
 			</p>
 			<div class="p-2 text-dark answer">
-				checked
+				Put your answer here
 			</div>
 
 			<h3>Question 6</h3>
@@ -191,7 +150,7 @@
 				Which property of the someTextbox object would you use to get the input entered into it by the user.
 			</p>
 			<div class="p-2 text-dark answer">
-				value
+				Put your answer here
 			</div>
 
 			<h3>Question 7</h3>
@@ -199,7 +158,7 @@
 					What is the data type of the parameter that is passed into the forEach() array method?
 			</p>
 			<div class="p-2 text-dark answer">
-				index number in an array
+				Put your answer here
 			</div>
 			
 			<h3>Question 8</h3>
@@ -207,7 +166,7 @@
 					If you want to make use of the object that is created when an event occurs, you must add a parameter to your event handler function (TRUE or FALSE).
 			</p>
 			<div class="p-2 text-dark answer">
-				true
+				Put your answer here
 			</div>
 
 			<h3>Question 9</h3>
@@ -215,15 +174,15 @@
 				Breifly explain each of the following git commands (you can put your answer on the same line as the command name):
 			</p>
 			<div class="p-2 text-dark answer">
-				<b>git init</b> - creates a new repository
+				<b>git init</b> - 
 				<br><br>
-				<b>git status</b> - shows which files are and aren't on stage
+				<b>git status</b> - 
 				<br><br>
-				<b>git add</b> - adds a file to the stage
+				<b>git add</b> - 
 				<br><br>
-				<b>git commit</b> - commits changes to all files on stage
+				<b>git commit</b> - 
 				<br><br>
-				<b>git log</b> - lists all commits made in a repository
+				<b>git log</b> - 
 				<br><br>
 			</div>
 
@@ -239,7 +198,7 @@
 			<form id="frmSignup" action="https://www.wtc-web.com/form-handler.php" method="POST">
 			  <div class="form-group m-2">
 			    <label for="txtEmal">Email address</label>
-			    <input type="email" name="email" class="form-control" id="txtEmal" placeholder="Enter email">
+			    <input type="email" name="email" class="form-control" id="txtEmal" placeholder="Enter email" required>
 			  </div>
 			  <div class="form-check m-2">
 			    <input type="checkbox" name="terms" class="form-check-input" id="chkAgree" value="agreed">
