@@ -23,16 +23,28 @@
 
 	console.log("Problem 1")
 	// log the first element in each array
+	console.log(people[0])
 
 
 	console.log("Problem 2")
 	// log the last element in each array
+	console.log(people[people.length - 1])
 
 
 	console.log("Problem 3")
 	// Use the push method to add an element to each array
 	// (Add a string to the names array)
 	// (Add an object to the people array, it should have the same properties as the other elements in the array)
+	people.push({
+		id:8,
+		firstName:"Lindsay",
+		lastName:"Hansen",
+		age:33,
+		vaccinated:true,
+		email:"email@website.com"
+	})
+
+	names.push("Lindsay")
 	
 
 
@@ -42,6 +54,8 @@
 	// 		Bob,Tua,Stan,Jen,Pedro,Fritz,Nadia
 	// Note that this string is often called a csv string (comma separated values)
 	// And we'll by using csv strings more in the course.
+	let allNames = names.join()
+	console.log(allNames)
 
 
 
@@ -52,25 +66,36 @@
 	// In the body of the function, use a forEach() loop to search
 	// the people array for the object that matches the id param
 	// The function should return the person object whose id matches the parameter
-
+	const getPersonById = (id) => {
+		people.forEach((prsn) => {return prsn.id == id})
+	}
 
 
 	console.log("Problem 6")
 	// Use the forEach() method to console log each element in the names array.
-
+	names.forEach((name) => {console.log(name)})
 
 
 	console.log("Problem 7") 
 	// Use the forEach() method to console log the firstName and lastName
 	// property of each element in the people array
-
+	people.forEach((prsn) => {
+		console.log(prsn.firstName + " " + prsn.lastName)
+	})
 
 
 	console.log("Problem 8")
 	// Write code that calculates how many elements in the people array
 	// are older than 20
 	// log the result when you are done.
-
+	let numOlderThan20 = 0
+	
+	people.forEach((prsn) => {
+		if(prsn.age > 20){
+			numOlderThan20++
+		}
+	})
+	console.log(numOlderThan20)
 
 
 	console.log("Problem 9")
@@ -90,14 +115,18 @@
 	// Use the find() method to find the element in the people array
 	// that has an email address of jen@jen.com 
 	// Log the value that is returned by the find() method
-
+	const jen = people.find((prsn) => {return prsn.email == "jen@jen.com"})
+	console.log(jen)
 
 
 	console.log("Problem 12")
 	// Use the findIndex() method to find the index of the element in the people
 	// array that has a firstName of Fritz and a lastName of Wilhelm
 	// Log the value that is returned by the findIndex() method
-
+	const index = people.findIndex((prsn) => {
+		return prsn.firstName == "Fritz" && prsn.lastName == "Wilhelm"
+	})
+	console.log(index)
 
 	
 
@@ -108,6 +137,12 @@
 	// id number of the person to get from the array.
 	// In the body of the function, use the find() method on the people array
 	// to return the person object whose id matches the parameter
+	const getPersonById2 = (id) => {
+		//find must return true or false
+		const person = people.find((prsn) => {return prsn.id == id})
+		return person
+	}
+	console.log(getPersonById2(3))
 
 		
 	</script>

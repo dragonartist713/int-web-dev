@@ -23,54 +23,74 @@
 	// each string should include the first and last name of each
 	// element in the array
 	// Log the value that is returned by the map() method
-	
+	const peopleNames = people.map((prsn) => {
+		return `${prsn.firstName} ${prsn.lastName}`
+	})
+	console.log(peopleNames)
 
 
 	console.log("Problem 2") 
 	// Use the map() method to create an array of email addresses (strings)
 	// from the people array
 	// Log the value that is returned by the map() method
-	
+	const emails = people.map((prsn) => {
+		return `${prsn.email}`
+	})
+	console.log(emails)
 
 
 	console.log("Problem 3")
 	// Use the filter() method to create an array
 	// of all that people objects who are older than 20
 	// Log the value that is returned by the filter() method
-	
+	const adults = people.filter((prsn) => {
+		return prsn.age > 20
+	})
+	console.log(adults)
 
 
 	console.log("Problem 4")
 	// Use the filter() method to create an array
 	// of all that people objects who have been vaccinated
 	// Log the value that is returned by the filter() method
-	
+	const vaccinatedPeople = people.filter((prsn) => {
+		return prsn.vaccinated == true
+	})
+	console.log(vaccinatedPeople)
 
 
 	console.log("Problem 5")
 	// Use the filter() method to create an array
 	// of all that people objects who are younger than 25 AND have been vaccinated
 	// Log the value that is returned by the filter() method
-	
+	const youngVaccinated = people.filter((prsn) => {
+		return prsn.age < 25 && prsn.vaccinated == true
+	})
+	console.log(youngVaccinated)
 
 
 	console.log("Problem 6")
 	// Use the reduce() method to calculate the sum of ages
 	// of all the elements in the people array
 	// Log the value that is returned by the reduce() method
-	
+	const ageSum = people.reduce((sum, prsn) => {
+		return sum + prsn.age
+	}, 0)
+	console.log(ageSum)
 
 
 	console.log("Problem 7")
 	// Use the slice() method to create an array
 	// that includes the last 3 elements from the people array
 	// Log the value that is returned
+	const lastPeople = people.slice(people.length-3)
+	console.log(lastPeople)
 
 
 	console.log("Problem 8")
 	// explain the differences between the splice() and slice() methods
 	/*
-	PUT YOUR ANSWER HERE
+	slice doesnt alter the original array but makes a copy of whatever section of it.  splice alters the original array by removing/adding/replacing elements
 	*/
 
 
