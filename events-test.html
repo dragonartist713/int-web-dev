@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="test" value="Try to copy me">
+
+    <p id="demo"></p>
+
+    <script>
+    const text = document.querySelector("#test")    
+    text.addEventListener("copy", myFunction)
+    text.addEventListener("copy", myOtherFunction)
+
+    function myFunction(evt) {
+        evt.preventDefault()
+        if(evt.defaultPrevented == true){
+            document.getElementById("demo").innerHTML = "You failed to copy the text!"
+        }else{
+            document.getElementById("demo").innerHTML = "You copied text!"
+        }
+        
+    }
+    function myOtherFunction(evt) {
+        console.log(evt)
+    }
+    </script>
+</body>
+</html>
