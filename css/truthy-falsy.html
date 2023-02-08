@@ -2,9 +2,18 @@
 <html>
 <head>
 	<title>Truthy Falsy Values</title>
+	<style>
+		body{
+			background-color: black;
+			color: white;
+		}
+	</style>
 	<script type="text/javascript">
 		
 		// FALSY VALUES
+		var e = 0; // FALSE! 0 is false
+		var i; //false
+		var j = "" //false
 
 		// 0 is condisered to be false
 		if(0 == false){
@@ -26,16 +35,16 @@
 
 
 		// TRUTHY VALUES
-		var a = 1;
-		var b = "Hello";
-		var c = true;
-		var d = -7;
-		var e = 0; // FALSE! 0 is false
-		var f = {};
-		var g = [];
-		var h = prompt("Enter a number between 0-10");
+		var a = 1; //true
+		var b = "Hello"; //true
+		var c = true; //true
+		var d = -7; //true
+		var f = {}; //true
+		var g = []; //true
+		var h = prompt("Enter a number between 0-10"); //true
+		
 
-		if(e){
+		if(j){
 			console.log("Truthy!!!!");
 		}else{
 			console.log("Falsy!!!");

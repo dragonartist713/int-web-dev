@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <title>The DOM API</title>
 <style type="text/css">
+	body{
+		background-color: black;
+		color: white;
+	}
 	
 	.special{
 		color: orange;
@@ -26,11 +30,12 @@ window.addEventListener("load", ()=>{
 
 	// The window object contains all the other objects in the DOM
 	// And it's complicated!
-	console.dir(window); 
+	console.log(window); 
 
 	// The location property of the window object
 	console.log(window.location);
 	console.log(location); // Note in the log that the specific data type Location object 
+	console.dir(window.document)
 
 	// Redirect to a new page by changing the href prop of the location object
 	// (Note that this is the used in XSS attacks)
@@ -66,21 +71,28 @@ window.addEventListener("load", ()=>{
 	// querySelector() 
 	let h2 = document.querySelector("#sub-header");
 	console.log(h2);
-	let list = document.querySelector(".fruits");
+	let list = document.querySelector("ul.fruits");
 	console.log(list);
 	
 
 	//querySelectorAll()
-	let fruitListItems = document.querySelectorAll(".fruits li");
+	let fruitListItems = document.querySelectorAll("ul.fruits li");
 	console.log(fruitListItems);
+	fruitListItems.forEach((fruit) => {
+		console.log(fruit.innerHTML)
+	})
 
 	//getElementsByTagName()
 	let allListItems = document.getElementsByTagName("li");
 	console.log(allListItems);
+	for(let x = 0; x < allListItems.length; x++){
+		console.log(allListItems[x].innerHTML)
+	}
 
 	//getElementsByClassName()
 	let allWarnings = document.getElementsByClassName("warning");
 	console.log(allWarnings);
+
 	
 		
 	//Note: All the methods that start with 'get' return live node lists 
@@ -90,7 +102,7 @@ window.addEventListener("load", ()=>{
 
 	// Creating and Appending Elements to the DOM
 	// createElement()
-	const li = document.createElement("li");
+	let li = document.createElement("li");
 	li.innerHTML = "Strawberries";
 	
 
@@ -101,7 +113,7 @@ window.addEventListener("load", ()=>{
 	// addEventListener()
 	li.addEventListener("click", (evt) => {
 		//alert("Smells like strawberries in here...");
-		console.log(evt.target.innerHTML);
+		console.dir(evt.target);
 	});
 	
 	
@@ -116,6 +128,14 @@ window.addEventListener("load", ()=>{
 	console.log(h2.id);
 	//console.log(h2.class);
 	console.log(h2.getAttribute("class"));
+
+	//classList
+	console.log(h1.classList)
+	if(h1.classList.contains("special")){
+		console.log("It's special")
+	}
+	h1.classList.add("fluff")
+	h1.classList.remove("promo")
 		
 	//closest() - finds the closest ancestor that matches the tag name passed in
 	console.log(li.closest("ul"));
@@ -130,8 +150,9 @@ window.addEventListener("load", ()=>{
 	//value - for form elements (textboxes, buttons, checkboxes, etc)
 	const btn = document.createElement("input");
 	btn.type = "button";
-	btn.value = "Click Me!";
+	btn.value = "Clickme! Clickmeinthteface!!";
 	document.body.appendChild(btn);
+	btn.addEventListener("click", () => {alert("Thankyou!!!!")})
 	
 	
 	//style (use kabob-case in CSS, but camelCase in JS)
@@ -140,16 +161,13 @@ window.addEventListener("load", ()=>{
 	btn.style.padding = "6px";
 	
 
-	//classList
-	
-
 	// Data-binding to the DOM (we'll explore this more later)
-	const ages = ["child", "adult", "old"];
+	const ages = ["baby", "child", "adult", "old"];
 	const sel = document.getElementById("selAge");
 
-	ages.forEach((a) => {
+	ages.forEach((age) => {
 		const opt = document.createElement("option");
-		opt.text = a;
+		opt.innerHTML = age;
 		sel.appendChild(opt);
 	})
 
