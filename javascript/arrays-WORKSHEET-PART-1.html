@@ -102,13 +102,22 @@
 	// Write code that calculates how many elements in the people array
 	// have been vaccinated
 	// log the result when you are done.
+	let numVaccinated = 0
 
+	people.forEach((prsn) => {
+		if(prsn.vaccinated == true){
+			numVaccinated++
+		}
+	})
+	console.log(numVaccinated)
 
 
 	console.log("Problem 10")
 	// Use the find() method to find the element in the people array
 	// that has an id of 3
 	// Log the value that is returned by the find() method
+	const thirdPerson = people.find((prsn) => {return prsn.id == 3})
+	console.log(thirdPerson)
 
 
 	console.log("Problem 11")
