@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data Binding To Lists</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+
+		const peopleNames = ["Barn Thomas", "Yue Lee", "Maria Saboles"];
+
+		console.log("Problem 1");
+		/*
+		Write a function named createList (I started it for you)
+		the function has a parameter named stringArray.
+		The parameter should be an array of strings.
+		Inside the body of the function, do the following:
+			1. Create an OL element (use document.createElement()) 
+			2. Loop through stringArray parameter and do the following for the current string:
+				a. Create an LI element (use document.createElement())
+				b. Set the innerHTML property equal to the current string
+				c. Append the LI to the OL that was created before the loop
+			3. Return the OL element
+		*/
+		const createList = (stringArray) => {
+			const stringList = document.createElement("ol")
+			for(let i = 0; i < stringArray.length; i++){
+				let listItem = document.createElement("li")
+				listItem.innerHTML = stringArray[i]
+				stringList.appendChild(listItem)
+			}
+			return stringList			
+		}
+
+		// Try out the createList() function and pass in the peopleNames array
+		const nameList = createList(peopleNames);
+		// Log the return value:
+		console.log(nameList);
+
+
+
+		console.log("Problem 2");
+		// Get a handle on the div with the id of 'people-names'
+		const namesDiv = document.querySelector("#people-names")
+		// then append the nameList to it
+		namesDiv.appendChild(nameList)
+
+
+		
+		// Use the following array to solve the next few problems
+		const people = [
+			{id:1, firstName:"Bob", lastName:"Smith", age: 17, vaccinated: false, email:"bob@bob.com"},
+			{id:2, firstName:"Tua", lastName:"Lor", age: 16, vaccinated: true, email:"tua@tua.com"},
+			{id:3, firstName:"Stan", lastName:"Jones", age: 24, vaccinated: true, email:"stan@stan.com"},
+			{id:4, firstName:"Jen", lastName:"Parker", age: 33, vaccinated: false, email:"jen@jen.com"},
+			{id:5, firstName:"Pedro", lastName:"Moreno", age: 27, vaccinated: false, email:"pedro@bob.com"},
+			{id:6, firstName:"Fritz", lastName:"Wilhelm", age: 23, vaccinated: true, email:"fritz@fritz.com"},
+			{id:7, firstName:"Nadia", lastName:"Bakhar", age: 26, vaccinated: true, email:"nadia@nadia.com"}
+		];
+
+
+		console.log("Problem 3");
+		/*
+		Write a function named createPeopleList (I've started it for you)
+		The function should have a parameter that is an array (of people objects)
+		In the body of the function:
+			1. Create an OL element (use document.createElement())
+			2. Loop through the parameter and do the following for each element:
+				1. Create an LI element (use document.createElement())
+				2. Set the innerHTML of the LI to the first and last name of the current person
+				3. Append the LI element to the OL that you created previously
+			3. Return the OL element
+		*/
+		const createPeopleList = (peopleArray) => {
+			const stringList = document.createElement("ol")
+			for(let i = 0; i < peopleArray.length; i++){
+				let listItem = document.createElement("li")
+				listItem.innerHTML = peopleArray[i].firstName + " " + peopleArray[i].lastName
+				stringList.appendChild(listItem)
+			}
+			return stringList			
+		}
+
+
+		// try out the function(it should return an OL element object)
+		const listOfAllPeople = createPeopleList(people);
+		console.log(listOfAllPeople);
+		
+
+		console.log("Problem 4");
+		// Append listOfAllPeople to the div with the id of 'all-people'
+		const peopleDiv = document.querySelector("#all-people")
+		peopleDiv.appendChild(listOfAllPeople)
+
+
+		console.log("Problem 5");
+		// Use the filter method to get an array of people who are younger than 25
+		// Then pass this array into the createPeopleList() function
+		// Append the returned list to the div with the id of 'young-people'
+		const youngPeople = people.filter((prsn) => {
+			return prsn.age < 25
+		})
+		const youngPeopleList = createPeopleList(youngPeople)
+		const youngPeopleDiv = document.querySelector("#young-people")
+		youngPeopleDiv.appendChild(youngPeopleList)
+		
+
+		console.log("Problem 6");
+		// Use the filter method to get an array of people who are vaccinated
+		// Then pass this array into the createPeopleList() function
+		// Append the returned list to the div with the id of 'vaxed-people'
+		const vaxxedPeople = people.filter((prsn) => {
+			return prsn.vaccinated == true
+		})
+		const vaxxedPeopleList = createPeopleList(vaxxedPeople)
+		const vaxxedPeopleDiv = document.querySelector("#vaxed-people")
+		vaxxedPeopleDiv.appendChild(vaxxedPeopleList)
+
+
+		console.log("Problem 7");
+		// Use the filter method to get an array of people who are younger than 25 AND vaccinated
+		// Then pass this array into the createPeopleList() function
+		// Append the returned list to the div with the id of 'young-vaxed-people'
+		const youngVaxxdPeople = people.filter((prsn) => {
+			return prsn.age < 25 && prsn.vaccinated == true
+		})
+		const youngVaxxdPeopleList = createPeopleList(youngVaxxdPeople)
+		const youngVaxxdPeopleDiv = document.querySelector("#young-vaxed-people")
+		youngVaxxdPeopleDiv.appendChild(youngVaxxdPeopleList)
+
+
+
+	}) // end of window.addEventListener("load", ()=>{})
+
+	</script>
+</head>
+<body>
+
+	<h2>Names</h2>
+	<div id="people-names"></div>
+
+	<h2>All People</h2>
+	<div id="all-people"></div>
+
+	<h2>Young People</h2>
+	<div id="young-people"></div>
+
+	<h2>Vaxed People</h2>
+	<div id="vaxed-people"></div>
+
+	<h2>Young and Vaxed People</h2>
+	<div id="young-vaxed-people"></div>
+
+</body>
+</html>

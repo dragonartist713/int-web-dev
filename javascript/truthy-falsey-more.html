@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Truthy falsey Values</title>
+	<script type="text/javascript">
+
+		// Truthy and Falsey Values
+		// In JavaScript, and many other languages, some values
+		// will evalulate to TRUE when used in a boolean expression
+		// while other values will evaluate to FALSE
+		// Here's a link that has more info:
+		// https://www.sitepoint.com/javascript-truthy-falsey/
+		
+
+		// TRUTHY OR FALSEY VALUES???
+		const a = 1;
+		const b = "Hello";
+		const c = true;
+		const d = -7;
+		const e = 0; 	// FALSE! because 0 is always false
+		let f; 		// FALSE! the variable has been declared but not initialized
+		const g = "";	// FALSE empty strings evaluate to false
+
+		if(a){  // you could also do this: if(a == true){
+			console.log("Truthy!");
+		}else{
+			console.log("falsey!");
+		}
+
+		// You could abbreviate the above if statemt like so (using the conditional/ternery operator):
+		//console.log(a ? "Truthy!" : "Falsey!")
+
+		
+		// falsey VALUES
+
+		// 0 is condisered to be false
+		if(0 == false){
+			console.log("True - zero is equal to false");
+		}
+		
+
+		// you can (usually) check to see if a variable has been initialized
+		// by checking to see if it has a 'truthy' value
+		let name; // UNDEFINED - a variable that is declared but not initialized is undefined
+		
+		let input = prompt("Would you be willing to enter your name (y/n)?");
+		if(input == "y"){
+			name = prompt("What is your name?");
+		}
+
+		if(name){
+			console.log("name has been initialized");
+		}else{
+			console.log("name has NOT been initialized");
+		}
+
+
+		// NOTE: there can be a problem with example above if you
+		// are expecting the user to input a number rather than a name (string)
+		// See below for more info
+
+
+		// Checking for strict equality
+		// The equality operator == checks to see if two values are the same
+		// but it doesn't check to see if the data types are the same
+		if(7 == "7"){
+			console.log("7 is equal to \"7\"");
+		}
+
+		// The 'strict equality' operator is ===
+		// It will result in true if the value AND the data type of each operand is true
+		if(7 === "7"){
+
+		}else{
+			console.log("7 is not strictly equal to \"7\"")
+		}
+
+		// SOME JS DEVELOPERS THINK YOU SHOULD ALWAYS USE ===
+		// AND NEVER USE == SO THAT YOU ARE VERY AWARE OF THE DATA TYPES THAT YOU ARE USING
+
+
+
+
+		// OPTIONAL 
+		// The problem with checking a variable for a truthy value:
+		// the approach may not work when dealing with numbers (if 0 is a valid value)
+		let number; // undefined
+		input = prompt("Do you like numbers (y/n)?")
+		if(input == "y"){
+			number = parseInt(prompt("Enter your favorite number"));
+		}
+		
+
+		if(number){ // this won't work if number is 0
+			console.log(number + " is a fine number!")
+		}
+
+		if(number || number == 0){
+			console.log(number + " is a fine number!")
+		}
+
+
+
+		// Here's a weird one (apparently undefined is not 'loosely equal' to false)
+		// https://stackoverflow.com/questions/19277458/why-does-undefined-equals-false-return-false
+		let someUndefinedVariable;
+		if(someUndefinedVariable == false){
+			console.log("someUndefinedVariable is false")
+		}else{
+			console.log("someUndefinedVariable is NOT false")
+		}
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

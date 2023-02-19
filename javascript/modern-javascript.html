@@ -151,6 +151,30 @@
         fdhsjakhjdksahfjkdshaklakjsaklfjdfhieuhfiebnunvuibsajv
         kcbxzvduisnaklvbjcobaubewab voa;o`;
 
+        /////////////////////////////
+        //for-in
+        //for looping through the properties of an object
+        //////////////////////////////////////////////////////
+
+        const potato = {
+            color: "brown", 
+            size: "large", 
+            roll: ()=>{alert("rolling...")},
+            stage: "growing"
+        }
+        console.log(potato.color);
+        console.log(potato["color"]);//same thing
+        potato.roll();
+
+        for(keyName in potato){
+            //logs the name of the property (or key)
+            console.log(keyName)
+            //logs the property (or key) value
+            console.log(potato[keyName])
+        }
+
+
+
     });
     </script>
 </head>
