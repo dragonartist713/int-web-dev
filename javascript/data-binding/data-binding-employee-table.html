@@ -10,44 +10,53 @@
 		// Then the students should finish the table by showing columns for each property
 		// (inlcuding the table header columns)
 		const employeeData = [
-			{"id": 1, "firstName": "Bob", "lastName": "Smith", email: "bob@acme.com", "salary": 45000, "hireDate":"3/12/2009", password: "xxx"},
-			{"id": 2, "firstName": "Betty", "lastName": "Jones", email: "betty@acme.com", "salary": 55000, "hireDate":"5/11/2017", password: "xxx"},
-			{"id": 3, "firstName": "Sally", "lastName": "Johsnson", email: "sally@acme.com", "salary": 65000, "hireDate":"5/21/2016", password: "xxx"},
-			{"id": 4, "firstName": "Ted", "lastName": "Thomas", email: "ted@acme.com", "salary": 45000, "hireDate":"9/14/2019", password: "xxx"},
-			{"id": 5, "firstName": "Jean", "lastName": "Parker", email: "jean@acme.com", "salary": 55000, "hireDate":"1/17/2017", password: "xxx"},
-			{"id": 6, "firstName": "Larry", "lastName": "Corker", email: "larry@acme.com", "salary": 65000, "hireDate":"8/19/2012", password: "xxx"},
-			{"id": 7, "firstName": "Morris", "lastName": "Smith", email: "morris@acme.com", "salary": 45000, "hireDate":"5/16/2002", password: "xxx"},
-			{"id": 8, "firstName": "Buster", "lastName": "Jenkins", email: "buster@acme.com", "salary": 55000, "hireDate":"2/23/2019", password: "xxx"},
-			{"id": 9, "firstName": "Grace", "lastName": "Anderson", email: "grace@acme.com", "salary": 85000, "hireDate":"05/03/2017", password: "xxx"}
+			{"id": 1, "firstName": "Bob", "lastName": "Smith", "email": "bob@acme.com", "salary": 45000, "hireDate":"3/12/2009", password: "xxx"},
+			{"id": 2, "firstName": "Betty", "lastName": "Jones", "email": "betty@acme.com", "salary": 55000, "hireDate":"5/11/2017", password: "xxx"},
+			{"id": 3, "firstName": "Sally", "lastName": "Johsnson", "email": "sally@acme.com", "salary": 65000, "hireDate":"5/21/2016", password: "xxx"},
+			{"id": 4, "firstName": "Ted", "lastName": "Thomas", "email": "ted@acme.com", "salary": 45000, "hireDate":"9/14/2019", password: "xxx"},
+			{"id": 5, "firstName": "Jean", "lastName": "Parker", "email": "jean@acme.com", "salary": 55000, "hireDate":"1/17/2017", password: "xxx"},
+			{"id": 6, "firstName": "Larry", "lastName": "Corker", "email": "larry@acme.com", "salary": 65000, "hireDate":"8/19/2012", password: "xxx"},
+			{"id": 7, "firstName": "Morris", "lastName": "Smith", "email": "morris@acme.com", "salary": 45000, "hireDate":"5/16/2002", password: "xxx"},
+			{"id": 8, "firstName": "Buster", "lastName": "Jenkins", "email": "buster@acme.com", "salary": 55000, "hireDate":"2/23/2019", password: "xxx"},
+			{"id": 9, "firstName": "Grace", "lastName": "Anderson", "email": "grace@acme.com", "salary": 85000, "hireDate":"05/03/2017", password: "xxx"}
 		];
 			
 		const createEmployeeTable = (employees) => {
 			const table = document.createElement("table");
 			table.setAttribute("border", 1);
 
-			const headerRow = document.createElement("tr");
-			let th = document.createElement("th");
-			th.innerHTML = "<h3>  ID  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  First Name  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  Last Name  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  Email  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  Hired On  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  Salary  </h3>";
-			headerRow.appendChild(th);
-			th = document.createElement("th");
-			th.innerHTML = "<h3>  Password  </h3>";
-			headerRow.appendChild(th);
-			table.appendChild(headerRow);
+			table.innerHTML = `<tr>
+									<th>EmpID</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>E-mail</th>
+									<th>Salary</th>
+									<th>Hire Date</th>
+									<th>Password</th>
+								</tr>`
+			// const headerRow = document.createElement("tr");
+			// let th = document.createElement("th");
+			// th.innerHTML = "<h3>  ID  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  First Name  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  Last Name  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  Email  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  Hired On  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  Salary  </h3>";
+			// headerRow.appendChild(th);
+			// th = document.createElement("th");
+			// th.innerHTML = "<h3>  Password  </h3>";
+			// headerRow.appendChild(th);
+			// table.appendChild(headerRow);
 
 			employees.forEach((employee) => {
 				const tr = document.createElement("tr");

@@ -17,19 +17,20 @@
 		// Notice in the log that it's a DOMStringMap object (so many types of objects to get to know!)
 		const dogListItems = document.querySelectorAll(".dogs li");
 		//const dogListItems = document.querySelectorAll("[data-dog-id = '1']");
-		console.log(dogListItems);
+		//console.log(dogListItems);
 		
 		
 		// Note that in the HTML code the data attributes are kabob-case
 		// But the properties of li.dataset is camelCase (data-dog-breed in the HTML code becomes li.dataset.dogBreed 		
-		dogListItems.forEach(li => console.log(li.dataset.dogBreed));
+		dogListItems.forEach(li => console.log(li.dataset.dogId, li.dataset.dogBreed));
 
 		// Write an event handler function that alerts the dogId 
 		// and dogBreed values from the dataset of the target
 		const showDogDetails = (evt) => {
-			const id = evt.target.dataset.dogID;
+			const id = evt.target.dataset.dogId;
 			const breed = evt.target.dataset.dogBreed;
 			alert(id + " " + breed);
+			//console.log(evt.target.dataset.dogId, evt.target.dataset.dogBreed)
 		};
 		
 
@@ -108,7 +109,7 @@
 	<h2>Book List</h2>
 	<div id="book-list-container">
 		<ul class="books">
-			<li data-id="27" data-title="Harry Potter" data-author="JK Rowlings">Harry Potter</li>
+			<li data-id="27" data-title="Harry Potter" data-author="JK Rowling">Harry Potter</li>
 			<li data-id="34" data-title="The Sun Also Rises" data-author="Hemmingway">The Sun Also Rises</li>
 		</ul>
 	</div>

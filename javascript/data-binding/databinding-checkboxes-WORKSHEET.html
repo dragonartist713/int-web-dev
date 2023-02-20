@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript">
+	window.addEventListener("load", () => {
+
+		// Here's the data we'll be working with 
+		// An array of Employee objects (note the Employee constructor function is below)
+		const employees = [
+			new Employee("111", "Bo", "Smootney", ["IT", "Sales"]),
+			new Employee("116", "Berla", "Vue", ["Sales", "Marketing", "IT"]),
+			new Employee("101", "Harper", "McFee", ["IT", "Sales","Human Resources"])
+		];
+
+		function Employee(id, firstName, lastName, departments){
+			this.id = id;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.departments = departments;
+		}
+
+
+
+		/*
+		Problem 1
+		Create a function that takes an array of Employee objects as a parameter.
+		The function should return a UL element object
+		that contains an LI for each employee in the array.
+		Display the first and last name of the employee in each LI
+		*/
+		const createEmpList = (empArray) => {
+			const ul = document.createElement("ul");
+
+			// TODO: create an LI for each employee in the array
+			empArray.forEach((emp) => {
+				let li = document.createElement("li")
+				li.innerHTML = `${emp.firstName} ${emp.lastName}`
+				ul.append(li)
+			})
+
+			return ul;
+		}
+
+
+		// Try out the function
+		const empList = createEmpList(employees);
+		console.log(empList);
+
+
+		/*
+		Problem 2
+		Get a handle on the div with the ID of employeeList
+		Then append empList to it.
+		*/
+		document.querySelector("#employeeList").append(empList)
+
+		
+
+		/*
+		Problem 3
+		Write a function that takes an array of strings as a parameter, like this one:
+			
+			const allDepartments = ["Sales", "Marketing", "IT", "Human Resources", "Accounting"];
+		
+		In the body of he function create a LABEL and a CHECKBOX for each string in the array
+		The label should display the string (use it's innerHTML property)
+		The checkbox should have the following attributes set (use setAttribute())
+				type=checkbox
+				value=the current string
+				name=departments
+
+		The function should return a div that contains the label and the checkbox
+		(You'll have to create the div and append the label and checkbox, then return the div)
+		*/
+
+		const allDepartments = ["Sales", "Marketing", "IT", "Human Resources", "Accounting"];
+
+		const createDepartmentCheckBoxes = (departments) => {
+			const div = document.createElement("div");
+
+			//TODO: create a label and checkbox and append them both to div
+			departments.forEach(dept => {
+				const label = document.createElement("label")
+				label.innerHTML = dept
+
+				const chkBox = document.createElement("input")
+				chkBox.setAttribute("type", "checkbox")
+				chkBox.setAttribute("value", dept)
+				chkBox.setAttribute("name", "departments")
+
+				div.append(chkBox, label)
+			})
+
+			return div;
+		};
+
+
+		const divCheckBoxes = createDepartmentCheckBoxes(allDepartments);
+		console.log(divCheckBoxes);
+
+
+		// Problem 4
+		// get a handle on the div that has it's id attribute set to 'departments'
+		// then append divCheckboxes to it
+
+		document.querySelector("#departments").append(divCheckBoxes)
+
+
+		
+
+		/*
+		//Problem 5
+		Write a function that takes an employee object as a parameter
+		and binds it's data to the form in the body of the page
+		*/
+		function bindToForm(employee){
+			
+			//if employee depts contains value of checkbox, box = checked
+		}
+
+		// Try it out:
+		bindToForm(employees[0]);
+
+
+
+	}); // end of window load handler
+	</script>
+	
+
+</head>
+<body>
+
+<h2>Employees</h2>
+<div id="employeeList"></div>
+
+<h2>Selected Employee</h2>
+<form id="employeeForm" method="POST" action="http://www.wtc-web.com/form-handler.php">
+	
+	<label>Employee Id:</label>
+	<input type="text" name="employeeId" readonly> (readonly - should be hidden)
+	<br>
+
+	<label>First Name:</label>
+	<input type="text" name="firstName">
+	<br>
+	<label>Last Name:</label>
+	<input type="text" name="lastName">
+	<br>
+	<label>Departments:</label>
+	<div id="departments">
+		<!--
+		<input type="checkbox" value="Sales" name="departments[]">
+		<label>Sales</label>
+		<input type="checkbox" value="Marketing" name="departments[]">
+		<label>Marketing</label>
+		<input type="checkbox" value="IT" name="departments[]">
+		<label>IT</label>
+		<input type="checkbox" value="Human Resources" name="departments[]">
+		<label>Human Resources</label>
+		-->
+	</div>
+	<input type="submit" value="Send">
+	<input type="button" name="btnClear" value="Clear Form">
+</form>
+
+
+</body>
+</html>
