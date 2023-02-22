@@ -20,17 +20,19 @@
     	// Keep in mind that when using methods of an API, you should understand:
     	// 1. What the method does (but not how it does it)
     	// 2. What params does the method take (and the data types of each param)
-    	// 3. Wht the method returns (including it's data type)
+    	// 3. What the method returns (including it's data type)
     	
     	// Here's a good reference on the Date API:
     	// https://www.w3schools.com/jsref/jsref_obj_date.asp
 
     	// Create a Date object calling the Date constructor function
     	// If you don't pass in any parameters/arguments it defaults to the current date and time
-    	const today = new Date(); 
+    	const today = new Date();
+		console.log(today)
 
     	// You can pass in parameters for year, month, day, hours, minutes, seconds, milliseconds
-    	const july1 = new Date(2022, 6, 1); // BE CAREFUL: notice that month numbers start at 0
+    	const july1 = new Date(2023, 6, 1); // BE CAREFUL: notice that month numbers start at 0
+		console.log(july1)
 
     	// You can pass a timestamp into the constructor
     	const dDay = new Date(-806958000000); // notice it's a negative number, so it's before the epoch
@@ -41,31 +43,51 @@
     	someDate.setFullYear(2000);
     	someDate.setMonth(0); // sets the month to January
     	someDate.setDate(1); // sets the day of the month
+		console.log(someDate)
 
     	// You can also use 'get' methods to extract parts of a date:
     	console.log(today.getDate());
     	console.log(today.getMonth());
     	console.log(today.getFullYear());
+		
 
     	// Becareful of the difference between getDay() and getDate()
     	console.log(today.getDate()); // shows the day of the month (1-31)
     	console.log(today.getDay()); // returns 0-6 where 0 = Sun, 1 = Mon, etc.
+
+		const getDayName = (dateObj) => {
+			const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+			return days[dateObj.getDay()]
+		}
+		console.log(getDayName(today))
+
+		const bday = new Date(1989, 10, 16)
+		console.log(getDayName(bday))
 
     	// The getTime() method returns the number of milliseconds that have elapsed since the epoch.
     	console.log(today.getTime());
 
     	// To figure out the difference between to dates, you can subtract the milliseconds
     	let differenceInMS = july1.getTime() - today.getTime();
+		const days2July1 = differenceInMS/1000/60/60/24
+		console.log(days2July1)
 
     	// as a short cut, you can just subtract one date from another like this:
     	differenceInMS = july1 - today;
     	console.log(`Only ${differenceInMS} milliseconds until July 1`);
 
+		//toDateString() is another useful method to display dates in a format that humans easily recognize
+		console.log(today.toDateString());
+		
     	//Note that I added code at the top and bottom of this page to figure out how long it takes to load 
 
     	// Another useful method to display dates in a format that humans easily recognize
-    	console.log(today.toDateString());
-
+    	
+		window.addEventListener("load", () => {
+			const today = new Date();
+			const span = document.getElementById("year")
+			span.innerHTML = today.getFullYear()
+		})
 
 
     </script>
@@ -202,6 +224,9 @@ myDate.setFullYear(1999);</code></pre>
 		If you do the worksheet that accompanies this lesson, you'll discover a few other quirks when working with date objects.
 	</p>
 </body>
+<footer>
+	&copy; <span id="year"></span>
+</footer>
 </html>
 <script type="text/javascript">
 

@@ -6,11 +6,17 @@
 	<script>
 	window.addEventListener("load", ()=>{
 
+		// Reminder
+		// when using a method (or function), you must understand 3 things:
+		// 1. What it does do??? (not HOW it does it)
+		// 2. What parameters does it take (including their data types)
+		// 3. What does it return (including its data type)
 
 		// The indexOf() method
 		// Come up with an example that demonstrates the indexOf() method of a string
 		const someString = "https://www.acme.com/products/some-product-page.html";
-		console.log(someString.indexOf("www"));
+		const position = someString.indexOf("www")
+		console.log(position);
 		console.log(someString.indexOf("foo"));
 		
 		
@@ -31,14 +37,14 @@
 
 
 		// trim()
-		const str = " xxx    ";
+		const str = " xxx    \n\t";
 		const trimStr = str.trim();
-		console.log(trimStr);
+		console.log(str.length, trimStr.length);
 		
 
 		// replace();
 		const str2 = "It's raining cats and dogs";
-		console.log(str2.replace("cats", "hamsters"));
+		console.log(str2.replace("dogs", "hamsters"));
 		
 
 		// how about a global replace 
@@ -48,8 +54,9 @@
 
 
 		// split()
-		
 
+		let urlParts = someString.split("/")
+		console.log(urlParts)
 		
 		// Write a function to extract the domain name out of a url
 		// Strategy - first split on the double wacks (//)
