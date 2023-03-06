@@ -78,43 +78,47 @@
     <div class="container-lg">
       <h2>User Table</h2>
       
-      <table>
+      <table class="table table-light table-striped">
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Active</th>
-          <th></th>
+          <th scope="col"></th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Active</th>
+          <th scope="col"></th>
         </tr>
         <tr>
+          <th scope="row"><i class="bi bi-file-person"></i></th>
           <td>Bob</td>
           <td>Smith</td>
           <td>bob@smith.com</td>
           <td>Admin</td>
           <td>Yes</td>
           <td>
-            <button type="button">Edit</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
           </td>
         </tr>
         <tr>
+          <th scope="row"><i class="bi bi-file-person"></i></th>
           <td>Betty</td>
           <td>Smith</td>
           <td>betty@smith.com</td>
           <td>Standard User</td>
           <td>Yes</td>
           <td>
-            <button type="button">Edit</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
           </td>
         </tr>
         <tr>
+          <th scope="row"><i class="bi bi-file-person"></i></th>
           <td>Barney</td>
           <td>Smith</td>
           <td>barney@smith.com</td>
           <td>Standard User</td>
           <td>No</td>
           <td>
-            <button type="button">Edit</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">Edit</button>
           </td>
         </tr>                  
       </table>
@@ -124,31 +128,59 @@
 
   <section id="form">
     <div class="container-lg">
-      <h2>User Form</h2>
+      <div class="text-left">
+        <h2>User Form</h2>
+      </div>
+      <div class="row">
+        <form class="user-form" action="http:www.wtc-web.com/form-handler.php" method="POST">
+          <input type="hidden" name="user_id" class="form-control">
+          
+          <label for="first_name" class="form-label">First Name:</label>
+          <div class="mb-2 input-group">
+            <span class="input-group-text">
+              <i class="bi bi-person-fill"></i>
+            </span>
+            <input type="text" name="first_name" class="form-control" placeholder="Bob">
+          </div>
+          <label for="last_name" class="form-label">Last Name:</label>
+          <div class="mb-2 input-group">
+            <span class="input-group-text">
+              <i class="bi bi-person-fill"></i>
+            </span>
+          <input type="text" name="last_name" class="form-control" placeholder="Everyman">
+          </div>
 
-      <form class="user-form" action="http:www.wtc-web.com/form-handler.php" method="POST">
-        <input type="hidden" name="user_id">
-        <label>First Name:</label>
-        <input type="text" name="first_name">
-        <label>Last Name:</label>
-        <input type="text" name="last_name">
-        <label>Email:</label>
-        <input type="email" name="email">
-        <label>Password:</label>
-        <input type="password" name="password">
-        <label>User Role:</label>
-        <select name="role">
-          <option value="1">Standard User</option>
-          <option value="2">Admin</option>
-        </select>
-        <label>
-          Active:
-          <input type="checkbox" name="active">
-        </label>
-        <input type="submit" value="SAVE">
-        <input type="button" class="btnCancel" value="CANCEL">
-      </form>
+          <label for="email" class="form-label">Email:</label>
+          <div class="mb-2 input-group">
+            <span class="input-group-text">
+              <i class="bi bi-envelope-fill"></i>
+            </span>
+            <input type="email" name="email" class="form-control" placeholder="someone@example.com">
+          </div>
+          <label for="password" class="form-label">Password:</label>
+          <div class="mb-2 input-group">
+            <span class="input-group-text">
+              <i class="bi bi-asterisk"></i>
+            </span>
+            <input type="password" name="password" class="form-control" placeholder="**************">
+          </div>
 
+          <label for="role" class="form-label">User Role:</label>
+          <div class="mb-2 input-group">
+            <select name="role" class="form-select mb-2">
+              <option value="1">Standard User</option>
+              <option value="2">Admin</option>
+            </select>
+
+            <label for="active" class="form-label ms-4">Active:</label>
+            <input type="checkbox" name="active" class="ms-2 mb-3">
+          </div>
+
+          <input type="submit" value="SAVE" class="btn btn-success">
+          <input type="button" class="btnCancel btn btn-danger" value="CANCEL">
+
+        </form>
+      </div>
     </div>
   </section>
 

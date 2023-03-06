@@ -20,13 +20,13 @@
 		    reader.addEventListener("load", function(e) {
 		  	  	const text = e.target.result;
 				console.log(text);
-				// console.log(typeof text); // remember it's a text file, so it's a string.
-				// const data = JSON.parse(text);
-				// console.log(data);
+				console.log(typeof text); // remember it's a text file, so it's a string.
+				const data = JSON.parse(text);
+				console.log(data);
 				
-				// // convert the data back to a string
-				// const str = JSON.stringify(data);
-				// console.log(str);
+				// convert the data back to a string
+				const str = JSON.stringify(data);
+				console.log(str);
 			});
 
 		    reader.readAsText(file); 

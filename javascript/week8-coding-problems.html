@@ -1,0 +1,230 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Week 8 Coding Problems</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+  	
+  	div.answer{ 
+  		background-color: lightgray; 
+  		margin-bottom: 25px; 
+  	}
+  	
+  	#frm label{
+  		display: block;
+  	}
+
+  	#frm input[type=radio] + label{
+  		display: inline;
+  	}
+  	
+  	h4{ 
+  		margin-top: 40px;
+  	}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+  window.addEventListener("load", ()=>{
+
+
+	// Problem 1
+	// Declare a constant named 'friends' 
+	// and initialize it to an array of objects with the following
+	// properties(keys) and values:
+	
+	//  id 		name 			age 		eyeColor	
+	//  ----------------------------------
+	//  101		Bob				 22				blue
+	//  111		Mary			 41				blue
+	//  114		Betty			 22				brown
+
+
+
+
+
+	// Problem 2
+	// Loop through the friends array from the previous problem
+	// and create an LI DOM element for each object in the array.
+	// Display the friend name inside the LI element
+	// Add data- attributes to each element for the id, age, and eyeColor
+	// Remember that to add data- attributes with JavaScript, you must work with 
+	//  the 'dataset' property of a DOM element object 
+	// Then append each LI to the 'friend-list below'
+	// Hint: when you are done, the page should include the following HTML after it loads:
+	//
+	//  <ul class="friend-list">
+	// 		<li data-id="101" data-age="22" data-eye-color="blue">Bob</li>
+	// 		<li data-id="111" data-age="41" data-eye-color="blue">Mary</li>
+	// 		<li data-id="114" data-age="11" data-eye-color="brown">Betty</li>
+	// 	</ul>
+
+
+	// Problem 3
+	// Use prompt() to ask the user to enter his/her name.
+	// Then store the user input in localStorage with a key of 'userName'.
+
+
+	// Problem 4
+	// Convert the data in the variable below into a JSON string:
+	// And then store the string on localStorage with a key of 'cats'
+	const myCats = [
+		{id: 1, name: "Felix", age: 7},
+		{id: 2, name: "Buster", age: 11},
+		{id: 3, name: "Garfield", age: 7}
+	]; 
+
+
+
+	// Problem 5
+	// Fetch the data for the 'cats' key from localStorage
+	// Then convert it from a JSON string into an array of objects
+	// Then create a table to display the all the properties of each cat
+	// Make sure to include column headers in the table
+	// Finally, append the table to the div on the page with an id of 'cat-data'
+
+
+
+
+
+	// Problem 6 
+	// Bind a pizza order object to a form:
+	// Use the PizzaOrder constructor below to create a pizza order with the following data:
+	// customerName = Bob
+	// date = 2022-02-22
+	// size = large
+	// type = pepperoni
+
+
+	// After you create the pizza order object, bind its data to the form below:
+
+	function PizzaOrder(customerName, date, size, type){
+		this.customerName = customerName;
+		this.date = date;
+		this.size = size;
+		this.type = type;
+	}
+	
+	
+	
+
+});	
+  </script>
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h1 class="text-white">Int Web Dev - Week 8 Questions and Coding Problems</h1>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+    	    	
+	  <h3>Question 1</h3>
+		<p>
+			What is <b>data binding</b> (make sure to explain both aspects of data binding - that data binding goes in two ways)? 
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		
+		<h3>Question 2</h3>
+		<p>
+			What are some rules for encoding data in <b>JSON</b> format?
+			BTW - Here's a <a href="https://www.w3schools.com/js/js_json.asp" target="_blank">really good overview of JSON</a>.
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 3</h3>
+		<p>
+			What method of the JSON API would you use to convert an array of objects into a JSON string?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 4</h3>
+		<p>
+			What method of the JSON API would you use to convert a JSON encoded string into an array of objects?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		<h3>Question 5</h3>
+		<p>
+			What does it mean to <b>encode</b> data?
+			Other than JSON, what are some common ways to encode data?
+		</p>
+		<div class="p-2 text-dark answer">
+			Put your answer here
+		</div>
+
+		
+
+				
+		<h2>Coding Problems</h2>
+		<p>
+			There are coding problems for you to do in the script element on the page.
+		</p>
+
+		<h4>Friend List (Problem 2)</h4>
+		<ul class="friend-list"></ul>
+
+		
+		<h4>Cats (Problem 5)</h4>
+		<div id="cat-data"></div>
+		
+
+		<h4>Pizza Order Form (Problem 6)</h4>
+		<div class="card border-primary border-2">
+            <div class="card-header text-start text-primary">Sal's Pizzaria</div>
+            <div class="card-body text-start">
+              <h4 class="card-title">Pizza Order Form</h4>
+
+				<form id="frm" method="POST" action="http:/www.wtc-web.com/form-handler.php">
+					<label>Customer Name:</label>
+					<input type="text" name="customerName">
+					<label>Date:</label>
+					<input type="date" name="orderDate">
+					<label>Size:</label>
+					<input type="radio" name="size" value="small"><label>Small</label>
+					<input type="radio" name="size" value="medium"><label>Medium</label>
+					<input type="radio" name="size" value="large"><label>Large</label>
+					<label>Type:</label>
+					<select name="type">
+						<option>Sausage</option>
+						<option>Pepperoni</option>
+						<option>Mushroom</option>
+					</select>
+					<br>
+					<input type="submit" value="SEND">
+				</form>
+			</div>
+		</div>
+	</main>
+  </div>
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+   <footer class="container-xl bg-dark text-white">&copy; 2023 Niall Kader</footer> 
+  </div>
+</body>
+</html>
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>File Input</title>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+		// get a handle on the file input
+		const fileInput = document.getElementById("fileInput");
+
+		// listen for 'change' events (when the user selects a file)
+		fileInput.addEventListener("change", (evt) => {
+			
+			// get the data from the selected file and pass it to the callback function
+		    const file = evt.target.files[0];
+		    console.log(`About to open ${file.name}`);
+			console.log(file)
+
+		    // use a FileReader object to read in the contents of a file
+		    const reader = new FileReader();
+
+		    // The 'load' method occurs when the fileInput has finished loading the text from the file
+		    reader.addEventListener("load", function(e) {
+			  var data = e.target.result;
+			  console.log(`Here are the contents of ${file.name}`)
+			  console.log(data);
+			});
+
+		    // call readAsText() to start the process of reading the contents of the file
+		    reader.readAsText(file); 
+		    // Note that there are other 'readAs...' methods
+		    // for reading non-text files, such as readAsBinaryString()
+			
+		});
+
+	})
+	</script>
+</head>
+<body>
+	<h1>File Input</h1>
+	<p>
+		In JavaScript you can read the contents of a file on the user's hard drive by
+		putting a <b>file input</b> on the page.
+		This allows the user to select which file will be read,
+		which is an important security feature.
+		Without this feature in place, JavaScript code could potentially read any file
+		on the user's hard drive.
+	</p>
+
+	<p><b>Select a text file to read into the JavaScript program on this page (then check the console log):</b></p>
+	<input type="file" id="fileInput" multiple accept=".csv, .txt">
+
+	<h1>File Output</h1>
+	<p>
+		Browsers will not allow JavaScript to write to a file on the user's hard drive.
+		If they did, then users would be in danger of having a malicious file planted on their hard drive by simply visiting a page.
+	</p>
+
+</body>
+</html>
