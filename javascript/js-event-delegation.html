@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Event Delegation</title>
+	<script type="text/javascript">
+		var bookData = [
+			{"id":1,"title":"For Whom the Bells Toll","author":"Hemmingway"},
+			{"id":2,"title":"Harry Potter","author":"JK Rowlings"},
+			{"id":3,"title":"The Great Gatsby","author":"Fitzgerald"}
+		];
+
+		window.addEventListener("load",function(){
+
+			document.getElementById("book-list-container").appendChild(createBookList());
+			
+			function createBookList(){
+				
+				var ul = document.createElement("ul");
+				var li, h3, btn;
+
+				for(var x=0; x < bookData.length; x++){
+
+					var b = bookData[x];
+					
+					li = document.createElement("li");
+
+					h3 = document.createElement("h3");
+					h3.innerHTML = b.title + " by " + b.author;
+					
+					btn = document.createElement("input");
+					btn.setAttribute("type", "button");
+					btn.setAttribute("value", "EDIT");
+					//btn.setAttribute("data-book-id", b.id);
+					btn.dataset.bookId = b.id;
+					//btn.book = b; //here's another way that you could bind data to the button
+					// btn.addEventListener('click', function(evt){
+					// 	console.log(evt.target);
+					// 	//console.log("SELECTED BOOK ID: " + evt.target.getAttribute("data-book-id"));
+					// 	console.log("SELECTED BOOK ID: " + evt.target.dataset.bookId);
+
+					//});
+
+					li.appendChild(h3);
+					li.appendChild(btn);
+					ul.appendChild(li);
+				}
+
+				ul.addEventListener("click", (evt) => {
+					console.log(evt.target, evt.currentTarget)
+				})
+
+				return ul;
+			}
+						
+		});
+	</script>
+</head>
+<body>
+
+	<div id="book-list-container"></div>
+
+</body>
+</html>
