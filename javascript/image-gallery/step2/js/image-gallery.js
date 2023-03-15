@@ -2,9 +2,9 @@ window.addEventListener('load', function(){
 
   // Here's the data that we'll use to populate the image gallery
   const images = [
-    {path: "../images/Desert.jpg", description:"A hot desert.", artist:"Bob Smith", "date": "3/31/2018", tags:["dessert", "landscape"]},
-    {path: "../images/Lighthouse.jpg", description:"A lighthouse on the ocean", artist:"Betty Carter", "date": "2/01/2014", tags:["oceian", "landscape"]},
-    {path: "../images/Tulips.jpg", description:"Some beautiful tulips", artist:"Bob Smith", "date": "2/14/2015", tags:["plants", "tulips", "landscape"]}
+    {path: "../images/Jellyfish.jpg", description:"A cool jelly fish.", artist:"Betty Carter", "date": "3/31/2019", tags:["animals", "ocean", "fish"]},
+    {path: "../images/Koala.jpg", description:"A cute koala bear", artist:"Bob Smith", "date": "6/11/2020", tags:["animals", "bears"]},
+    {path: "../images/Penguins.jpg", description:"Lots of penguins", artist:"Jim Johansen", "date": "1/13/2018", tags:["animals", "ocean", "birds"]}
   ];
 
 

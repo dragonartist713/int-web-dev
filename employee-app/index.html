@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data Binding</title>
+
+	<style type="text/css">
+		.validation-errors{
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+		
+		//////////////////////////////////
+		// PART 1 - working with the data
+		//////////////////////////////////
+
+		function Employee(id, firstName, lastName, departments){
+			this.id = id;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.departments = departments;
+
+			// Note that the isValid method uses the optional chaining operator (?)
+			this.isValid = function(){
+				return this.firstName && this.lastName && this.departments?.length > 0;
+			}
+		}
+
+		const employees = [
+			new Employee(3, "Sue", "Lee", ["Sales", "Human Resources"]),
+			new Employee(6, "Lee", "Wen", ["IT", "Human Resources"]),
+			new Employee(8, "Bart", "Smith", ["IT", "Marketing"])
+		];
+
+		// Run some tests...
+		// const bob = new Employee(11, "Bob", "Smith", ["Sales"])
+		// if(bob.isValid()){
+		// 	console.log("valid")
+		// }else{
+		// 	console.log("not valid")
+		// }
+
+		// Get Employee by ID
+		const getEmployeeById = (id) => {
+			return employees.find((employee) => {
+				return employee.id == id
+			})
+		}
+		// console.log(getEmployeeById(3))
+
+		
+		// Generate a new ID (when inserting a new employee)
+		const getNewId = () => {
+			let maxId = employees.reduce((max, employee) => { return Math.max(max, employee.id) }, 0)
+			return maxId + 1;
+		}
+		// console.log(getNewId())
+
+		// Insert a new employee
+		const insertEmployee = (newEmp) => {
+			if(newEmp.isValid()){
+				newEmp.id = getNewId()
+				employees.push(newEmp)
+			}else{
+				console.log("Insert Failed, invalid employee.")
+			}
+		}
+		// const ted = new Employee(0, "Ted", "Dunkin", ["Sales"])
+		// insertEmployee(ted)
+		// console.log(employees)
+		
+		
+		// Update an existing employee
+		const updateEmployee = (updatedEmp) => {
+			if(updatedEmp.isValid()){
+				const originalEmp = getEmployeeById(updatedEmp.id)
+				originalEmp.firstName = updatedEmp.firstName
+				originalEmp.lastName = updatedEmp.lastName
+				originalEmp.departments = updatedEmp.departments
+			}else{
+				console.log("Update Failed, invalid employee.")
+			}
+		}
+		// ted.firstName = "Theodore"
+		// ted.departments = ["IT", "Sales"]
+		// updateEmployee(ted)
+		// console.log(employees)
+
+		
+		// Delete an employee (by id)
+		const deleteEmployee = (id) => {
+			const index = employees.findIndex((employee) => {return employee.id == id})
+			employees.splice(index, 1)
+		}
+		// deleteEmployee(3)
+		// console.log(employees)
+
+
+
+		//////////////////////
+		// Part 2 - The LIST
+		//////////////////////
+
+		// Create a list of employees
+		const createEmployeeList = (empArray) => {
+			const ol = document.createElement("ol")
+			empArray.forEach(employee => {
+				// const li = document.createElement("li")
+				// li.innerHTML = employee.firstName + " " + employee.lastName
+				const li = createEmployeeListItem(employee)
+				ol.append(li)
+			});
+			return ol
+		}
+		
+		const employeeList = createEmployeeList(employees)
+		const divList = document.querySelector("#employeeList")
+		divList.append(employeeList)
+
+		// Create a list item (LI) for an employee (can't use an arrow function!!!)
+		//const createEmployeeListItem = (emp) => {
+		function createEmployeeListItem(emp){
+			const li = document.createElement("li")
+			li.dataset.employeeId = emp.id
+			li.innerHTML = emp.firstName + " " + emp.lastName
+
+			const btnEdit = document.createElement("input")
+			btnEdit.setAttribute("type", "button")
+			btnEdit.setAttribute("value", "EDIT")
+			btnEdit.setAttribute("name", "btnEdit")
+
+			const btnDelete = document.createElement("input")
+			btnDelete.setAttribute("type", "button")
+			btnDelete.setAttribute("value", "DELETE")
+			btnDelete.setAttribute("name", "btnDelete")
+			// btnEdit.addEventListener("click", (evt)=>{
+			// 	//console.log(evt.target)
+			// 	const selectedEmpId = evt.target.closest("li")?.dataset.employeeId
+			// 	if(selectedEmpId){
+			// 		console.log("Selected emp id: " + selectedEmpId)
+			// 	}
+			// })
+			li.append(btnEdit)
+			li.append(btnDelete)
+			return li
+		}
+
+				
+		//////////////////////
+		// Part 3 - The FORM
+		//////////////////////
+
+		// Get handles on UI elements
+		const empForm = document.querySelector("#employeeForm");
+		const txtEmployeeId = empForm.querySelector("[name=employeeId]");
+		const txtFirstName = empForm.querySelector("[name=firstName]");
+		const txtLastName = empForm.querySelector("[name=lastName]");
+		const chkBoxes = empForm.querySelectorAll("[name='departments[]']");
+		const btnClear = empForm.querySelector("[name=btnClear]");
+		
+		// MAKE SURE THEY ALL GOT INITIALIZED PROPERLY...
+		//console.log(txtEmployeeId,txtFirstName,txtLastName,chkBoxes,btnClear);
+
+		
+		// Reset the form
+		btnClear.addEventListener("click", ()=>{
+			empForm.reset()
+		})
+
+
+		// Bind an employee to the form
+		const bindEmployeeToUI = (empObj) => {
+			txtEmployeeId.value = empObj.id
+			txtFirstName.value = empObj.firstName			
+			txtLastName.value = empObj.lastName			
+
+			chkBoxes.forEach((chk)=>{
+				chk.checked = false
+				if(empObj.departments.includes(chk.value)){
+					chk.checked = true
+				}
+			})
+		}
+
+		// Bind the first employee to the form
+		bindEmployeeToUI(employees[0])
+
+		// Handle form submits
+		empForm.addEventListener("submit", (evt)=>{
+			evt.preventDefault()
+			if(validateInput()){
+				// console.log("input is valid")
+				const employee = getEmployeeFromUI()
+				if(employee.id > 0){
+					updateEmployee(employee)
+				}else{
+					insertEmployee(employee)
+				}
+				//console.log(employees)
+				divList.innerHTML = ""
+				divList.append(createEmployeeList(employees))
+				empForm.reset()
+			}
+		})
+		
+		// Validate the user input
+		const validateInput = () => {
+			let isValid = true
+			const errorMessages = []
+
+			if(!txtFirstName.value){
+				errorMessages.push("Please enter a first name")
+				isValid = false
+			}
+			if(!txtLastName.value){
+				errorMessages.push("Please enter a last name")
+				isValid = false
+			}
+			let checkedDepartments = 0
+			chkBoxes.forEach((chk)=>{
+				if(chk.checked){
+					checkedDepartments++
+				}
+			})
+			if(checkedDepartments == 0){
+				errorMessages.push("Please check at least one department")
+			}
+
+			const errorDiv = empForm.querySelector(".validation-errors")
+			errorDiv.innerHTML = errorMessages.join("<br>")
+
+			return isValid
+		}
+
+
+		// Bind the form input to an employee object
+		const getEmployeeFromUI = () => {
+			const id = txtEmployeeId.value
+			const firstName = txtFirstName.value
+			const lastName = txtLastName.value
+			const departments = []
+			chkBoxes.forEach((chk)=>{
+				if(chk.checked){
+					departments.push(chk.value)
+				}
+			})
+			return new Employee(id, firstName, lastName, departments)
+		}
+
+
+		////////////////////////////////
+		// Part 4 - Event delegation
+		////////////////////////////////
+		divList.addEventListener("click", (evt)=>{
+			const employeeId = evt.target.closest("li")?.dataset.employeeId
+			const selectedEmployee = getEmployeeById(employeeId)
+			if(selectedEmployee){
+				if(evt.target.name == "btnEdit"){
+					bindEmployeeToUI(selectedEmployee)
+				}else if(evt.target.name == "btnDelete"){
+					if(confirm("Are you sure you want to delete " + selectedEmployee.firstName + " " + selectedEmployee.lastName + "?")){
+						deleteEmployee(employeeId)
+						divList.innerHTML = ""
+						divList.append(createEmployeeList(employees))
+					}
+					empForm.reset()
+				}
+				
+			}
+		})
+
+
+		////////////////////////////////
+		// Adding Employees
+		////////////////////////////////
+		btnAddEmployee = document.querySelector("[name=btnAddEmployee]")
+		btnAddEmployee.addEventListener("click", () => {
+			empForm.reset()
+			txtFirstName.focus()
+		})
+
+
+
+	}) // end of window load handler
+	</script>
+	
+
+</head>
+<body>
+
+<h2>
+	Employees
+	<input type="button" name="btnAddEmployee" value="Add Employee">
+</h2>
+<div id="employeeList"></div>
+
+<h2>Selected Employee</h2>
+
+<form id="employeeForm" method="POST" action="http://www.wtc-web.com/form-handler.php">
+	<div class="validation-errors"></div>	
+	<label>Employee Id:</label>
+	<input type="text" name="employeeId" readonly> (readonly - should be hidden)
+	<br>
+
+	<label>First Name:</label>
+	<input type="text" name="firstName">
+	<br>
+	<label>Last Name:</label>
+	<input type="text" name="lastName">
+	<br>
+	<label>Departments:</label>
+	<div id="departments">
+		<input type="checkbox" value="Sales" name="departments[]">
+		<label>Sales</label>
+		<input type="checkbox" value="Marketing" name="departments[]">
+		<label>Marketing</label>
+		<input type="checkbox" value="IT" name="departments[]">
+		<label>IT</label>
+		<input type="checkbox" value="Human Resources" name="departments[]">
+		<label>Human Resources</label>
+	</div>
+	<input type="submit" value="Save">
+	<input type="button" name="btnClear" value="Clear Form">
+</form>
+
+</body>
+</html>

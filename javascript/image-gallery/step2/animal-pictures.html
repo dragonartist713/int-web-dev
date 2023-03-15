@@ -7,23 +7,17 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Image Gallery">
   <meta name="viewport" content="width=device-width">
-  <script>
-    
-    var animalImages = [
-      {path: "../images/Jellyfish.jpg", description:"A cool jelly fish.", artist:"Betty Carter", "date": "3/31/2019", tags:["animals", "ocean", "fish"]},
-      {path: "../images/Koala.jpg", description:"A cute koala bear", artist:"Bob Smith", "date": "6/11/2020", tags:["animals", "bears"]},
-      {path: "../images/Penguins.jpg", description:"Lots of penguins", artist:"Jim Johansen", "date": "1/13/2018", tags:["animals", "ocean", "birds"]}
-    ];
-
-  </script>
+  <script type="text/javascript" src="js/image-gallery.js"></script>
 </head>
 <body>  
 	<h1>Animal Pictures</h1>
-  <p>
-    Your assignment is to add an image gallery to this page, just like the one we created in step 1, 
-    except that this image gallery will show animal images rather than landscape images.
-    Use the animalImages array in the script element above.
-  </p>
+  <div id="image-gallery">
+    <img id="mainImg" src="" />
+    <h3 id="caption"></h3>
+    <input type="button" id="btnPrev" value="Prev" />
+    &nbsp;
+    <input type="button" id="btnNext" value="Next" />
+  </div>
   
 </body>
 </html>
