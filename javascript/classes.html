@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript classes</title>
+    <script>
+        class BankAccount{
+
+            #balance; //private variable
+
+            constructor(id, customerName){
+                this.id = id;
+                this.customerName = customerName;
+                this.#balance = 0;
+            }
+
+            deposit(amount){
+                this.#balance += amount;
+            }
+
+            withdraw(amount){
+                if(amount < this.#balance){
+                    this.#balance -= amount
+                }else{
+                    throw new Error("Insufficient Funds")
+                }
+            }
+
+            get balance(){
+                return this.#balance;
+            }
+        }
+
+        const acct = new BankAccount(1, "Bob")
+        acct.deposit(1000)
+        try{
+        acct.withdraw(10000)
+        }catch(error){
+            alert("Unable to withdraw: " + error.message)
+        }
+        console.log(acct)
+
+
+        class InterestBearingAccount extends BankAccount{
+            #interestRate;
+            #interestEarned;
+            constructor(id, name, interestRate){
+                super(id, name)
+                this.#interestRate = interestRate
+                this.#interestEarned = 0
+            }
+
+            addInterest(){
+                const interest = this.balance * this.#interestRate
+                this.deposit(interest)
+                this.#interestEarned += interest
+            }
+        }
+
+        const ibAcct = new InterestBearingAccount(2, "Joe", 0.1)
+        ibAcct.deposit(1000)
+        ibAcct.addInterest()
+        console.log(ibAcct)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

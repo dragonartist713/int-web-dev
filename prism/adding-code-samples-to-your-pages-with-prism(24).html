@@ -1,0 +1,141 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Prism</title>
+
+  <!-- Bootstrap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- The unescaped markup plugin doesn't seem to work??? -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js" integrity="sha512-pSVqGtpGygQlhN8ZTHXx1kqkjQr30eM+S6OoSzhHGTjh6DKdfy7WZlo1DNO9bhtM0Imf6xNLznZ7iVC2YUMwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-jkelqcQ/rwCw36MumZ5fWlgs+aZEMLrgGt51ParMK7Tyam7kB5ZG+mB5R0NSeoGVr/4N+q3oGpLaFR/vXgzjTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-rQtEAFW9oS0hBzTOYejcMPkq3jYbOoueW4C5CkRmrC3yzjw24oT+9V72/JGvI3EzAnU3DZlUn76OD0WTAJhP/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+</head> 
+<body>
+  
+  <div class="container-fluid bg-dark p-3">
+    <div class="container-xl">
+      <h2 class="text-white">PrimsJS Code Syntax Highlighter</h2>
+    </div>
+  </div>
+  <div class="container-xl">
+    <main class="mt-3">
+       
+
+      <!-- I used this CSS to style the PRE elements in this article -->
+      <style>
+        pre{
+          background-color: black;
+          color: yellow;
+          margin: 10px;
+          padding: 10px;
+          line-height: 125%;
+          border-radius: 6px;
+        }
+      </style>
+
+
+      <p>
+      	As a web blogger, you'll definitely have to display code samples in the articles you publish.
+      	You could use PRE elements to preserve the indentation and formatting, but it doesn't look great (even with some help from CSS):
+      </p>
+      <pre>
+if(x < 7){
+  alert("foo!");
+}</pre>
+      <p>
+      	HTML code samples can be tricky to display in PRE elements because you have to replace all the 
+      	angle brackets (<b>&lt;</b> and <b>&gt;</b>) with <b><a href="https://dev.w3.org/html5/html-author/charref" target="_blank">entity characters</a></b>.
+      </p>
+      <pre>&lt;h1&gt;Hello World!&lt;h1&gt;</pre>
+      <p>
+      	A better way to have great looking code samples in your site is to use a library for <b>syntax highlighting</b>.
+      	In this article, I'll show you how to get started with <b>PrismJS</b>, which is a JavaScript and CSS library for
+      	displaying code samples in your web pages.
+      </p>
+      <h2>Installing Prism</h2>
+      <p>
+      	To get started, go to the 
+      	<b><a href="https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript" target="_blank">PrismJS download page<a></b>
+      	and choose a few options to customize your download. This list will guide you through the options:
+      </p>
+      <ol>
+      	<li>
+      		Choose the <b>development version</b> if you want to download the source code in a readable format.
+      		The <b>minified version</b> is ideal for your live server because it is compressed to reduce it's file size, 
+      		which helps to speed up the load time of the web that uses the Prism library. 
+      		But the code in the minified version is unreadable because all of the tabs, extra spaces, and line breaks are removed from the code.
+      	  If you are just playing around the PrismJS, you could choose either version.
+        </li>
+      	<li>Choose your <b>theme</b>. Unfortunately you have scroll to the bottom of the page to preview the theme that you choose.</li>
+      	<li>
+      		Choose the <b>languages</b> that you will displaying in your code samples.
+      		For this class you can just leave the default selected languages, which are Markup (this includes HTML), CSS, C-Like, and JavaScript.
+      	</li>
+      	<li>
+      		If you scroll down past all the language options, you'll see that you can choose to include various <b>plugins</b> in your download.
+      		We'll make use of two of them, choose <b>Unescaped Markup</b> and <b>Normalize Whitespace.</b>
+      	</li>
+      </ol>
+      <p>
+      	At the bottom of the page you'll see two buttons, one to download the Prism stylesheet, and the other to download the JavaScript file.
+      	Download these two files and then put them in the appropriate folders of your website.
+      	Now all you need to do in order use the Prism library in a web page is link to both files. 
+      </p>
+      <p>
+      	Now your code samples will look like this:
+      </p>
+
+      <pre><code class="language-js">
+        if(x < 7){
+          alert("foo!");
+        }
+      </code></pre>
+
+
+      <h2>Using Prism</h2>
+      <p>
+      	To add a code sample to a page, just add these tags: 
+      </p>
+
+<pre><code class="language-markup"><!--<pre>
+	<code class="language-js">
+	// Your code sample goes here
+	</code>
+</pre>
+--></code></pre>
+      
+      <p>
+      	Note that you must set the class attribute of the CODE element to indicate the languague of your code sample.
+      	Set the class to a value of <b>language-markup</b> for HTML code samples.
+      	Use <b>language-js</b> for JavaScript code samples.
+      	And use <b>language-css</b> for CSS code samples.
+      </p>
+
+
+
+
+
+
+
+
+
+    </main>
+  </div>
+
+  <div class="container-fluid bg-dark py-2 mt-3"> 
+    <footer class="container-xl bg-dark text-white">&copy; 2022 Niall Kader</footer> 
+  </div>
+
+</body> 
+</html>
