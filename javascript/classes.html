@@ -57,12 +57,46 @@
                 this.deposit(interest)
                 this.#interestEarned += interest
             }
+
+            get interestEarned(){
+                return this.#interestEarned
+            }
         }
 
         const ibAcct = new InterestBearingAccount(2, "Joe", 0.1)
         ibAcct.deposit(1000)
         ibAcct.addInterest()
         console.log(ibAcct)
+        console.log(ibAcct.interestEarned)
+
+        class FullServiceBankAccount extends InterestBearingAccount{
+            #serviceFeeRate
+            #totalServiceFees
+
+            constructor(id, name, interestRate, serviceFeeRate){
+                super(id, name, interestRate)
+                this.#serviceFeeRate = serviceFeeRate
+                this.#totalServiceFees = 0
+            }
+
+            withdraw(amount){
+                const serviceFee = amount * this.#serviceFeeRate
+                super.withdraw(amount + serviceFee)
+                this.#totalServiceFees += serviceFee
+            }
+
+            get totalServiceFees(){
+                return this.#totalServiceFees
+            }
+        }
+
+        const fsAcct = new FullServiceBankAccount(3, "Jenny", 0.1, 0.05)
+
+        fsAcct.deposit(50)
+        fsAcct.deposit(25)
+        fsAcct.withdraw(40)
+        console.log(fsAcct.balance, fsAcct)
+
     </script>
 </head>
 <body>
