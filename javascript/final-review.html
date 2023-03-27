@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Review Problmes</title>
+	<style type="text/css">
+		label{display: block};
+	</style>
+	<script type="text/javascript">
+	window.addEventListener("load", ()=>{
+
+
+		// PROBLEM 1
+		const catOptions = ["Vaccinated", "Mut", "Male", "Female"];
+		// Bind the strings in the above array to the select element below
+		// (create an option element for each string and set it's text property)
+
+		
+
+
+		// PROBLEM 2
+		const cats = [
+			{id: 1, name: "Felix", age: 7, vaccinated:true, gender:"Male", breed:"Mut"},
+			{id: 2, name: "Buster", age: 11, vaccinated:true, gender:"Male", breed: "Siamese"},
+			{id: 3, name: "Garfield", age: 7, vaccinated:false, gender:"Male", breed: "Tabby"},
+			{id: 4, name: "Sasha", age: 3, vaccinated:false, gender:"Female", breed: "Mut"}
+		];
+
+		/*
+		Add code to the createCatList function (below).
+		It should create an unordered list and then
+		loop through the parameter (which should be an array of cat objects).
+		Inside the loop, it should the follow for each cat object:
+			1. Create an LI element that displays the cat's name
+			2. Add a data attribute that is set to the id of the cat.
+			3. Create a button inside the LI, which has a label of 'Details'
+			4. Append the LI to the list
+		The function should return the list
+		*/
+		const createCatList = (catArray) => {
+			document.getElementById("cat-list").innerHTML = ""; // You'll need this line here for later
+			// put your code here
+		}
+		
+
+
+
+		// PROBLEM 3
+		// Call the function that you worked on in the previous problem
+		// by passing in the 'cats' array.
+		// Display the returned list in the 'cat-list' div below.
+		
+		
+
+
+		// PROBLEM 4
+		// Add code to the getCatById() function below
+		// that will return the cat (from the cats array) which an id that matches the id parameter
+		const getCatById = (id) => {
+			// Put your code here
+		}
+
+
+		// PROBLEM 5
+		// Add an event handler to the select element that listens for 'change' events.
+		// Inside the event handler function, use the filter method on the 'cats' array to
+		// create an array based on the selected option.
+		// Then pass the filtered array into the createCatList() function
+
+		
+
+
+		// PROBLEM 6
+		// Add code to the bindCatToForm() function that will bind the parameter
+		// to the form below.
+		const bindCatToForm = (cat) => {
+			// Put your code here			
+		}
+		// This code can be used to test the bindToCat() function
+		const testCat = {id: 101, name: "Test Cat", age: 7, vaccinated:true, gender:"Male", breed:"Mut"};
+		bindCatToForm(testCat);
+
+
+		// PROBLEM 7 - Event Delegation
+		// Listen for clicks on the cat-list div (I have done that for you below)
+		// Inside the event handler, check to see of the target of the event is the Details button.
+		// (check the value attribute of the target)
+		// If this is true, then use the closest() method to get the closest LI
+		// Then extract the data attribute of the LI that contains the id of the cat.
+		// Use the id to get the selected cat (by calling getCatById())
+		// Then bind the selected cat to the form (by calling bindCatToForm())
+		document.getElementById("cat-list").addEventListener("click", (evt) => {
+			// Put your code here
+		});
+
+
+		// PROBLEM 8
+		function Cat(id, name, age, breed, gender, vaccinated){
+			this.id = id;
+			this.name = name;
+			this.breed  = breed;
+			this. gender = gender;
+			this.vaccinated = vaccinated;
+		}
+		// Add an event handler to the 'submit' event of the form below.
+		// In the event handler function do the following:
+		// 	1. Prevent the default behavior of the event
+		// 	2. Extract the data from the form and use it to create a Cat object 
+		//     (use the Cat constructor function)
+		//	3. Log the cat object after you create it
+
+
+
+	}); // end of window load listener
+	</script>
+</head>
+<body>
+	<h1>All About Cats</h1>
+	<h3>Cat List</h3>
+	<select id="cat-options"></select>
+	<div id="cat-list"></div>
+	<br><br>
+	<h3>Cat Details</h3>
+	<form id="cat-form">
+		<label>ID</label>
+		<input type="text" name="id" readonly>
+		<label>Name</label>
+		<input type="text" name="name">
+		<label>Age</label>
+		<input type="text" name="age">
+		<label>Gender</label>
+		<input type="radio" name="gender" value="Male">Male
+		<br>
+		<input type="radio" name="gender" value="Female">Female
+		<label>Breed</label>
+		<select name="breed">
+			<option>Mut</option>
+			<option>Tabby</option>
+			<option>Siamese</option>
+		</select>
+		<label>
+			Vaccinated
+			<input type="checkbox" name="vaccinated">
+		</label>
+		<input type="submit" value="SAVE">
+	</form>
+</body>
+</html>
