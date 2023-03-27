@@ -1,10 +1,8 @@
 // IMPORTS
-// import gulp from 'gulp';
-// import babel from 'gulp-babel';
-// import imagemin from 'gulp-imagemin';
-const gulp = require('gulp')
-const babel = require('gulp-babel')
+const gulp = require('gulp');
+const babel = require('gulp-babel');
 const imagemin = require('gulp-imagemin');
+
 
 // TASK FUNCTIONS
 const test = (done) => {
@@ -33,12 +31,9 @@ const images = (done) => {
     done();
 }
 
-
 // EXPORTS (in order to run the task functions, they must be exported)
-// export {test, copy, transpile, images}
-module.exports.test = test
-// export default gulp.parallel(copy, transpile, images);
-module.exports.copy = copy
+module.exports.test = test 
+module.exports.copy = copy 
 module.exports.transpile = transpile
 module.exports.images = images
-module.exports.default = gulp.parallel(copy, transpile, images)
+module.exports.default = gulp.parallel(copy, transpile, images); 
