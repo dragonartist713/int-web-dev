@@ -7,7 +7,7 @@ describe("Test valid params for calculateLetterGrade()", () => {
         expect(calculateLetterGrade(score)).toEqual(expectedResult);
     });
 
-    test("80 is an B", () => {
+    test("80 is a B", () => {
         expect(calculateLetterGrade(80)).toEqual("B");
     });
 
